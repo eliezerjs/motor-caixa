@@ -1,0 +1,22 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/IntegraCVP/src/IntegraCVP.Application/obj/Debug/net8.0
+/IntegraCVP/src/IntegraCVP.Application/obj
+/IntegraCVP/src/IntegraCVP.Domain/obj
+/IntegraCVP/src/IntegraCVP.Infrastructure/obj/Debug/net8.0
+/IntegraCVP/src/IntegraCVP.Infrastructure/obj
+/IntegraCVP/src/IntegraCVP.UI/obj
+/IntegraCVP/tests/IntegraCVP.Application.Tests/bin/Debug/net8.0
+/IntegraCVP/tests/IntegraCVP.Application.Tests/obj
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/bin/Debug/net8.0
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/Debug/net8.0
+/IntegraCVP/.vs/IntegraCVP/DesignTimeBuild
+/IntegraCVP/tests/IntegraCVP.Infrastructure.Tests/obj/Debug/net8.0
+/IntegraCVP/tests/IntegraCVP.Infrastructure.Tests/obj
+/IntegraCVP/tests/IntegraCVP.Infrastructure.Tests/bin/Debug/net8.0
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/IntegraCVP.Domain.Tests.csproj.nuget.dgspec.json
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/IntegraCVP.Domain.Tests.csproj.nuget.g.props
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/project.assets.json
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/project.nuget.cache
