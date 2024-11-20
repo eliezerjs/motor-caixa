@@ -55,3 +55,6 @@
 /IntegraCVP/src/IntegraCVP.Infrastructure/obj/IntegraCVP.Infrastructure.csproj.nuget.g.targets
 /IntegraCVP/src/IntegraCVP.Infrastructure/obj/project.assets.json
 /IntegraCVP/src/IntegraCVP.Infrastructure/obj/project.nuget.cache
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/IntegraCVP.Domain.Tests.csproj.nuget.dgspec.json
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/project.assets.json
+/IntegraCVP/tests/IntegraCVP.Domain.Tests/obj/project.nuget.cache
