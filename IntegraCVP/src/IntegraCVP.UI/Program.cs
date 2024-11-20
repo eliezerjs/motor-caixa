@@ -15,6 +15,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IBoletoService, BoletoService>();
+builder.Services.AddScoped<IBoletoV2Service, BoletoV2Service>();
+builder.Services.AddScoped<ISeguroService, SeguroService>();
+builder.Services.AddScoped<ISeguroGrupoService, SeguroGrupoService>();
 builder.Services.AddScoped<IDataConverterService, DataConverterService>();
 
 var app = builder.Build();

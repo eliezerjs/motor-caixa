@@ -1,15 +1,63 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <None Remove="Resources\boleto_fundo.jpg" />
-    <None Remove="Resources\boleto_template.html" />
+    <None Remove="Resources\BoletoV2\VD32.jpg" />
+    <None Remove="Resources\BoletoV2\VIDA26.jpg" />
+    <None Remove="Resources\Boleto\boleto_fundo_VD02.jpg" />
+    <None Remove="Resources\Boleto\VA18.jpg" />
+    <None Remove="Resources\Boleto\VA24.jpg" />
+    <None Remove="Resources\Boleto\VD02.jpg" />
+    <None Remove="Resources\Boleto\VD03.jpg" />
+    <None Remove="Resources\Boleto\VD32.jpg" />
+    <None Remove="Resources\Boleto\VIDA23.jpg" />
+    <None Remove="Resources\Boleto\VIDA24.jpg" />
+    <None Remove="Resources\Boleto\VIDA25.jpg" />
+    <None Remove="Resources\Boleto\VIDA26.jpg" />
+    <None Remove="Resources\Boleto\VIDA27.jpg" />
+    <None Remove="Resources\boleto_fundo_VD02.jpg" />
+    <None Remove="Resources\Seguro\VD03.jpg" />
+    <None Remove="Resources\Seguro\VIDA27.jpg" />
+    <None Remove="Resources\Seguro_Grupo\VA18.jpg" />
+    <None Remove="Resources\Seguro_Grupo\VA24.jpg" />
+    <None Remove="Resources\Seguro_Grupo\VIDA23.jpg" />
+    <None Remove="Resources\Seguro_Grupo\VIDA24.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\boleto_fundo.jpg">
+    <Content Include="Resources\BoletoV2\VD32.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\boleto_template.html">
+    <Content Include="Resources\BoletoV2\VIDA26.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Boleto\boleto_fundo_VD02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Boleto\VD02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Boleto\VIDA25.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro\VD03.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro\VIDA27.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro_Grupo\VA18.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro_Grupo\VA24.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro_Grupo\VIDA23.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Seguro_Grupo\VIDA24.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

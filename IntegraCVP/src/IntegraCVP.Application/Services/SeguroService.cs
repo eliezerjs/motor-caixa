@@ -5,12 +5,12 @@ using System.IO;
 
 namespace IntegraCVP.Application.Services
 {
-    public class BoletoService : IBoletoService
+    public class SeguroService : ISeguroService
     {
         public byte[] GerarBoletoPdf()
         {
             // Defina o caminho relativo para a imagem de fundo com base no diretório da aplicação
-            string imagePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Boleto", "VIDA26.jpg");
+            string imagePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Seguro", "VIDA27.jpg");
 
             // Verifique se o arquivo existe para evitar exceções
             if (!File.Exists(imagePath))
