@@ -50,20 +50,28 @@ namespace IntegraCVP.Application.Services
                 if (dadosBoleto.ContainsKey(chave))
                 {
                     var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(10)
+                        .SetFontSize(9)
                         .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
                     document.Add(text);
                 }
             }
 
             // Campos a desenhar
-            DesenharCampo("AGENCIA", 200, 270);
-            DesenharCampo("APOLICE", 263, 270);
-            DesenharCampo("FATURA", 410, 660);
-            DesenharCampo("PERIODO", 540, 640);
-            DesenharCampo("EMISSAO", 850, 620);
-            DesenharCampo("VENCIMENTO", 1005, 600);
-            DesenharCampo("VALOR", 775, 580);
+            DesenharCampo("AGENCIA", 45, 136);
+            DesenharCampo("APOLICE", 125, 136);
+            DesenharCampo("FATURA", 197, 136);
+            DesenharCampo("PERIODO", 260, 136);
+            DesenharCampo("EMISSAO", 407, 136);
+            DesenharCampo("VENCIMENT", 450, 136);
+
+            DesenharCampo("ESTIPULANTE", 100, 600);
+            DesenharCampo("ENDERECO_ESTIPULANTE", 100, 580);
+            DesenharCampo("CNPJ_ESTIPULANTE", 400, 580);
+            DesenharCampo("CIDADE_ESTADO_ESTIPULANTE", 700, 580);
+            DesenharCampo("NUM_VIDAS", 100, 540);
+            DesenharCampo("CAPITAL_SEGURADO", 400, 540);
+            DesenharCampo("IOF", 700, 540);
+            DesenharCampo("PREMIO", 900, 540);
 
             // Gera e adiciona o código de barras
             if (dadosBoleto.ContainsKey("NUMCDBARRA"))
