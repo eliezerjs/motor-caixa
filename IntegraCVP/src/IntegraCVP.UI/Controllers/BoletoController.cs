@@ -20,13 +20,6 @@ namespace IntegraCVP.UI.Controllers
             _SeguroGrupoService = SeguroGrupoService;
         }
 
-        [HttpGet("gerar-boleto")]
-        public IActionResult GerarBoleto()
-        {
-            byte[] pdfData = _boletoService.GerarBoletoPdf();
-            return File(pdfData, "application/pdf", "Boleto.pdf");
-        }
-
         [HttpGet("gerar-boletov2")]
         public IActionResult GerarBoletoV2()
         {

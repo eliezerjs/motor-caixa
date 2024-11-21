@@ -2,6 +2,6 @@ namespace IntegraCVP.Application.Interfaces
 {
     public interface IBoletoService
     {
-        byte[] GerarBoletoPdf();
+        byte[] GerarBoletoPdf(Dictionary<string, string> dadosBoleto);
     }
 }
