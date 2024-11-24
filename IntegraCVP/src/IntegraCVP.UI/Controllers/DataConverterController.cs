@@ -45,12 +45,15 @@ namespace IntegraCVP.UI.Controllers
 
             var boletosVD05 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA05").ToList();
 
+            //Filtrar os tipos VD03 e VIDA27 - Pasta Seguro
+            var boletosVD03 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b.ContainsKey("FATURA") && b["TIPO_DADO"] == "VD03").ToList();
+            var boletosVIDA27 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b.ContainsKey("FATURA") && b["TIPO_DADO"] == "VIDA27").ToList();
+
             // Filtrar os tipos VA18, VA24, VIDA23 e VIDA24
             var boletosVA18 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VA18").ToList();
             var boletosVA24 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VA24").ToList();
             var boletosVIDA23 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA23").ToList();
             var boletosVIDA24 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA54").ToList();
-
 
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
@@ -69,13 +72,26 @@ namespace IntegraCVP.UI.Controllers
                 pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
             }
 
+            // Gera boletos para VD03
+            foreach (var boleto in boletosVD03)
+            {
+                byte[] pdfData = _boletoService.GerarBoletoSeguro(boleto, "VD03");
+                pdfFiles.Add(($"VD03_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
+            }
+
+            // Gera boletos para VIDA27
+            foreach (var boleto in boletosVIDA27)
+            {
+                byte[] pdfData = _boletoService.GerarBoletoSeguro(boleto, "VIDA27");
+                pdfFiles.Add(($"VIDA27_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
+            }
+
             // Gera boletos para Seguro Grupo
             foreach (var boleto in boletosVA18)
             {
                 byte[] pdfData = _boletoService.GerarBoletoVA18Pdf(boleto);
                 pdfFiles.Add(($"VA18_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
-
 
             foreach (var body in boletosVD05)
             {

@@ -2,19 +2,17 @@ namespace IntegraCVP.Application.Interfaces
 {
     public interface IBoletoService
     {
-        /*Registros abaixo são identicos*/
+        //Pasta Boleto
         byte[] GerarBoletoVD02Pdf(Dictionary<string, string> dadosBoleto);
         byte[] GerarBoletoVIDA25Pdf(Dictionary<string, string> dadosBoleto);
 
-        /*Registros acima são identicos*/
+        //Pasta Seguro
+        byte[] GerarBoletoSeguro(Dictionary<string, string> dadosBoleto, string filename);
 
-        /*Registros abaixo são identicos*/
+        //Pasta Seguro_Grupo
         byte[] GerarBoletoVA18Pdf(Dictionary<string, string> dadosBoleto);
         //byte[] GerarBoletoVA24Pdf(Dictionary<string, string> dadosBoleto);
         //byte[] GerarBoletoVIDA23Pdf(Dictionary<string, string> dadosBoleto);
         //byte[] GerarBoletoVIDA24Pdf(Dictionary<string, string> dadosBoleto);
-
-        /*Registros acima são identicos*/
-
     }
 }
