@@ -59,7 +59,7 @@ namespace IntegraCVP.Application.Services
             }
 
             // Campos a desenhar
-            DesenharCampo("AGENCIA", 45, 135);
+            DesenharCampo("AGENCIA_OPERADORA", 45, 135);
             DesenharCampo("APOLICE", 125, 135);
             DesenharCampo("FATURA", 197, 135);
             DesenharCampo("PERIODO", 260, 135);
@@ -72,7 +72,7 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("CEP", 45, 182);
             DesenharCampo("CIDADE", 154, 182);
             DesenharCampo("UF", 407, 182);
-            DesenharCampo("CNPJ1", 453, 182);
+            DesenharCampo("CNPJ", 453, 182);
 
             DesenharCampo("ESTIPULANTE", 45, 205);
             DesenharCampo("ENDERECO", 260, 205);
@@ -80,7 +80,7 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("CEP", 45, 230);
             DesenharCampo("CIDADE", 154, 230);
             DesenharCampo("UF", 407, 230);
-            DesenharCampo("CNPJ1", 453, 230);
+            DesenharCampo("CNPJ", 453, 230);
 
             DesenharCampo("NVIDAS", 45, 252);
             DesenharCampo("CAPITAL", 154, 252);
@@ -321,44 +321,68 @@ namespace IntegraCVP.Application.Services
             // Campos a desenhar
 
             DesenharCampo("PRODUTO", 57, 69);
-            DesenharCampo("COD_PROD", 310, 69);
-            DesenharCampo("PROC_SUSEP", 410, 69);
+            DesenharCampo("COD_PROD", 306, 69);
+            DesenharCampo("PROC_SUSEP", 390, 69);
 
-            DesenharCampo("NOME_CLIENTE", 55, 110);
-            DesenharCampo("CPF", 340, 110);
-            DesenharCampo("DT_NASC", 453, 110);
-
-
+            DesenharCampo("NOME_CLIENTE", 55, 111);
+            DesenharCampo("CPF", 327, 111);
+            DesenharCampo("DT_NASC", 453, 111);
 
 
-            DesenharCampo("NUMDOCTO", 470, 400);
+            DesenharCampo("NUMDOCTO", 470, 405);
 
-            DesenharCampo("DTVENCTO", 350, 425);
-            DesenharCampo("DTVENCTO", 468, 425);
+            DesenharCampo("CEDENTE", 359, 424);
+            DesenharCampo("DTVENCTO", 467, 424);
 
-            DesenharCampo("NSNUMERO", 380, 445);
-            DesenharCampo("DTVENCTO", 465, 445);
+            DesenharCampo("NSNUMERO", 368, 444);
+            DesenharCampo("VALDOCTO", 465, 444);
 
-            DesenharCampo("DTVENCTO", 371, 480);
+            DesenharCampo("NUMOBJETO", 371, 480);
 
-            DesenharCampo("DTVENCTO", 440, 528);
+            DesenharCampo("PARCELA", 440, 528);
             DesenharCampo("DTVENCTO", 492, 528);
 
-            DesenharCampo("NSNUMERO", 443, 545);
+            DesenharCampo("CEDENTE", 440, 546);
 
-            DesenharCampo("DTVENCTO", 443, 562);
+            DesenharCampo("DTDOCTO", 46, 563);
+            DesenharCampo("NUMDOCTO", 133, 563);
+            DesenharCampo("DTPROCESS", 370, 563);
+            DesenharCampo("NSNUMERO", 440, 563);
 
-            DesenharCampo("DTVENCTO", 443, 580);
+            DesenharCampo("", 46, 580);
+            DesenharCampo("", 299, 580);
+            DesenharCampo("VALOR", 370, 580);
+            DesenharCampo("VALDOCTO", 440, 580);
 
-            DesenharCampo("DTVENCTO", 443, 595);
+            DesenharCampo("", 440, 595);
 
-            DesenharCampo("DTVENCTO", 443, 610);
+            DesenharCampo("ABATIMENTO", 440, 610);
 
-            DesenharCampo("DTVENCTO", 443, 627);
+            DesenharCampo("", 440, 627);
 
-            DesenharCampo("DTVENCTO", 443, 643);
+            DesenharCampo("", 440, 643);
 
-            DesenharCampo("DTVENCTO", 443, 660);
+            DesenharCampo("VALDOCTO", 440, 660);
+
+
+            // Gera e adiciona o código de barras
+            if (dadosBoleto.ContainsKey("NUMCDBARRA"))
+            {
+                string codigoPadronizado = MontarCodigoBarra(
+                   dadosBoleto["NUMCDBARRA"],
+                   ObterFatorVencimento(dadosBoleto["DTVENCTO"]),
+                   ConverterValor(dadosBoleto["VALOR"])
+               );
+
+
+                var barcode = new Barcode128(pdfDocument);
+                barcode.SetCode(codigoPadronizado);
+                barcode.SetBarHeight(30); // Altura das barras
+                barcode.SetX(1f); // Largura das barras
+                var barcodeImage = new iText.Layout.Element.Image(barcode.CreateFormXObject(pdfDocument));
+                barcodeImage.SetFixedPosition(50, 130); // Ajuste a posição
+                document.Add(barcodeImage);
+            }
 
             document.Close();
             return pdfStream.ToArray();
