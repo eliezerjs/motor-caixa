@@ -57,21 +57,75 @@ namespace IntegraCVP.Application.Services
             }
 
             // Campos a desenhar
-            DesenharCampo("AGENCIA", 45, 136);
-            DesenharCampo("APOLICE", 125, 136);
-            DesenharCampo("FATURA", 197, 136);
-            DesenharCampo("PERIODO", 260, 136);
-            DesenharCampo("EMISSAO", 407, 136);
-            DesenharCampo("VENCIMENT", 450, 136);
+            DesenharCampo("AGENCIA", 45, 135);
+            DesenharCampo("APOLICE", 125, 135);
+            DesenharCampo("FATURA", 197, 135);
+            DesenharCampo("PERIODO", 260, 135);
+            DesenharCampo("EMISSAO", 407, 135);
+            DesenharCampo("VENCIMENT", 481, 135);
 
-            DesenharCampo("ESTIPULANTE", 100, 600);
-            DesenharCampo("ENDERECO_ESTIPULANTE", 100, 580);
-            DesenharCampo("CNPJ_ESTIPULANTE", 400, 580);
-            DesenharCampo("CIDADE_ESTADO_ESTIPULANTE", 700, 580);
-            DesenharCampo("NUM_VIDAS", 100, 540);
-            DesenharCampo("CAPITAL_SEGURADO", 400, 540);
-            DesenharCampo("IOF", 700, 540);
-            DesenharCampo("PREMIO", 900, 540);
+            DesenharCampo("ESTIPULANTE", 45, 159);
+            DesenharCampo("ENDERECO", 260, 159);
+
+            DesenharCampo("CEP", 45, 182);
+            DesenharCampo("CIDADE", 154, 182);
+            DesenharCampo("UF", 407, 182);
+            DesenharCampo("CNPJ1", 453, 182);
+
+            DesenharCampo("ESTIPULANTE", 45, 205);
+            DesenharCampo("ENDERECO", 260, 205);
+
+            DesenharCampo("CEP", 45, 230);
+            DesenharCampo("CIDADE", 154, 230);
+            DesenharCampo("UF", 407, 230);
+            DesenharCampo("CNPJ1", 453, 230);
+
+            DesenharCampo("NVIDAS", 45, 252);
+            DesenharCampo("CAPITAL", 154, 252);
+            DesenharCampo("IOF", 310, 252);
+            DesenharCampo("PREMIO", 407, 252);
+
+            DesenharCampo("NUMDOCTO", 465, 380);
+
+            DesenharCampo("AGENCIA", 365, 398);
+            DesenharCampo("VENCIMENT", 470, 398);
+
+            DesenharCampo("NSNUMERO", 370, 419);
+            DesenharCampo("VALDOCTO", 468, 419);
+
+            DesenharCampo("AGENCIA", 375, 455);
+
+
+            DesenharCampo("PARCELA", 443, 535);
+            DesenharCampo("VENCIMENT", 490, 535);
+
+            DesenharCampo("AGENCIA", 443, 552);
+
+            DesenharCampo("AGENCIA", 45, 570);
+            DesenharCampo("CODDOC", 135, 570);
+            DesenharCampo("AGENCIA", 219, 570);
+            DesenharCampo("AGENCIA", 340, 570);
+            DesenharCampo("AGENCIA", 370, 570);
+            DesenharCampo("NSNUMERO", 443, 570);
+
+            DesenharCampo("AGENCIA", 45, 585);
+            DesenharCampo("AGENCIA", 180, 585);
+            DesenharCampo("AGENCIA", 262, 585);
+            DesenharCampo("AGENCIA", 300, 585);
+            DesenharCampo("AGENCIA", 370, 585);
+            DesenharCampo("VALDOCTO", 443, 585);
+
+            DesenharCampo("AGENCIA", 443, 602);
+
+            DesenharCampo("AGENCIA", 443, 617);
+
+            DesenharCampo("AGENCIA", 443, 633);
+
+            DesenharCampo("AGENCIA", 443, 650);
+
+            DesenharCampo("VALDOCTO", 443, 666);
+
+
 
             // Gera e adiciona o código de barras
             if (dadosBoleto.ContainsKey("NUMCDBARRA"))
