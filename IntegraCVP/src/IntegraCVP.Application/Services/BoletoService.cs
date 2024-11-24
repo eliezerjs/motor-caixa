@@ -14,6 +14,8 @@ using iText.Kernel.Pdf.Canvas;
 using iText.IO.Codec;
 using iText.IO.Image;
 using iText.Layout.Element;
+using Org.BouncyCastle.Crypto;
+using System.Runtime.ConstrainedExecution;
 
 
 namespace IntegraCVP.Application.Services
