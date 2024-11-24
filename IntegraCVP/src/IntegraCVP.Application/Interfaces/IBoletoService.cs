@@ -3,8 +3,7 @@ namespace IntegraCVP.Application.Interfaces
     public interface IBoletoService
     {
         //Pasta Boleto
-        byte[] GerarBoletoVD02Pdf(Dictionary<string, string> dadosBoleto);
-        byte[] GerarBoletoVIDA25Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoPdf(Dictionary<string, string> dadosBoleto, string filename);        
 
         //Pasta Seguro
         byte[] GerarBoletoSeguro(Dictionary<string, string> dadosBoleto, string filename);

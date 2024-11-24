@@ -42,7 +42,7 @@ namespace IntegraCVP.UI.Controllers
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
 
-            byte[] pdfData = _boletoService.GerarBoletoVD02Pdf(boletosVD02.FirstOrDefault());
+            byte[] pdfData = _boletoService.GerarBoletoPdf(boletosVD02.FirstOrDefault(), "VD02");
             return File(pdfData, "application/pdf", "Boleto.pdf");
         }
 
