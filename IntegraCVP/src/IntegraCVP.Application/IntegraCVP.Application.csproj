@@ -1,6 +1,10 @@
 ﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Resources\CartaRecusa\VIDA01.jpg" />
+    <None Remove="Resources\CartaRecusa\VIDA02.jpg" />
+    <None Remove="Resources\CartaRecusa\VIDA03.jpg" />
+    <None Remove="Resources\CartaRecusa\VIDA04.jpg" />
     <None Remove="Resources\Email\VD08.jpg" />
     <None Remove="Resources\Email\VD09.jpg" />
     <None Remove="Resources\Email\VIDA17.jpg" />
@@ -19,6 +23,7 @@
     <None Remove="Resources\Boleto\VIDA26.jpg" />
     <None Remove="Resources\Boleto\VIDA27.jpg" />
     <None Remove="Resources\boleto_fundo_VD02.jpg" />
+    <None Remove="Resources\Inadimplente\VD33.jpg" />
     <None Remove="Resources\Prestamista\PREST01.jpg" />
     <None Remove="Resources\Prestamista\PREST15P1.jpg" />
     <None Remove="Resources\Seguro\VD03.jpg" />
@@ -30,6 +35,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\CartaRecusa\VIDA01.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\CartaRecusa\VIDA02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\CartaRecusa\VIDA03.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\CartaRecusa\VIDA04.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Email\VD08.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -58,6 +75,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Boleto\VIDA25.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Inadimplente\VD33.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Prestamista\PREST01.jpg">
