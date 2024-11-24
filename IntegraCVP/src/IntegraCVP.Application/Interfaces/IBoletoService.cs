@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Interfaces
 
         /*Registros abaixo são identicos*/
         byte[] GerarBoletoVA18Pdf(Dictionary<string, string> dadosBoleto);
-        //byte[] GerarBoletoVA24Pdf(Dictionary<string, string> dadosBoleto);
-        //byte[] GerarBoletoVIDA23Pdf(Dictionary<string, string> dadosBoleto);
-        //byte[] GerarBoletoVIDA24Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVA24Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVIDA23Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVIDA24Pdf(Dictionary<string, string> dadosBoleto);
 
         /*Registros acima são identicos*/
 

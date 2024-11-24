@@ -98,65 +98,65 @@ namespace IntegraCVP.UI.Controllers
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
 
-            byte[] pdfData = _boletoService.GerarBoletoVIDA25Pdf(boletosInfo.FirstOrDefault());
+            byte[] pdfData = _boletoService.GerarBoletoVA24Pdf(boletosInfo.FirstOrDefault());
             return File(pdfData, "application/pdf", "Boleto.pdf");
         }
 
-        //[HttpPost("gerar-vida23")]
-        //public async Task<IActionResult> GerarBoletoVIDA23([FromForm] FileUploadModel model)
-        //{
-        //    if (model.File == null || model.File.Length == 0)
-        //    {
-        //        return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
-        //    }
+        [HttpPost("gerar-vida23")]
+        public async Task<IActionResult> GerarBoletoVIDA23([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
 
-        //    // Converte o arquivo para JSON
-        //    using var memoryStream = new MemoryStream();
-        //    await model.File.CopyToAsync(memoryStream);
-        //    memoryStream.Position = 0;
+            // Converte o arquivo para JSON
+            using var memoryStream = new MemoryStream();
+            await model.File.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
 
-        //    var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
 
-        //    // Parse JSON para obter os dados
-        //    var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            // Parse JSON para obter os dados
+            var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
 
-        //    // Filtrar os tipos VD02 
-        //    var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA23").ToList();
+            // Filtrar os tipos VD02 
+            var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA23").ToList();
 
-        //    // Lista para armazenar os arquivos PDF
-        //    var pdfFiles = new List<(string FileName, byte[] Data)>();
+            // Lista para armazenar os arquivos PDF
+            var pdfFiles = new List<(string FileName, byte[] Data)>();
 
-        //    byte[] pdfData = _boletoService.GerarBoletoPdf(boletosInfo.FirstOrDefault());
-        //    return File(pdfData, "application/pdf", "Boleto.pdf");
-        //}
+            byte[] pdfData = _boletoService.GerarBoletoVIDA23Pdf(boletosInfo.FirstOrDefault());
+            return File(pdfData, "application/pdf", "Boleto.pdf");
+        }
 
-        //[HttpPost("gerar-vida24")]
-        //public async Task<IActionResult> GerarBoletoVIDA24([FromForm] FileUploadModel model)
-        //{
-        //    if (model.File == null || model.File.Length == 0)
-        //    {
-        //        return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
-        //    }
+        [HttpPost("gerar-vida24")]
+        public async Task<IActionResult> GerarBoletoVIDA24([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
 
-        //    // Converte o arquivo para JSON
-        //    using var memoryStream = new MemoryStream();
-        //    await model.File.CopyToAsync(memoryStream);
-        //    memoryStream.Position = 0;
+            // Converte o arquivo para JSON
+            using var memoryStream = new MemoryStream();
+            await model.File.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
 
-        //    var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
 
-        //    // Parse JSON para obter os dados
-        //    var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            // Parse JSON para obter os dados
+            var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
 
-        //    // Filtrar os tipos VD02 
-        //    var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA24").ToList();
+            // Filtrar os tipos VD02 
+            var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA24").ToList();
 
-        //    // Lista para armazenar os arquivos PDF
-        //    var pdfFiles = new List<(string FileName, byte[] Data)>();
+            // Lista para armazenar os arquivos PDF
+            var pdfFiles = new List<(string FileName, byte[] Data)>();
 
-        //    byte[] pdfData = _boletoService.GerarBoletoPdf(boletosInfo.FirstOrDefault());
-        //    return File(pdfData, "application/pdf", "Boleto.pdf");
-        //}
+            byte[] pdfData = _boletoService.GerarBoletoVIDA24Pdf(boletosInfo.FirstOrDefault());
+            return File(pdfData, "application/pdf", "Boleto.pdf");
+        }
 
         [HttpPost("gerar-boletov2")]
         public IActionResult GerarBoletoV2()
