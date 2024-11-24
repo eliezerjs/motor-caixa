@@ -18,6 +18,7 @@ builder.Services.AddScoped<IBoletoService, BoletoService>();
 builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
 builder.Services.AddScoped<IBoletoV2Service, BoletoV2Service>();
 builder.Services.AddScoped<IDataConverterService, DataConverterService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 app.MapControllers();

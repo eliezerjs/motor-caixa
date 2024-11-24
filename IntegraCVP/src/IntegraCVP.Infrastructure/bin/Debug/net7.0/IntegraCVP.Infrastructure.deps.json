@@ -823,18 +823,12 @@
           "itext7.bouncy-castle-adapter": "9.0.0"
         },
         "runtime": {
-          "IntegraCVP.Application.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "IntegraCVP.Application.dll": {}
         }
       },
       "IntegraCVP.Domain/1.0.0": {
         "runtime": {
-          "IntegraCVP.Domain.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "IntegraCVP.Domain.dll": {}
         }
       }
     }

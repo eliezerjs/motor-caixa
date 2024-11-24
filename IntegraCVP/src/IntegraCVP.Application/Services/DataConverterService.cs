@@ -28,7 +28,7 @@ namespace IntegraCVP.Application.Services
                 }
 
                 // Detecta o TIPO_DADO
-                if ((line.Contains(" - ") && line.Contains("Boleto")) || line.Contains("VIDA05"))
+                if ((line.Contains(" - ") && line.ToUpper().Contains("BOLETO")) || line.Contains("VIDA05") || line.ToUpper().Contains("E-MAIL") || line.ToUpper().Contains("EMAIL"))
                 {
                     tipoDadoAtual = line.Split(" - ", StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.Trim();
                 }
