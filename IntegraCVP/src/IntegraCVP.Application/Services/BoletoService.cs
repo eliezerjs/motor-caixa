@@ -14,6 +14,8 @@ using iText.Kernel.Pdf.Canvas;
 using iText.IO.Codec;
 using iText.IO.Image;
 using iText.Layout.Element;
+using Org.BouncyCastle.Crypto;
+using System.Runtime.ConstrainedExecution;
 
 
 namespace IntegraCVP.Application.Services
@@ -137,6 +139,127 @@ namespace IntegraCVP.Application.Services
                );
 
                 
+                var barcode = new Barcode128(pdfDocument);
+                barcode.SetCode(codigoPadronizado);
+                barcode.SetBarHeight(30); // Altura das barras
+                barcode.SetX(1f); // Largura das barras
+                var barcodeImage = new iText.Layout.Element.Image(barcode.CreateFormXObject(pdfDocument));
+                barcodeImage.SetFixedPosition(50, 130); // Ajuste a posição
+                document.Add(barcodeImage);
+            }
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+
+        public byte[] GerarBoletoSeguro(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Seguro", "VD03.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(8)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            // Campos a desenhar
+            var colunaInicial = 47;
+            var linha1 = 186;
+            DesenharCampo("AGENCIA", colunaInicial, linha1);
+            DesenharCampo("APOLICE", 138, linha1);
+            DesenharCampo("FATURA", 210, linha1);
+            DesenharCampo("PERIODO", 282, linha1);
+            DesenharCampo("EMISSAO", 409, linha1);
+            DesenharCampo("VENCIMENT", 484, linha1);
+
+            var linha2 = 217;
+            DesenharCampo("ESTIPULANTE", colunaInicial, linha2);
+            DesenharCampo("CNPJ1", 340, linha2);
+
+            var linha3 = 251;
+            DesenharCampo("ENDERE1", colunaInicial, linha3);
+
+            var linha4 = 284;
+            DesenharCampo("CEP1", colunaInicial, linha4);
+            DesenharCampo("CIDADE1", 157, linha4);
+            DesenharCampo("EST1", 488, linha4);
+
+            var linha5 = 317;
+            DesenharCampo("SUBESTIPULANTE", colunaInicial, linha5);
+            DesenharCampo("CNPJ2", 396, linha5);
+
+            var linha6 = 350;
+            DesenharCampo("ENDERE2", colunaInicial, linha6);
+
+            var linha7 = 385;
+            DesenharCampo("CEP2", colunaInicial, linha7);
+            DesenharCampo("CIDADE2", 156, linha7);
+            DesenharCampo("EST2", 480, linha7);
+
+            var linha8 = 418;
+            DesenharCampo("NVIDAS", colunaInicial, linha8);
+            DesenharCampo("CAPITAL", 156, linha8);
+            DesenharCampo("IOF", 312, linha8);
+            DesenharCampo("PREMIO", 400, linha8);
+
+            //DesenharCampo("PRODUTO", 900, 936);
+            //DesenharCampo("ENDOSSO", 900, 936);
+            //DesenharCampo("TEXTO", 900, 936);
+            //DesenharCampo("DTPOSTAGEM", 900, 936);
+            //DesenharCampo("NUMOBJETO", 900, 936);
+            //DesenharCampo("DESTINATARIO", 900, 936);
+            //DesenharCampo("ENDERECO", 900, 936);
+            //DesenharCampo("BAIRRO", 900, 936);
+            //DesenharCampo("CIDADE", 900, 936);
+            //DesenharCampo("UF", 900, 936);
+            //DesenharCampo("CEP", 900, 936);
+            //DesenharCampo("REMETENTE", 900, 936);
+            //DesenharCampo("REMET_ENDERECO", 900, 936);
+            //DesenharCampo("REMET_BAIRRO", 900, 936);
+            //DesenharCampo("REMET_CIDADE", 900, 936);
+            //DesenharCampo("REMET_UF", 900, 936);
+            //DesenharCampo("REMET_CEP", 900, 936);
+            //DesenharCampo("CODIGO_CIF", 900, 936);
+            //DesenharCampo("POSTNET", 900, 936);
+            //DesenharCampo("COD_PRODUTO", 900, 936);
+
+
+            // Gera e adiciona o código de barras
+            if (dadosBoleto.ContainsKey("NUMCDBARRA"))
+            {
+                string codigoPadronizado = MontarCodigoBarra(
+                   dadosBoleto["NUMCDBARRA"],
+                   ObterFatorVencimento(dadosBoleto["VENCIMENT"]),
+                   ConverterValor(dadosBoleto["VALOR"])
+               );
+
+
                 var barcode = new Barcode128(pdfDocument);
                 barcode.SetCode(codigoPadronizado);
                 barcode.SetBarHeight(30); // Altura das barras

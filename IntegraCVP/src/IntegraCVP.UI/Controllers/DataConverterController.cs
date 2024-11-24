@@ -38,6 +38,7 @@ namespace IntegraCVP.UI.Controllers
             // Filtrar os tipos VD02 e VIDA25
             var boletosVD02 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VD02").ToList();
             var boletosVIDA25 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA25").ToList();
+            var boletosVD03 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b.ContainsKey("FATURA") && b["TIPO_DADO"] == "VD03").ToList();
 
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
@@ -54,6 +55,13 @@ namespace IntegraCVP.UI.Controllers
             {
                 byte[] pdfData = _boletoService.GerarBoletoPdf(boleto);
                 pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
+            }
+
+            // Gera boletos para VD03
+            foreach (var boleto in boletosVD03)
+            {
+                byte[] pdfData = _boletoService.GerarBoletoSeguro(boleto);
+                pdfFiles.Add(($"VD03_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
             }
 
             // Cria o arquivo ZIP contendo os PDFs
