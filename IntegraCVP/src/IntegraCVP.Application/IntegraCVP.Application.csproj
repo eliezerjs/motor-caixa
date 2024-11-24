@@ -1,6 +1,7 @@
 ﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\ARIAL.TTF" />
     <None Remove="Resources\BoletoV2\VD32.jpg" />
     <None Remove="Resources\BoletoV2\VIDA26.jpg" />
     <None Remove="Resources\Boleto\VA18.jpg" />
@@ -25,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Fonts\ARIAL.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\BoletoV2\VD32.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -77,6 +81,10 @@
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="SkiaSharp" Version="2.88.9" />
     <PackageReference Include="SkiaSharp.QrCode" Version="0.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\BoasVindas\" />
   </ItemGroup>
 
   <PropertyGroup>

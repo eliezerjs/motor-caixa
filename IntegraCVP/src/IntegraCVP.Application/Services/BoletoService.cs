@@ -1,21 +1,12 @@
 ﻿using IntegraCVP.Application.Interfaces;
-using iText.Commons.Datastructures;
-using QRCoder;
-using System.Drawing;
-using System.IO;
-using SkiaSharp;
-using System.Text.RegularExpressions;
 using iText.Barcodes;
-using iText.Kernel.Pdf;
-using System.Reflection.Metadata;
-using iText.Kernel.Geom;
 using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
-using iText.IO.Codec;
-using iText.IO.Image;
 using iText.Layout.Element;
-using Org.BouncyCastle.Crypto;
-using System.Runtime.ConstrainedExecution;
+using System.Text.RegularExpressions;
 
 
 namespace IntegraCVP.Application.Services
@@ -240,6 +231,8 @@ namespace IntegraCVP.Application.Services
         {
             // Caminho da imagem de fundo
             string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Boleto", "VD02.jpg");
+            string fontPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Fonts", "ARIAL.TTF");
+            var font = PdfFontFactory.CreateFont(fontPath, iText.IO.Font.PdfEncodings.IDENTITY_H);
 
             if (!File.Exists(imagePath))
             {
@@ -257,7 +250,7 @@ namespace IntegraCVP.Application.Services
             var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
             var image = new iText.Layout.Element.Image(imageData);
             image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
+            image.SetFixedPosition(0, 0); 
             document.Add(image);
 
             // Função auxiliar para adicionar texto
@@ -266,7 +259,8 @@ namespace IntegraCVP.Application.Services
                 if (dadosBoleto.ContainsKey(chave))
                 {
                     var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(9)
+                        .SetFontSize(8)
+                        .SetFont(font)
                         .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
                     document.Add(text);
                 }
@@ -275,22 +269,23 @@ namespace IntegraCVP.Application.Services
             void DesenharCampoManual(string campo, float x, float y)
             {
                 var text = new Paragraph(campo)
-                    .SetFontSize(9)
+                    .SetFontSize(8)
+                    .SetFont(font)
                     .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
                 document.Add(text);
             }
 
 
             // Campos a desenhar
-            DesenharCampo("AGENCIA_OPERADORA", 45, 135);
-            DesenharCampo("APOLICE", 125, 135);
-            DesenharCampo("FATURA", 197, 135);
-            DesenharCampo("PERIODO", 260, 135);
-            DesenharCampo("EMISSAO", 407, 135);
-            DesenharCampo("VENCIMENT", 481, 135);
+            DesenharCampo("AGENCIA", 45, 133);
+            DesenharCampo("APOLICE", 125, 133);
+            DesenharCampo("FATURA", 197, 133);
+            DesenharCampo("PERIODO", 260, 133);
+            DesenharCampo("EMISSAO", 407, 133);
+            DesenharCampo("VENCIMENT", 481, 133);
 
-            DesenharCampo("ESTIPULANTE", 45, 159);
-            DesenharCampo("ENDERECO", 260, 159);
+            DesenharCampo("ESTIPULANTE", 45, 157);
+            DesenharCampo("ENDERECO", 260, 157);
 
             DesenharCampo("CEP", 45, 182);
             DesenharCampo("CIDADE", 154, 182);
@@ -310,34 +305,34 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("IOF", 310, 252);
             DesenharCampo("PREMIO", 407, 252);
 
-            DesenharCampo("NUMDOCTO", 465, 380);
+            DesenharCampo("NUMDOCTO", 470, 378);
 
-            DesenharCampo("AGENCIA", 365, 398);
+            DesenharCampo("AGENCIA", 470, 398);
             DesenharCampo("VENCIMENT", 470, 398);
 
-            DesenharCampo("NSNUMERO", 370, 419);
-            DesenharCampo("VALDOCTO", 468, 419);
+            DesenharCampo("NSNUMERO", 370, 418);
+            DesenharCampo("VALDOCTO", 470, 418);
 
-            DesenharCampo("AGENCIA", 375, 455);
+            //DesenharCampo("AGENCIA", 375, 455);
 
-            DesenharCampo("PARCELA", 443, 535);
-            DesenharCampo("VENCIMENT", 490, 535);
+            DesenharCampo("PARCELA", 443, 534);
+            DesenharCampo("VENCIMENT", 494, 534);
 
             DesenharCampo("AGENCIA", 443, 552);
 
-            DesenharCampo("AGENCIA", 45, 570);
-            DesenharCampo("CODDOC", 135, 570);
-            DesenharCampo("AGENCIA", 219, 570);
-            DesenharCampo("AGENCIA", 340, 570);
-            DesenharCampo("AGENCIA", 370, 570);
-            DesenharCampo("NSNUMERO", 443, 570);
+            DesenharCampo("DTDOCTO", 45, 568);
+            DesenharCampo("CODDOC", 135, 568);
+            DesenharCampo("AGENCIA", 219, 568);
+            DesenharCampo("AGENCIA", 340, 568);
+            DesenharCampo("AGENCIA", 370, 568);
+            DesenharCampo("NSNUMERO", 443, 568);
 
             var carteira = CalcularCodigoCedente(dadosBoleto);
 
-            DesenharCampoManual(carteira, 45, 585);
-            DesenharCampo("AGENCIA", 45, 585);
+            //DesenharCampoManual(carteira, 45, 585);
+            //DesenharCampo("AGENCIA", 45, 585);
 
-            DesenharCampo("AGENCIA", 180, 585);
+            //DesenharCampo("AGENCIA", 180, 585);
 
             string especieMoeda = ObterEspecieMoeda(ObterEspecieMoedaDoCodigoBarra(dadosBoleto["NUMCDBARRA"]));
             DesenharCampoManual(especieMoeda, 262, 585);
@@ -345,9 +340,6 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("AGENCIA", 300, 585);
             DesenharCampo("AGENCIA", 370, 585);
             DesenharCampo("VALDOCTO", 443, 585);
-
-
-
 
             DesenharCampo("AGENCIA", 443, 602);
 
@@ -597,7 +589,89 @@ namespace IntegraCVP.Application.Services
             return pdfStream.ToArray();
         }
 
-        public byte[] GerarBoletoVIDA25Pdf(Dictionary<string, string> dadosBoleto)
+        //Pasta Seguro
+        public byte[] GerarBoletoSeguro(Dictionary<string, string> dadosBoleto, string filename)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Seguro", filename + ".jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(8)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            // Campos a desenhar
+            var colunaInicial = 47;
+            var linha1 = 186;
+            DesenharCampo("AGENCIA", colunaInicial, linha1);
+            DesenharCampo("APOLICE", 138, linha1);
+            DesenharCampo("FATURA", 210, linha1);
+            DesenharCampo("PERIODO", 282, linha1);
+            DesenharCampo("EMISSAO", 409, linha1);
+            DesenharCampo("VENCIMENT", 484, linha1);
+
+            var linha2 = 217;
+            DesenharCampo("ESTIPULANTE", colunaInicial, linha2);
+            DesenharCampo("CNPJ1", 340, linha2);
+
+            var linha3 = 251;
+            DesenharCampo("ENDERE1", colunaInicial, linha3);
+
+            var linha4 = 284;
+            DesenharCampo("CEP1", colunaInicial, linha4);
+            DesenharCampo("CIDADE1", 157, linha4);
+            DesenharCampo("EST1", 488, linha4);
+
+            var linha5 = 317;
+            DesenharCampo("SUBESTIPULANTE", colunaInicial, linha5);
+            DesenharCampo("CNPJ2", 396, linha5);
+
+            var linha6 = 350;
+            DesenharCampo("ENDERE2", colunaInicial, linha6);
+
+            var linha7 = 385;
+            DesenharCampo("CEP2", colunaInicial, linha7);
+            DesenharCampo("CIDADE2", 156, linha7);
+            DesenharCampo("EST2", 480, linha7);
+
+            var linha8 = 418;
+            DesenharCampo("NVIDAS", colunaInicial, linha8);
+            DesenharCampo("CAPITAL", 156, linha8);
+            DesenharCampo("IOF", 312, linha8);
+            DesenharCampo("PREMIO", 400, linha8);
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+
+        //Pasta Seguro_Grupo
+        public byte[] GerarBoletoVA18Pdf(Dictionary<string, string> dadosBoleto)
         {
             // Caminho da imagem de fundo
             string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Boleto", "VD02.jpg");
@@ -726,7 +800,7 @@ namespace IntegraCVP.Application.Services
             document.Close();
             return pdfStream.ToArray();
         }
-
+        
         private string MontarCodigoBarra(string codigoExpandido, string fatorVencimento, string valorBoleto)
         {
             // Remove caracteres inválidos e monta os 44 dígitos
