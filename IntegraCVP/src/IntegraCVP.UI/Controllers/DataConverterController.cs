@@ -58,21 +58,21 @@ namespace IntegraCVP.UI.Controllers
             // Gera boletos para VD02
             foreach (var boleto in boletosVD02)
             {
-                byte[] pdfData = _boletoService.GerarBoleto2Pdf(boleto);
+                byte[] pdfData = _boletoService.GerarBoletoVD02Pdf(boleto);
                 pdfFiles.Add(($"VD02_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
             }
 
             // Gera boletos para VIDA25
             foreach (var boleto in boletosVIDA25)
             {
-                byte[] pdfData = _boletoService.GerarBoleto2Pdf(boleto);
+                byte[] pdfData = _boletoService.GerarBoletoVD02Pdf(boleto);
                 pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
             }
 
             // Gera boletos para Seguro Grupo
             foreach (var boleto in boletosVA18)
             {
-                byte[] pdfData = _boletoService.GerarBoleto18Pdf(boleto);
+                byte[] pdfData = _boletoService.GerarBoletoVA18Pdf(boleto);
                 pdfFiles.Add(($"VA18_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 

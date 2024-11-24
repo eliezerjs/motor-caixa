@@ -22,7 +22,7 @@ namespace IntegraCVP.Application.Services
 {
     public class BoletoService : IBoletoService
     {
-        public byte[] GerarBoleto2Pdf(Dictionary<string, string> dadosBoleto)
+        public byte[] GerarBoletoVD02Pdf(Dictionary<string, string> dadosBoleto)
         {
             // Caminho da imagem de fundo
             string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Boleto", "VD02.jpg");
@@ -57,6 +57,15 @@ namespace IntegraCVP.Application.Services
                     document.Add(text);
                 }
             }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(9)
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
 
             // Campos a desenhar
             DesenharCampo("AGENCIA_OPERADORA", 45, 135);
@@ -97,7 +106,6 @@ namespace IntegraCVP.Application.Services
 
             DesenharCampo("AGENCIA", 375, 455);
 
-
             DesenharCampo("PARCELA", 443, 535);
             DesenharCampo("VENCIMENT", 490, 535);
 
@@ -110,12 +118,22 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("AGENCIA", 370, 570);
             DesenharCampo("NSNUMERO", 443, 570);
 
+            var carteira = CalcularCodigoCedente(dadosBoleto);
+
+            DesenharCampoManual(carteira, 45, 585);
             DesenharCampo("AGENCIA", 45, 585);
+
             DesenharCampo("AGENCIA", 180, 585);
-            DesenharCampo("AGENCIA", 262, 585);
+
+            string especieMoeda = ObterEspecieMoeda(ObterEspecieMoedaDoCodigoBarra(dadosBoleto["NUMCDBARRA"]));
+            DesenharCampoManual(especieMoeda, 262, 585);
+                                    
             DesenharCampo("AGENCIA", 300, 585);
             DesenharCampo("AGENCIA", 370, 585);
             DesenharCampo("VALDOCTO", 443, 585);
+
+
+            
 
             DesenharCampo("AGENCIA", 443, 602);
 
@@ -152,7 +170,7 @@ namespace IntegraCVP.Application.Services
             return pdfStream.ToArray();
         }
 
-        public byte[] GerarBoleto25Pdf(Dictionary<string, string> dadosBoleto)
+        public byte[] GerarBoletoVIDA25Pdf(Dictionary<string, string> dadosBoleto)
         {
             // Caminho da imagem de fundo
             string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Boleto", "VD02.jpg");
@@ -282,7 +300,7 @@ namespace IntegraCVP.Application.Services
             return pdfStream.ToArray();
         }
 
-        public byte[] GerarBoleto18Pdf(Dictionary<string, string> dadosBoleto)
+        public byte[] GerarBoletoVA18Pdf(Dictionary<string, string> dadosBoleto)
         {
             // Caminho da imagem de fundo
             string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Seguro_Grupo", "VA18.jpg");
@@ -407,6 +425,76 @@ namespace IntegraCVP.Application.Services
 
             // Calcula DV e monta o código final
             return CalcularDigitoVerificador(codigoBase);
+        }
+
+        /// <summary>
+        /// Extrai a espécie de moeda do campo CODBARRA.
+        /// </summary>
+        /// <param name="codigoBarra">Código de barras completo do boleto.</param>
+        /// <returns>Código da moeda como string.</returns>
+        private string ObterEspecieMoedaDoCodigoBarra(string codigoBarra)
+        {
+            if (string.IsNullOrEmpty(codigoBarra) || codigoBarra.Length < 4)
+            {
+                throw new ArgumentException("Código de barras inválido ou vazio.");
+            }
+
+            // A quarta posição indica a espécie de moeda
+            return codigoBarra[3].ToString();
+        }
+
+        /// <summary>
+        /// Retorna a sigla da espécie de moeda com base no código.
+        /// </summary>
+        /// <param name="codigoMoeda">Código da moeda (e.g., "9").</param>
+        /// <returns>Sigla da moeda ou "UNK" caso o código não seja reconhecido.</returns>
+        private string ObterEspecieMoeda(string codigoMoeda)
+        {
+            // Dicionário com os códigos e siglas das espécies de moeda
+            var especiesMoeda = new Dictionary<string, string>
+            {
+                { "9", "BRL" }, // Real Brasileiro
+                { "1", "USD" }, // Dólar Americano
+                { "2", "EUR" }, // Euro
+                { "3", "ARS" }, // Peso Argentino
+                { "4", "GBP" }, // Libra Esterlina
+                { "5", "CLP" }, // Peso Chileno
+                { "6", "JPY" }, // Iene Japonês
+                { "7", "CAD" }, // Dólar Canadense
+                { "8", "AUD" }, // Dólar Australiano
+            };
+
+            return especiesMoeda.TryGetValue(codigoMoeda, out var sigla)
+                ? sigla
+                : "UNK"; // Sigla padrão para moeda desconhecida
+        }
+
+        /// <summary>
+        /// Calcula o Código Cedente com base nos dados do boleto.
+        /// </summary>
+        /// <param name="dadosBoleto">Dicionário com os dados do boleto.</param>
+        /// <returns>O Código Cedente como string.</returns>
+        private string CalcularCodigoCedente(Dictionary<string, string> dadosBoleto)
+        {
+            // Valida se os dados necessários estão presentes
+            if (!dadosBoleto.ContainsKey("AGENCIA") || string.IsNullOrWhiteSpace(dadosBoleto["AGENCIA"]))
+                throw new ArgumentException("O campo 'AGENCIA' é obrigatório para calcular o Código Cedente.");
+
+            if (!dadosBoleto.ContainsKey("NUMCDBARRA") || string.IsNullOrWhiteSpace(dadosBoleto["NUMCDBARRA"]))
+                throw new ArgumentException("O campo 'NUMCDBARRA' é obrigatório para calcular o Código Cedente.");
+
+            // Extrai os dados necessários
+            string agencia = dadosBoleto["AGENCIA"].Trim();
+            string numCdBarra = dadosBoleto["NUMCDBARRA"].Replace(" ", "").Trim();
+
+            // Regra de cálculo: combina a Agência com os 6 primeiros dígitos do Nosso Número
+            // (ajuste conforme o padrão do banco em uso)
+            string nossoNumero = numCdBarra.Substring(0, 6); // Exemplo: pega os 6 primeiros dígitos
+
+            // Concatena os valores para formar o Código Cedente
+            string codigoCedente = $"{agencia}-{nossoNumero}";
+
+            return codigoCedente;
         }
 
         private string ObterFatorVencimento(string dataVencimento)
