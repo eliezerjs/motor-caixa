@@ -42,7 +42,7 @@ namespace IntegraCVP.UI.Controllers
             // Filtrar os tipos VD02 e VIDA25
             var boletosVD02 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VD02").ToList();
             var boletosVIDA25 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA25").ToList();
-<<<<<<< HEAD
+
             var boletosVD05 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA05").ToList();
 
             // Filtrar os tipos VA18, VA24, VIDA23 e VIDA24
@@ -50,9 +50,7 @@ namespace IntegraCVP.UI.Controllers
             var boletosVA24 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VA24").ToList();
             var boletosVIDA23 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA23").ToList();
             var boletosVIDA24 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA54").ToList();
-=======
-            var boletosVD03 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b.ContainsKey("FATURA") && b["TIPO_DADO"] == "VD03").ToList();
->>>>>>> fac9be55719f53cf8676ac748c159b4a863d99c6
+
 
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
@@ -71,7 +69,6 @@ namespace IntegraCVP.UI.Controllers
                 pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
             }
 
-<<<<<<< HEAD
             // Gera boletos para Seguro Grupo
             foreach (var boleto in boletosVA18)
             {
@@ -84,19 +81,6 @@ namespace IntegraCVP.UI.Controllers
             {
                 byte[] pdfData = _prestamistaService.GerarBoasVindasPdf(body);
                 pdfFiles.Add(($"Boas-Vindas.pdf", pdfData));
-
-                //byte[] pdfDataP1 = _prestamistaService.GerarBoasVindasQuinzeP1Pdf(body);
-                //pdfFiles.Add(($"Boas-Vindas-P1.pdf", pdfDataP1));
-
-                //byte[] pdfDataP2 = _prestamistaService.GerarBoasVindasQuinzeP2Pdf(body);
-                //pdfFiles.Add(($"Boas-Vindas-P2.pdf", pdfDataP2));
-=======
-            // Gera boletos para VD03
-            foreach (var boleto in boletosVD03)
-            {
-                byte[] pdfData = _boletoService.GerarBoletoSeguro(boleto);
-                pdfFiles.Add(($"VD03_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
->>>>>>> fac9be55719f53cf8676ac748c159b4a863d99c6
             }
 
             // Cria o arquivo ZIP contendo os PDFs
