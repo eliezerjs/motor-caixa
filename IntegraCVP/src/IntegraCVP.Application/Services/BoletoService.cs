@@ -92,26 +92,26 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("IOF", 310, 252);
             DesenharCampo("PREMIO", 407, 252);
 
-            DesenharCampo("NUMDOCTO", 465, 378);
+            DesenharCampo("NUMDOCTO", 470, 378);
 
-            DesenharCampo("AGENCIA", 365, 398);
+            DesenharCampo("AGENCIA", 470, 398);
             DesenharCampo("VENCIMENT", 470, 398);
 
             DesenharCampo("NSNUMERO", 370, 418);
-            DesenharCampo("VALDOCTO", 468, 418);
+            DesenharCampo("VALDOCTO", 470, 418);
 
-            DesenharCampo("AGENCIA", 375, 455);
+            //DesenharCampo("AGENCIA", 375, 455);
 
             DesenharCampo("PARCELA", 443, 534);
-            DesenharCampo("VENCIMENT", 492, 534);
+            DesenharCampo("VENCIMENT", 494, 534);
 
             DesenharCampo("AGENCIA", 443, 552);
 
-            DesenharCampo("DTDOCTO", 45, 570);
-            DesenharCampo("CODDOC", 135, 570);
-            DesenharCampo("AGENCIA", 219, 570);
-            DesenharCampo("AGENCIA", 340, 570);
-            DesenharCampo("AGENCIA", 370, 570);
+            DesenharCampo("DTDOCTO", 45, 568);
+            DesenharCampo("CODDOC", 135, 568);
+            DesenharCampo("AGENCIA", 219, 568);
+            DesenharCampo("AGENCIA", 340, 568);
+            DesenharCampo("AGENCIA", 370, 568);
             DesenharCampo("NSNUMERO", 443, 568);
 
             var carteira = CalcularCodigoCedente(dadosBoleto);
