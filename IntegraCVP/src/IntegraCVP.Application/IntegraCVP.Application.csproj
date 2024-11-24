@@ -1,7 +1,10 @@
 ﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Resources\Email\VD08.pdf" />
+    <None Remove="Resources\Email\VD09.pdf" />
     <None Remove="Resources\Email\VIDA17.pdf" />
+    <None Remove="Resources\Email\VIDA18.pdf" />
     <None Remove="Resources\Fonts\ARIAL.TTF" />
     <None Remove="Resources\BoletoV2\VD32.jpg" />
     <None Remove="Resources\BoletoV2\VIDA26.jpg" />
@@ -27,7 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Email\VD08.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Email\VD09.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Email\VIDA17.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Email\VIDA18.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Fonts\ARIAL.TTF">
