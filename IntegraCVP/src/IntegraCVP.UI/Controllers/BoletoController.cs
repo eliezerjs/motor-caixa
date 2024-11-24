@@ -9,15 +9,13 @@ namespace IntegraCVP.UI.Controllers
     {
         private readonly IBoletoService _boletoService;
         private readonly IBoletoV2Service _boletoV2Service;
-        private readonly ISeguroService _SeguroService;
-        private readonly ISeguroGrupoService _SeguroGrupoService;
 
-        public BoletoController(IBoletoService boletoService, IBoletoV2Service boletoV2Service, ISeguroGrupoService SeguroGrupoService, ISeguroService SeguroService)
+
+        public BoletoController(IBoletoService boletoService, IBoletoV2Service boletoV2Service)
         {
             _boletoService = boletoService;
             _boletoV2Service = boletoV2Service;
-            _SeguroService = SeguroService;
-            _SeguroGrupoService = SeguroGrupoService;
+
         }
 
         [HttpGet("gerar-boletov2")]
@@ -27,19 +25,6 @@ namespace IntegraCVP.UI.Controllers
             return File(pdfData, "application/pdf", "Boleto.pdf");
         }
 
-        [HttpGet("gerar-seguro")]
-        public IActionResult GerarSeguro()
-        {
-            byte[] pdfData = _SeguroService.GerarBoletoPdf();
-            return File(pdfData, "application/pdf", "Boleto.pdf");
-        }
-
-        [HttpGet("gerar-seguro-grupo")]
-        public IActionResult GerarSeguroGrupo()
-        {
-            byte[] pdfData = _SeguroGrupoService.GerarBoletoPdf();
-            return File(pdfData, "application/pdf", "Boleto.pdf");
-        }
 
     }
 }

@@ -15,6 +15,8 @@
     <None Remove="Resources\Boleto\VIDA26.jpg" />
     <None Remove="Resources\Boleto\VIDA27.jpg" />
     <None Remove="Resources\boleto_fundo_VD02.jpg" />
+    <None Remove="Resources\Prestamista\PREST01.jpg" />
+    <None Remove="Resources\Prestamista\PREST15P1.jpg" />
     <None Remove="Resources\Seguro\VD03.jpg" />
     <None Remove="Resources\Seguro\VIDA27.jpg" />
     <None Remove="Resources\Seguro_Grupo\VA18.jpg" />
@@ -40,6 +42,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Boleto\VIDA25.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Prestamista\PREST01.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Prestamista\PREST15P1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Seguro\VD03.jpg">
