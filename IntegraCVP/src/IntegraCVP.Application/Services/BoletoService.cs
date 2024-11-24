@@ -36,7 +36,7 @@ namespace IntegraCVP.Application.Services
             var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
             var image = new iText.Layout.Element.Image(imageData);
             image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
+            image.SetFixedPosition(0, 0); 
             document.Add(image);
 
             // Função auxiliar para adicionar texto
@@ -63,15 +63,15 @@ namespace IntegraCVP.Application.Services
 
 
             // Campos a desenhar
-            DesenharCampo("AGENCIA_OPERADORA", 45, 135);
-            DesenharCampo("APOLICE", 125, 135);
-            DesenharCampo("FATURA", 197, 135);
-            DesenharCampo("PERIODO", 260, 135);
-            DesenharCampo("EMISSAO", 407, 135);
-            DesenharCampo("VENCIMENT", 481, 135);
+            DesenharCampo("AGENCIA", 45, 133);
+            DesenharCampo("APOLICE", 125, 133);
+            DesenharCampo("FATURA", 197, 133);
+            DesenharCampo("PERIODO", 260, 133);
+            DesenharCampo("EMISSAO", 407, 133);
+            DesenharCampo("VENCIMENT", 481, 133);
 
-            DesenharCampo("ESTIPULANTE", 45, 159);
-            DesenharCampo("ENDERECO", 260, 159);
+            DesenharCampo("ESTIPULANTE", 45, 157);
+            DesenharCampo("ENDERECO", 260, 157);
 
             DesenharCampo("CEP", 45, 182);
             DesenharCampo("CIDADE", 154, 182);
@@ -91,27 +91,27 @@ namespace IntegraCVP.Application.Services
             DesenharCampo("IOF", 310, 252);
             DesenharCampo("PREMIO", 407, 252);
 
-            DesenharCampo("NUMDOCTO", 465, 380);
+            DesenharCampo("NUMDOCTO", 465, 378);
 
             DesenharCampo("AGENCIA", 365, 398);
             DesenharCampo("VENCIMENT", 470, 398);
 
-            DesenharCampo("NSNUMERO", 370, 419);
-            DesenharCampo("VALDOCTO", 468, 419);
+            DesenharCampo("NSNUMERO", 370, 418);
+            DesenharCampo("VALDOCTO", 468, 418);
 
             DesenharCampo("AGENCIA", 375, 455);
 
-            DesenharCampo("PARCELA", 443, 535);
-            DesenharCampo("VENCIMENT", 490, 535);
+            DesenharCampo("PARCELA", 443, 534);
+            DesenharCampo("VENCIMENT", 492, 534);
 
             DesenharCampo("AGENCIA", 443, 552);
 
-            DesenharCampo("AGENCIA", 45, 570);
+            DesenharCampo("DTDOCTO", 45, 570);
             DesenharCampo("CODDOC", 135, 570);
             DesenharCampo("AGENCIA", 219, 570);
             DesenharCampo("AGENCIA", 340, 570);
             DesenharCampo("AGENCIA", 370, 570);
-            DesenharCampo("NSNUMERO", 443, 570);
+            DesenharCampo("NSNUMERO", 443, 568);
 
             var carteira = CalcularCodigoCedente(dadosBoleto);
 
