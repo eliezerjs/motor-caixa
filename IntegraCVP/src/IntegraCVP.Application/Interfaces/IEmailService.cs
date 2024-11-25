@@ -10,5 +10,6 @@ namespace IntegraCVP.Application.Interfaces
     {
         byte[] GerarEmailVidaExclusivaPdf(Dictionary<string, string> dados, string filename);
         byte[] GerarEmailSegurosPdf(Dictionary<string, string> dados, string filename);
+        byte[] GerarEmailSegurosVIDA18Pdf(Dictionary<string, string> dados, string filename);
     }
 }
