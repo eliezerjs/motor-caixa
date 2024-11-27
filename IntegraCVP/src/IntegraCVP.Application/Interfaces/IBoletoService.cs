@@ -14,6 +14,12 @@ namespace IntegraCVP.Application.Interfaces
         byte[] GerarBoletoVIDA23Pdf(Dictionary<string, string> dadosBoleto);
         byte[] GerarBoletoVIDA24Pdf(Dictionary<string, string> dadosBoleto);
 
+        //Pasta Carta_Declinio
+        byte[] GerarBoletoVIDA01Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVIDA02Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVIDA03Pdf(Dictionary<string, string> dadosBoleto);
+        byte[] GerarBoletoVIDA04Pdf(Dictionary<string, string> dadosBoleto);
+
         /*Registros acima são identicos*/
 
     }
