@@ -48,8 +48,8 @@ namespace IntegraCVP.Application.Services
 
             var campos = tipo switch
             {
-                BoletoM3Type.VD03 => GetCamposVD02(),
-                BoletoM3Type.VIDA27 => GetCamposVIDA25(),
+                BoletoM3Type.VD03 => GetCamposSeguro(),
+                BoletoM3Type.VIDA27 => GetCamposSeguro(),
                 _ => throw new ArgumentException("Tipo de boleto inválido.")
             };
 
@@ -59,22 +59,6 @@ namespace IntegraCVP.Application.Services
             foreach (var (key, x, y, fontSize) in campos)
             {
                 document.AddTextField(dadosBoleto, key, x, y, fontSize, pdfPage);
-            }
-
-            if (dadosBoleto.TryGetValue("NUMCDBARRA", out var codigoDeBarras))
-            {
-                string especieMoeda = PdfHelper.ObterEspecieMoeda(
-                    PdfHelper.ObterEspecieMoedaDoCodigoBarra(codigoDeBarras)
-                );
-                document.AddTextField(especieMoeda, 262, 585, 8, pdfPage);
-
-                string codigoPadronizado = PdfHelper.MontarCodigoBarra(
-                    codigoDeBarras,
-                    PdfHelper.ObterFatorVencimento(dadosBoleto["VENCIMENT"]),
-                    PdfHelper.ConverterValor(dadosBoleto["VALOR"])
-                );
-
-                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 130);
             }
 
             document.Close();
