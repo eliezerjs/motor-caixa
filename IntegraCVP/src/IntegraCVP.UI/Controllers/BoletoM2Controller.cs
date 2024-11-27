@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace IntegraCVP.UI.Controllers
 {
     [ApiController]
-    [Route("api/boleto")]
-    public class BoletoController : ControllerBase
+    [Route("api/boleto-m2")]
+    public class BoletoM2Controller : ControllerBase
     {
         private readonly IBoletoM1Service _boletoM1Service;
         private readonly IBoletoM2Service _boletoM2Service;
@@ -15,7 +15,7 @@ namespace IntegraCVP.UI.Controllers
         private readonly IBoletoM4Service _boletoM4Service;
 
         private readonly IReturnDataConverterService _dataConverterService;
-        public BoletoController(IBoletoM1Service boletoM1Service, 
+        public BoletoM2Controller(IBoletoM1Service boletoM1Service, 
                                 IBoletoM2Service boletoM2Service,
                                 IBoletoM3Service boletoM3Service,
                                 IBoletoM4Service boletoM4Service,

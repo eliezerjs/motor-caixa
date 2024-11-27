@@ -1,13 +1,47 @@
-﻿using IntegraCVP.Application.Enums;
+﻿using System.Text.Json;
+using IntegraCVP.Application.Enums;
 using IntegraCVP.Application.Helper;
 using IntegraCVP.Application.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace IntegraCVP.Application.Services
 {
     public partial class BoletoM4Service : IBoletoM4Service
     {
         public const string BoletoM4 = "BoletoM4";
-        public byte[] GerarBoletoM4(Dictionary<string, string> dadosBoleto, BoletoM4Type tipo)
+
+        private readonly IReturnDataConverterService _dataConverterService;
+
+        public BoletoM4Service(IReturnDataConverterService dataConverterService)
+        {
+            _dataConverterService = dataConverterService;
+        }
+        public async Task<byte[]> ConverterEGerarPdfAsync(IFormFile file, BoletoM4Type tipo)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("O arquivo enviado está vazio ou é inválido.");
+
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+
+            var boletoData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+
+            if (boletoData == null || !boletoData.Any())
+                throw new ArgumentException("O arquivo não contém dados válidos.");
+
+            var boletosFiltrados = boletoData
+                .Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == tipo.ToString())
+                .ToList();
+
+            if (!boletosFiltrados.Any())
+                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
+
+            return this.GerarBoletoM4(boletosFiltrados.FirstOrDefault(), tipo);
+        }
+        private byte[] GerarBoletoM4(Dictionary<string, string> dadosBoleto, BoletoM4Type tipo)
         {
             string imagePath = GetImagePath(tipo, BoletoM4);
 
