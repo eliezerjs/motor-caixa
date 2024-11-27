@@ -9,9 +9,9 @@ namespace IntegraCVP.Application.Services
     public partial class BoletoM1Service : IBoletoM1Service
     {
         public const string BoletoM1 = "BoletoM1";
-        private readonly IReturnDataConverterService _dataConverterService;
+        private readonly IImportFileConverterService _dataConverterService;
 
-        public BoletoM1Service(IReturnDataConverterService dataConverterService)
+        public BoletoM1Service(IImportFileConverterService dataConverterService)
         {
             _dataConverterService = dataConverterService;
         }
@@ -41,7 +41,7 @@ namespace IntegraCVP.Application.Services
 
             return GerarBoletoM1(boletosFiltrados.FirstOrDefault(), tipo);
         }
-        private byte[] GerarBoletoM1(Dictionary<string, string> dadosBoleto, BoletoM1Type tipo)
+        public byte[] GerarBoletoM1(Dictionary<string, string> dadosBoleto, BoletoM1Type tipo)
         {
             string imagePath = GetImagePath(tipo, BoletoM1);
             

@@ -14,12 +14,12 @@ namespace IntegraCVP.UI.Controllers
         private readonly IBoletoM3Service _boletoM3Service;
         private readonly IBoletoM4Service _boletoM4Service;
 
-        private readonly IReturnDataConverterService _dataConverterService;
+        private readonly IImportFileConverterService _dataConverterService;
         public BoletoM1Controller(IBoletoM1Service boletoM1Service, 
                                 IBoletoM2Service boletoM2Service,
                                 IBoletoM3Service boletoM3Service,
                                 IBoletoM4Service boletoM4Service,
-                                IReturnDataConverterService dataConverterService)
+                                IImportFileConverterService dataConverterService)
         {
             _boletoM1Service = boletoM1Service;
             _boletoM2Service = boletoM2Service;

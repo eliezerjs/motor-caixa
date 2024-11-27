@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Services
     {
         public const string BoletoM4 = "BoletoM4";
 
-        private readonly IReturnDataConverterService _dataConverterService;
+        private readonly IImportFileConverterService _dataConverterService;
 
-        public BoletoM4Service(IReturnDataConverterService dataConverterService)
+        public BoletoM4Service(IImportFileConverterService dataConverterService)
         {
             _dataConverterService = dataConverterService;
         }
@@ -41,7 +41,7 @@ namespace IntegraCVP.Application.Services
 
             return this.GerarBoletoM4(boletosFiltrados.FirstOrDefault(), tipo);
         }
-        private byte[] GerarBoletoM4(Dictionary<string, string> dadosBoleto, BoletoM4Type tipo)
+        public byte[] GerarBoletoM4(Dictionary<string, string> dadosBoleto, BoletoM4Type tipo)
         {
             string imagePath = GetImagePath(tipo, BoletoM4);
 

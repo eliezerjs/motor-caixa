@@ -14,15 +14,16 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<ITerminalConverterService, TerminalConverterService>();
+builder.Services.AddScoped<IImportFileConverterService, ImportFileConverterService>();
+
 builder.Services.AddScoped<IBoletoM1Service, BoletoM1Service>();
 builder.Services.AddScoped<IBoletoM2Service, BoletoM2Service>();
 builder.Services.AddScoped<IBoletoM3Service, BoletoM3Service>();
 builder.Services.AddScoped<IBoletoM4Service, BoletoM4Service>();
 
-builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
-
-builder.Services.AddScoped<IReturnDataConverterService, ReturnDataConverterService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
 
 var app = builder.Build();
 app.MapControllers();
