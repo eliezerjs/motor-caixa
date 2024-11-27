@@ -81,7 +81,7 @@ namespace IntegraCVP.Application.Services
             return pdfStream.ToArray();
         }
 
-        ////CartaRecusa
+        //CartaRecusa
         //public byte[] GerarBoletoVIDA01Pdf(Dictionary<string, string> dadosBoleto)
         //{
         //    // Caminho da imagem de fundo
@@ -332,7 +332,7 @@ namespace IntegraCVP.Application.Services
         //    return pdfStream.ToArray();
         //}
 
-        ////CartaRecusa
+        
         //public byte[] GerarBoletoVD33Pdf(Dictionary<string, string> dadosBoleto)
         //{
         //    // Caminho da imagem de fundo

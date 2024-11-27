@@ -39,10 +39,10 @@ namespace IntegraCVP.Application.Services
             if (!emailsFiltrados.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarEmailPdf(emailsFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoEmail(emailsFiltrados.FirstOrDefault(), tipo);
         }
 
-        public byte[] GerarEmailPdf(Dictionary<string, string> dados, EmailType tipo)
+        public byte[] GerarDocumentoEmail(Dictionary<string, string> dados, EmailType tipo)
         {
             string imagePath = GetImagePath(tipo, EmailFolder);
 

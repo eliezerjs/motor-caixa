@@ -23,6 +23,7 @@ builder.Services.AddScoped<IBoletoM3Service, BoletoM3Service>();
 builder.Services.AddScoped<IBoletoM4Service, BoletoM4Service>();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IBoasVindasService, BoasVindasService>();
 builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
 
 var app = builder.Build();

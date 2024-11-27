@@ -1,187 +1,67 @@
-﻿using IntegraCVP.Application.Interfaces;
-using iText.Kernel.Colors;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
-using iText.Layout.Element;
+﻿using System.Text.Json;
+using IntegraCVP.Application.Enums;
+using IntegraCVP.Application.Helper;
+using IntegraCVP.Application.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace IntegraCVP.Application.Services
 {
-    public class InadimplenciaService : IEmailService
+    public partial class InadimplenciaService : IInadimplenciaService
     {
-        public byte[] GerarEmailVidaExclusivaPdf(Dictionary<string, string> dados, string filename)
+        private const string InadimplenciaFolder = "Inadimplencia";
+
+        private readonly IImportFileConverterService _dataConverterService;
+
+        public InadimplenciaService(IImportFileConverterService dataConverterService)
         {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Email", filename + ".jpg");
+            _dataConverterService = dataConverterService;
+        }
+        public async Task<byte[]> ConverterEGerarInadimplenciaPdfAsync(IFormFile file, InadimplenciaType tipo)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("O arquivo enviado está vazio ou é inválido.");
 
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
 
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
 
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
+            var InadimplenciaData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
 
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dados.ContainsKey(chave))
-                {
+            if (InadimplenciaData == null || !InadimplenciaData.Any())
+                throw new ArgumentException("O arquivo não contém dados válidos.");
 
-                    if (chave == "COD_PRODUTO" || chave == "COD_SUSEP" || chave == "COD_SUSEPCAP")
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(5)
-                        .SetFontColor(ColorConstants.WHITE)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                    else if (chave == "NUM_CERTIF")
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(13)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                    else
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(11)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                    
-                }
-            }
+            var InadimplenciasFiltrados = InadimplenciaData
+                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
+                .ToList();
 
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 100, 174);
-            DesenharCampo("NUM_CERTIF", 195, 324);
-            DesenharCampo("COD_PRODUTO", 377, 787);
-            DesenharCampo("COD_SUSEP", 427, 787);
-            DesenharCampo("COD_SUSEPCAP", 100, 799);
+            if (!InadimplenciasFiltrados.Any())
+                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            document.Close();
-            return pdfStream.ToArray();
+            return GerarDocumentoInadimplencia(InadimplenciasFiltrados.FirstOrDefault(), tipo);
         }
 
-        public byte[] GerarEmailSegurosPdf(Dictionary<string, string> dados, string filename)
+        public byte[] GerarDocumentoInadimplencia(Dictionary<string, string> dados, InadimplenciaType tipo)
         {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Email", filename + ".jpg");
+            string imagePath = GetImagePath(tipo, InadimplenciaFolder);
 
-            if (!File.Exists(imagePath))
+            var campos = tipo switch
             {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
+                InadimplenciaType.VD33 => GetVD33(),
+                _ => throw new ArgumentException("Tipo de Inadimplencia inválida.")
+            };
 
             using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+            var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
 
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
+            foreach (var (key, x, y, fontSize) in campos)
             {
-                if (dados.ContainsKey(chave))
+                if (dados.ContainsKey(key))
                 {
-                    if (chave == "COD_PRODUTO" || chave == "COD_SUSEP" || chave == "COD_SUSEPCAP")
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(6)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                    else
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(10)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
+                    document.AddTextField(dados[key], x, y, fontSize, pdfPage);
                 }
             }
-
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 80, 199);
-            DesenharCampo("COD_PRODUTO", 357, 748);
-            DesenharCampo("COD_SUSEP", 442, 748);
-            DesenharCampo("COD_SUSEPCAP", 314, 766);
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-
-        public byte[] GerarEmailSegurosVIDA18Pdf(Dictionary<string, string> dados, string filename)
-        {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Email", filename + ".jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dados.ContainsKey(chave))
-                {
-                    if (chave == "COD_PRODUTO" || chave == "COD_SUSEP" || chave == "COD_SUSEPCAP")
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(6)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                    else
-                    {
-                        var text = new Paragraph(dados[chave])
-                        .SetFontSize(10)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                        document.Add(text);
-                    }
-                }
-            }
-
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 80, 199);
-            DesenharCampo("COD_PRODUTO", 359, 748);
-            DesenharCampo("COD_SUSEP", 444, 748);
-            DesenharCampo("COD_SUSEPCAP", 350, 768);
 
             document.Close();
             return pdfStream.ToArray();

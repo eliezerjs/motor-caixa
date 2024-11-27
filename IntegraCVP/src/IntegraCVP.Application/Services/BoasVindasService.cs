@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Http;
 
 namespace IntegraCVP.Application.Services
 {
-    public partial class CartaRecusaService : ICartaRecusaService
+    public partial class BoasVindasService : IBoasVindasService
     {
-        private const string CartaRecusaFolder = "CartaRecusa";
+        private const string BoasVindasFolder = "BoasVindas";
 
         private readonly IImportFileConverterService _dataConverterService;
 
-        public CartaRecusaService(IImportFileConverterService dataConverterService)
+        public BoasVindasService(IImportFileConverterService dataConverterService)
         {
             _dataConverterService = dataConverterService;
         }
-        public async Task<byte[]> ConverterEGerarCartaRecusaPdfAsync(IFormFile file, CartaRecusaType tipo)
+        public async Task<byte[]> ConverterEGerarBoasVindasPdfAsync(IFormFile file, BoasVindasType tipo)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("O arquivo enviado está vazio ou é inválido.");
@@ -27,31 +27,30 @@ namespace IntegraCVP.Application.Services
 
             var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
 
-            var CartaRecusaData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var BoasVindasData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
 
-            if (CartaRecusaData == null || !CartaRecusaData.Any())
+            if (BoasVindasData == null || !BoasVindasData.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var CartaRecusasFiltrados = CartaRecusaData
+            var BoasVindassFiltrados = BoasVindasData
                 .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
                 .ToList();
 
-            if (!CartaRecusasFiltrados.Any())
+            if (!BoasVindassFiltrados.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarDocumentoCartaRecusa(CartaRecusasFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoBoasVindas(BoasVindassFiltrados.FirstOrDefault(), tipo);
         }
 
-        public byte[] GerarDocumentoCartaRecusa(Dictionary<string, string> dados, CartaRecusaType tipo)
+        public byte[] GerarDocumentoBoasVindas(Dictionary<string, string> dados, BoasVindasType tipo)
         {
-            string imagePath = GetImagePath(tipo, CartaRecusaFolder);
+            string imagePath = GetImagePath(tipo, BoasVindasFolder);
 
             var campos = tipo switch
-            {
-                CartaRecusaType.VIDA01 => GetVIDA01(),
-                CartaRecusaType.VIDA02 => GetVIDA02(),
-                CartaRecusaType.VIDA03 => GetVIDA03(),
-                _ => throw new ArgumentException("Tipo de Carta de Recusa inválida.")
+            {              
+                BoasVindasType.VIDA05 => GetCamposVIDA05(),
+                BoasVindasType.VIDA07 => GetCamposVIDA07(),
+                _ => throw new ArgumentException("Tipo de Boas-Vindas inválido.")
             };
 
             using var pdfStream = new MemoryStream();
