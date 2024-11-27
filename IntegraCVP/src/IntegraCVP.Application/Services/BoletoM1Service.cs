@@ -1,19 +1,47 @@
-﻿using IntegraCVP.Application.Enums;
+﻿using System.Text.Json;
+using IntegraCVP.Application.Enums;
 using IntegraCVP.Application.Helper;
 using IntegraCVP.Application.Interfaces;
-using iText.Barcodes;
-using iText.Kernel.Colors;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Canvas;
-using iText.Layout.Element;
+using Microsoft.AspNetCore.Http;
 
 namespace IntegraCVP.Application.Services
 {
     public partial class BoletoM1Service : IBoletoM1Service
     {
         public const string BoletoM1 = "BoletoM1";
-        public byte[] GerarBoletoM1(Dictionary<string, string> dadosBoleto, BoletoM1Type tipo)
+        private readonly IReturnDataConverterService _dataConverterService;
+
+        public BoletoM1Service(IReturnDataConverterService dataConverterService)
+        {
+            _dataConverterService = dataConverterService;
+        }
+
+        public async Task<byte[]> ConverterEGerarPdfAsync(IFormFile file, BoletoM1Type tipo)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("O arquivo enviado está vazio ou é inválido.");
+
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+
+            var boletoData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+
+            if (boletoData == null || !boletoData.Any())
+                throw new ArgumentException("O arquivo não contém dados válidos.");
+
+            var boletosFiltrados = boletoData
+                .Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == tipo.ToString())
+                .ToList();
+
+            if (!boletosFiltrados.Any())
+                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
+
+            return GerarBoletoM1(boletosFiltrados.FirstOrDefault(), tipo);
+        }
+        private byte[] GerarBoletoM1(Dictionary<string, string> dadosBoleto, BoletoM1Type tipo)
         {
             string imagePath = GetImagePath(tipo, BoletoM1);
             

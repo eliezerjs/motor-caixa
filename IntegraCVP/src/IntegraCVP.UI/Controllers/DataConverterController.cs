@@ -105,19 +105,19 @@ namespace IntegraCVP.UI.Controllers
             //    pdfFiles.Add(($"VIDA18_{boleto["COD_PRODUTO"] ?? "Unknown"}.pdf", pdfData));
             //}
 
-            // Gera boletos para VD02
-            foreach (var boleto in boletosVD02)
-            {
-                byte[] pdfData = _boletoM1Service.GerarBoletoM1(boleto, BoletoM1Type.VD02);
-                pdfFiles.Add(($"VD02_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
-            }
+            //// Gera boletos para VD02
+            //foreach (var boleto in boletosVD02)
+            //{
+            //    byte[] pdfData = _boletoM1Service.GerarBoletoM1(boleto, BoletoM1Type.VD02);
+            //    pdfFiles.Add(($"VD02_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
+            //}
 
-            // Gera boletos para VIDA25
-            foreach (var boleto in boletosVIDA25)
-            {
-                byte[] pdfData = _boletoM1Service.GerarBoletoM1(boleto, BoletoM1Type.VIDA25);
-                pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
-            }
+            //// Gera boletos para VIDA25
+            //foreach (var boleto in boletosVIDA25)
+            //{
+            //    byte[] pdfData = _boletoM1Service.GerarBoletoM1(boleto, BoletoM1Type.VIDA25);
+            //    pdfFiles.Add(($"VIDA25_{boleto["FATURA"] ?? "Unknown"}.pdf", pdfData));
+            //}
 
             //// Gera boletos para VD03
             //foreach (var boleto in boletosVD03)
