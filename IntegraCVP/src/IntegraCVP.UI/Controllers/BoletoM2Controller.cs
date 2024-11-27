@@ -42,7 +42,7 @@ namespace IntegraCVP.UI.Controllers
             }
         }
 
-        [HttpPost("gerar-VIDA26")]
+        [HttpPost("gerar-vida26")]
         public async Task<IActionResult> GerarVida26([FromForm] FileUploadModel model)
         {
             if (model.File == null || model.File.Length == 0)
