@@ -1,3 +1,4 @@
+using IntegraCVP.Application.Enums;
 using IntegraCVP.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,50 +19,52 @@ namespace IntegraCVP.UI.Controllers
             _dataConverterService = dataConverterService;        
         }
 
-        //[HttpPost("gerar-vd02")]
-        //public async Task<IActionResult> GerarVD02([FromForm] FileUploadModel model)
-        //{
-        //    if (model.File == null || model.File.Length == 0)
-        //    {
-        //        return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
-        //    }
+        [HttpPost("gerar-vd03")]
+        public async Task<IActionResult> GerarVD03([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
 
-        //    try
-        //    {
-        //        var pdfData = await _boletoM3Service.ConverterEGerarPdfAsync(model.File, BoletoM1Type.VD02);
-        //        return File(pdfData, "application/pdf", "Boleto-VD02.pdf");
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
-        //    }
-        //}
+            try
+            {
+                var pdfData = await _boletoM3Service.ConverterEGerarPdfAsync(model.File, BoletoM3Type.VD03);
+                return File(pdfData, "application/pdf", "Boleto-VD03.pdf");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+            }
+        }
 
-        //[HttpPost("gerar-vida25")]
-        //public async Task<IActionResult> GerarVida25([FromForm] FileUploadModel model)
-        //{
-        //    if (model.File == null || model.File.Length == 0)
-        //    {
-        //        return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
-        //    }
+        [HttpPost("gerar-vida27")]
+        public async Task<IActionResult> GerarVIDA27([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
 
-        //    try
-        //    {
-        //        var pdfData = await _boletoM1Service.ConverterEGerarPdfAsync(model.File, BoletoM1Type.VIDA25);
-        //        return File(pdfData, "application/pdf", "Boleto-VIDA25.pdf");
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
-        //    }
-        //}
+            try
+            {
+                var pdfData = await _boletoM3Service.ConverterEGerarPdfAsync(model.File, BoletoM3Type.VIDA27);
+                return File(pdfData, "application/pdf", "Boleto-VIDA27.pdf");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+            }
+        }
+
+
     }
 }
