@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IntegraCVP.Application.Interfaces
 {
-    public interface IDataConverterService
+    public interface IReturnDataConverterService
     {
         string ConvertToJson(Stream fileStream);
     }

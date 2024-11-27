@@ -1,6 +1,6 @@
 namespace IntegraCVP.Application.Interfaces
 {
-    public interface IBoletoV2Service
+    public interface IBoletoM2Service
     {
         byte[] GerarBoletoPdf();
     }

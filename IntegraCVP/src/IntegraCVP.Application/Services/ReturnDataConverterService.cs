@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace IntegraCVP.Application.Services
 {
-    public class DataConverterService : IDataConverterService
+    public class ReturnDataConverterService : IReturnDataConverterService
     {
         public string ConvertToJson(Stream fileStream)
         {

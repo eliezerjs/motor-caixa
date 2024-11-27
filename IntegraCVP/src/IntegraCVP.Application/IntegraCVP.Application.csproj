@@ -10,28 +10,28 @@
     <None Remove="Resources\Email\VIDA17.jpg" />
     <None Remove="Resources\Email\VIDA18.jpg" />
     <None Remove="Resources\Fonts\ARIAL.TTF" />
-    <None Remove="Resources\BoletoV2\VD32.jpg" />
-    <None Remove="Resources\BoletoV2\VIDA26.jpg" />
-    <None Remove="Resources\Boleto\VA18.jpg" />
-    <None Remove="Resources\Boleto\VA24.jpg" />
-    <None Remove="Resources\Boleto\VD02.jpg" />
-    <None Remove="Resources\Boleto\VD03.jpg" />
-    <None Remove="Resources\Boleto\VD32.jpg" />
-    <None Remove="Resources\Boleto\VIDA23.jpg" />
-    <None Remove="Resources\Boleto\VIDA24.jpg" />
-    <None Remove="Resources\Boleto\VIDA25.jpg" />
-    <None Remove="Resources\Boleto\VIDA26.jpg" />
-    <None Remove="Resources\Boleto\VIDA27.jpg" />
+    <None Remove="Resources\BoletoM2\VD32.jpg" />
+    <None Remove="Resources\BoletoM2\VIDA26.jpg" />
+    <None Remove="Resources\BoletoM1\VA18.jpg" />
+    <None Remove="Resources\BoletoM1\VA24.jpg" />
+    <None Remove="Resources\BoletoM1\VD02.jpg" />
+    <None Remove="Resources\BoletoM1\VD03.jpg" />
+    <None Remove="Resources\BoletoM1\VD32.jpg" />
+    <None Remove="Resources\BoletoM1\VIDA23.jpg" />
+    <None Remove="Resources\BoletoM1\VIDA24.jpg" />
+    <None Remove="Resources\BoletoM1\VIDA25.jpg" />
+    <None Remove="Resources\BoletoM1\VIDA26.jpg" />
+    <None Remove="Resources\BoletoM1\VIDA27.jpg" />
     <None Remove="Resources\boleto_fundo_VD02.jpg" />
-    <None Remove="Resources\Inadimplente\VD33.jpg" />
+    <None Remove="Resources\Inadimplencia\VD33.jpg" />
     <None Remove="Resources\Prestamista\PREST01.jpg" />
     <None Remove="Resources\Prestamista\PREST15P1.jpg" />
-    <None Remove="Resources\Seguro\VD03.jpg" />
-    <None Remove="Resources\Seguro\VIDA27.jpg" />
-    <None Remove="Resources\Seguro_Grupo\VA18.jpg" />
-    <None Remove="Resources\Seguro_Grupo\VA24.jpg" />
-    <None Remove="Resources\Seguro_Grupo\VIDA23.jpg" />
-    <None Remove="Resources\Seguro_Grupo\VIDA24.jpg" />
+    <None Remove="Resources\BoletoM3\VD03.jpg" />
+    <None Remove="Resources\BoletoM3\VIDA27.jpg" />
+    <None Remove="Resources\BoletoM4\VA18.jpg" />
+    <None Remove="Resources\BoletoM4\VA24.jpg" />
+    <None Remove="Resources\BoletoM4\VIDA23.jpg" />
+    <None Remove="Resources\BoletoM4\VIDA24.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,22 +62,22 @@
     <Content Include="Resources\Fonts\ARIAL.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\BoletoV2\VD32.jpg">
+    <Content Include="Resources\BoletoM2\VD32.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\BoletoV2\VIDA26.jpg">
+    <Content Include="Resources\BoletoM2\VIDA26.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Boleto\VD02.jpg">
+    <Content Include="Resources\BoletoM1\VD02.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Boleto\VIDA25.jpg">
+    <Content Include="Resources\BoletoM1\VIDA25.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Inadimplente\VD33.jpg">
+    <Content Include="Resources\Inadimplencia\VD33.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Prestamista\PREST01.jpg">
@@ -86,22 +86,22 @@
     <Content Include="Resources\Prestamista\PREST15P1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro\VD03.jpg">
+    <Content Include="Resources\BoletoM3\VD03.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro\VIDA27.jpg">
+    <Content Include="Resources\BoletoM3\VIDA27.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro_Grupo\VA18.jpg">
+    <Content Include="Resources\BoletoM4\VA18.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro_Grupo\VA24.jpg">
+    <Content Include="Resources\BoletoM4\VA24.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro_Grupo\VIDA23.jpg">
+    <Content Include="Resources\BoletoM4\VIDA23.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Seguro_Grupo\VIDA24.jpg">
+    <Content Include="Resources\BoletoM4\VIDA24.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

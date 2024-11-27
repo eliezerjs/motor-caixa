@@ -4,7 +4,7 @@ using System.IO;
 
 namespace IntegraCVP.Application.Services
 {
-    public class BoletoV2Service : IBoletoV2Service
+    public class BoletoM2Service : IBoletoM2Service
     {
         public byte[] GerarBoletoPdf()
         {
