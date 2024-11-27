@@ -15,6 +15,7 @@ namespace IntegraCVP.Application.Helper
     using System.Collections.Generic;
     using iText.Barcodes;
     using System.Text.RegularExpressions;
+    using iText.Kernel.Colors;
 
     public static class PdfHelper
     {
@@ -29,7 +30,7 @@ namespace IntegraCVP.Application.Helper
             var pdfDocument = new PdfDocument(writer);
             var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
             var document = new Document(pdfDocument);
-                        
+
             byte[] imageBytes = File.ReadAllBytes(imagePath);
             var imageData = ImageDataFactory.Create(imageBytes);
             var image = new Image(imageData);
@@ -50,6 +51,29 @@ namespace IntegraCVP.Application.Helper
                 document.Add(paragraph);
             }
         }
+
+        public static void AddTextField(this Document document, string text, float x, float y, float fontSize, PdfPage pdfPage, string fontColor)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                Color color = fontColor.ToLower() switch
+                {
+                    "black" => ColorConstants.BLACK,
+                    "white" => ColorConstants.WHITE,
+                    "red" => ColorConstants.RED,
+                    "blue" => ColorConstants.BLUE,
+                    "green" => ColorConstants.GREEN,
+                    _ => ColorConstants.BLACK
+                };
+
+                var paragraph = new Paragraph(text)
+                    .SetFontSize(fontSize)
+                    .SetFontColor(color)
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(paragraph);
+            }
+        }
+
 
         public static void AddTextField(this Document document, Dictionary<string, string> fields, string key, float x, float y, float fontSize, PdfPage pdfPage)
         {
@@ -79,9 +103,9 @@ namespace IntegraCVP.Application.Helper
         public static byte[] GerarPdf(Dictionary<string, string> dados, string imagePath, List<(string Key, float X, float Y, float FontSize)> campos)
         {
             using var pdfStream = new MemoryStream();
-                        
+
             var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
-                        
+
             foreach (var (key, x, y, fontSize) in campos)
             {
                 document.AddTextField(dados, key, x, y, fontSize, pdfPage);
@@ -92,18 +116,18 @@ namespace IntegraCVP.Application.Helper
         }
 
         public static string MontarCodigoBarra(string codigoExpandido, string fatorVencimento, string valorBoleto)
-        {            
+        {
             string codigoLimpo = Regex.Replace(codigoExpandido, @"\D", "");
 
             if (codigoLimpo.Length < 25)
                 throw new InvalidOperationException("O código expandido é inválido.");
-                        
+
             string bancoMoeda = codigoLimpo.Substring(0, 4);
-                        
+
             string livreUso = codigoLimpo.Substring(4, 25);
-                        
+
             string codigoBase = $"{bancoMoeda}0{fatorVencimento}{valorBoleto.PadLeft(10, '0')}{livreUso}";
-                        
+
             return CalcularDigitoVerificador(codigoBase);
         }
 
@@ -133,7 +157,7 @@ namespace IntegraCVP.Application.Helper
         }
 
         public static string ConverterValor(string valor)
-        {            
+        {
             string valorLimpo = Regex.Replace(valor, @"[.,]", "");
             return valorLimpo.PadLeft(10, '0');
         }
@@ -150,7 +174,7 @@ namespace IntegraCVP.Application.Helper
         }
 
         public static string ObterEspecieMoeda(string codigoMoeda)
-        {            
+        {
             var especiesMoeda = new Dictionary<string, string>
             {
                 { "9", "BRL" }, // Real Brasileiro
@@ -166,7 +190,7 @@ namespace IntegraCVP.Application.Helper
 
             return especiesMoeda.TryGetValue(codigoMoeda, out var sigla)
                 ? sigla
-                : "UNK"; 
+                : "UNK";
         }
 
         public static string CalcularCodigoCedente(Dictionary<string, string> dadosBoleto)

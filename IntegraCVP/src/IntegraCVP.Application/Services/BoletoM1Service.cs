@@ -9,6 +9,7 @@ namespace IntegraCVP.Application.Services
     public partial class BoletoM1Service : IBoletoM1Service
     {
         public const string BoletoM1 = "BoletoM1";
+
         private readonly IImportFileConverterService _dataConverterService;
 
         public BoletoM1Service(IImportFileConverterService dataConverterService)
