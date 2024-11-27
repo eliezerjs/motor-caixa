@@ -19,6 +19,63 @@ namespace IntegraCVP.UI.Controllers
         
         }
 
+        [HttpPost("gerar-vd33")]
+        public async Task<IActionResult> GerarBoletoVD33([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
+
+            // Converte o arquivo para JSON
+            using var memoryStream = new MemoryStream();
+            await model.File.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+
+            // Parse JSON para obter os dados
+            var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+
+            // Filtrar os tipos VD33
+            var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VD33").ToList();
+
+            // Lista para armazenar os arquivos PDF
+            var pdfFiles = new List<(string FileName, byte[] Data)>();
+
+            byte[] pdfData = _boletoService.GerarBoletoVD33Pdf(boletosInfo.FirstOrDefault());
+            return File(pdfData, "application/pdf", "Boleto.pdf");
+        }
+
+        [HttpPost("gerar-vida02")]
+        public async Task<IActionResult> GerarBoletoVIDA02([FromForm] FileUploadModel model)
+        {
+            if (model.File == null || model.File.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado ou o arquivo está vazio.");
+            }
+
+            // Converte o arquivo para JSON
+            using var memoryStream = new MemoryStream();
+            await model.File.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+
+            // Parse JSON para obter os dados
+            var boletoData = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+
+            // Filtrar os tipos VD02 
+            var boletosInfo = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA02").ToList();
+
+            // Lista para armazenar os arquivos PDF
+            var pdfFiles = new List<(string FileName, byte[] Data)>();
+
+            byte[] pdfData = _boletoService.GerarBoletoVIDA02Pdf(boletosInfo.FirstOrDefault());
+            return File(pdfData, "application/pdf", "Boleto.pdf");
+        }
+
+
         [HttpPost("gerar-vd02")]
         public async Task<IActionResult> ConverterEGerar([FromForm] FileUploadModel model)
         {

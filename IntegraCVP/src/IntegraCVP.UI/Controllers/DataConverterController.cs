@@ -70,6 +70,9 @@ namespace IntegraCVP.UI.Controllers
             var boletosVIDA03 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA03").ToList();
             var boletosVIDA04 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VIDA04").ToList();
 
+            //CartaRecusa
+            var boletosVD33 = boletoData.Where(b => b.ContainsKey("TIPO_DADO") && b["TIPO_DADO"] == "VD33").ToList();
+
             // Lista para armazenar os arquivos PDF
             var pdfFiles = new List<(string FileName, byte[] Data)>();
 
@@ -158,35 +161,46 @@ namespace IntegraCVP.UI.Controllers
                 pdfFiles.Add(($"VIDA24_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 
-
+            // Gera boletos para Boas-Vinda
             foreach (var body in boletosVD05)
             {
                 byte[] pdfData = _prestamistaService.GerarBoasVindasPdf(body);
                 pdfFiles.Add(($"Boas-Vindas.pdf", pdfData));
             }
 
+            // Gera boletos para VIDA01
             foreach (var boleto in boletosVIDA01)
             {
                 byte[] pdfData = _boletoService.GerarBoletoVIDA01Pdf(boleto);
                 pdfFiles.Add(($"VIDA01_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 
+            // Gera boletos para VIDA02
             foreach (var boleto in boletosVIDA02)
             {
                 byte[] pdfData = _boletoService.GerarBoletoVIDA02Pdf(boleto);
                 pdfFiles.Add(($"VIDA02_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 
+            // Gera boletos para VIDA03
             foreach (var boleto in boletosVIDA03)
             {
                 byte[] pdfData = _boletoService.GerarBoletoVIDA03Pdf(boleto);
                 pdfFiles.Add(($"VIDA03_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 
+            // Gera boletos para VIDA04
             foreach (var boleto in boletosVIDA04)
             {
                 byte[] pdfData = _boletoService.GerarBoletoVIDA04Pdf(boleto);
                 pdfFiles.Add(($"VIDA04_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
+            }
+
+            // Gera boletos para VD33
+            foreach (var boleto in boletosVD33)
+            {
+                byte[] pdfData = _boletoService.GerarBoletoVD33Pdf(boleto);
+                pdfFiles.Add(($"VD33_{boleto["NUMDOCTO"] ?? "Unknown"}.pdf", pdfData));
             }
 
             // Cria o arquivo ZIP contendo os PDFs

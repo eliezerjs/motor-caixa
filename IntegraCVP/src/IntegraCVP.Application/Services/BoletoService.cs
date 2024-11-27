@@ -588,6 +588,319 @@ namespace IntegraCVP.Application.Services
             document.Close();
             return pdfStream.ToArray();
         }
+        
+        //CartaRecusa
+        public byte[] GerarBoletoVIDA01Pdf(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA01.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(7)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(8)
+
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
+            // Campos a desenhar
+
+            //DesenharCampo("NOME_CLIENTE", 57, 81);
+            DesenharCampoManual("Luana", 77, 140);
+
+            DesenharCampo("NUM_PROPOSTA", 382, 166);
+
+            DesenharCampo("DATA_DECLINIO", 115, 177);
+
+            DesenharCampo("COD_PRODUTO", 310, 728);
+
+            DesenharCampo("COD_SUSEP", 55, 738);
+            DesenharCampo("", 145, 738);
+
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+        public byte[] GerarBoletoVIDA02Pdf(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA02.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(7)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(8)
+
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
+            // Campos a desenhar
+
+            //DesenharCampo("NOME_CLIENTE", 57, 81);
+            DesenharCampoManual("Luana", 77, 140);
+
+            DesenharCampo("NUM_PROPOSTA", 382, 166);
+
+            DesenharCampo("DATA_DECLINIO", 115, 177);
+
+            DesenharCampo("COD_PRODUTO", 344, 728);
+
+            DesenharCampo("COD_SUSEP", 55, 738);
+
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+        public byte[] GerarBoletoVIDA03Pdf(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA03.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(7)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(8)
+
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
+            // Campos a desenhar
+
+            //DesenharCampo("NOME_CLIENTE", 57, 81);
+            DesenharCampoManual("Luana", 77, 140);
+
+            DesenharCampo("NUM_PROPOSTA", 382, 166);
+
+            DesenharCampo("DATA_DECLINIO", 115, 177);
+
+            DesenharCampo("COD_PRODUTO", 297, 740);
+
+            DesenharCampo("COD_SUSEP", 373, 740);
+
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+        public byte[] GerarBoletoVIDA04Pdf(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA04.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(7)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(8)
+
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
+            // Campos a desenhar
+
+            //DesenharCampo("NOME_CLIENTE", 57, 81);
+            DesenharCampoManual("Luana", 77, 140);
+
+            DesenharCampo("NUM_PROPOSTA", 382, 166);
+
+            DesenharCampo("DATA_DECLINIO", 115, 176);
+
+            DesenharCampo("COD_PRODUTO", 296, 736);
+
+            DesenharCampo("COD_SUSEP", 373, 736);
+
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
+
+        //CartaRecusa
+        public byte[] GerarBoletoVD33Pdf(Dictionary<string, string> dadosBoleto)
+        {
+            // Caminho da imagem de fundo
+            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Inadimplente", "VD33.jpg");
+
+            if (!File.Exists(imagePath))
+            {
+                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
+            }
+
+            using var pdfStream = new MemoryStream();
+            var writer = new PdfWriter(pdfStream);
+            var pdfDocument = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdfDocument);
+            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+
+            // Adiciona a imagem de fundo
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
+            var image = new iText.Layout.Element.Image(imageData);
+            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
+            image.SetFixedPosition(0, 0); // Define a posição
+            document.Add(image);
+
+            // Função auxiliar para adicionar texto
+            void DesenharCampo(string chave, float x, float y)
+            {
+                if (dadosBoleto.ContainsKey(chave))
+                {
+                    var text = new Paragraph(dadosBoleto[chave])
+                        .SetFontSize(7)
+                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    document.Add(text);
+                }
+            }
+
+            void DesenharCampoManual(string campo, float x, float y)
+            {
+                var text = new Paragraph(campo)
+                    .SetFontSize(8)
+
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                document.Add(text);
+            }
+
+            // Campos a desenhar
+
+            //DesenharCampo("NOME_CLIENTE", 57, 81);
+            DesenharCampoManual("Luana", 382, 166);
+
+            DesenharCampo("DATA_DECLINIO", 115, 176);
+
+            DesenharCampo("COD_PRODUTO", 296, 736);
+
+            DesenharCampo("COD_SUSEP", 373, 736);
+
+
+            document.Close();
+            return pdfStream.ToArray();
+        }
 
         //Pasta Seguro
         public byte[] GerarBoletoSeguro(Dictionary<string, string> dadosBoleto, string filename)
@@ -821,247 +1134,7 @@ namespace IntegraCVP.Application.Services
             return pdfStream.ToArray();
         }
 
-        public byte[] GerarBoletoVIDA01Pdf(Dictionary<string, string> dadosBoleto)
-        {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA01.jpg");
 
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dadosBoleto.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(7)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            void DesenharCampoManual(string campo, float x, float y)
-            {
-                var text = new Paragraph(campo)
-                    .SetFontSize(8)
-
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                document.Add(text);
-            }
-
-            // Campos a desenhar
-
-            //DesenharCampo("NOME_CLIENTE", 57, 81);
-            DesenharCampoManual("Luana", 382, 166);
-
-            DesenharCampo("DATA_DECLINIO", 115, 177);
-
-            DesenharCampo("COD_PRODUTO", 310, 728);
-
-            DesenharCampo("COD_SUSEP", 55, 738);
-            DesenharCampo("", 145, 738);
-
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-        public byte[] GerarBoletoVIDA02Pdf(Dictionary<string, string> dadosBoleto)
-        {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA02.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dadosBoleto.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(7)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            void DesenharCampoManual(string campo, float x, float y)
-            {
-                var text = new Paragraph(campo)
-                    .SetFontSize(8)
-
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                document.Add(text);
-            }
-
-            // Campos a desenhar
-
-            //DesenharCampo("NOME_CLIENTE", 57, 81);
-            DesenharCampoManual("Luana", 382, 166);
-
-            DesenharCampo("DATA_DECLINIO", 115, 177);
-
-            DesenharCampo("COD_PRODUTO", 344, 728);
-
-            DesenharCampo("COD_SUSEP", 55, 738);
-
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-        public byte[] GerarBoletoVIDA03Pdf(Dictionary<string, string> dadosBoleto)
-        {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA03.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dadosBoleto.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(7)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            void DesenharCampoManual(string campo, float x, float y)
-            {
-                var text = new Paragraph(campo)
-                    .SetFontSize(8)
-
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                document.Add(text);
-            }
-
-            // Campos a desenhar
-
-            //DesenharCampo("NOME_CLIENTE", 57, 81);
-            DesenharCampoManual("Luana", 383, 166);
-
-            DesenharCampo("DATA_DECLINIO", 115, 177);
-
-            DesenharCampo("COD_PRODUTO", 297, 740);
-
-            DesenharCampo("COD_SUSEP", 373, 740);
-
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-        public byte[] GerarBoletoVIDA04Pdf(Dictionary<string, string> dadosBoleto)
-        {
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "CartaRecusa", "VIDA04.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dadosBoleto.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dadosBoleto[chave])
-                        .SetFontSize(7)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            void DesenharCampoManual(string campo, float x, float y)
-            {
-                var text = new Paragraph(campo)
-                    .SetFontSize(8)
-
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                document.Add(text);
-            }
-
-            // Campos a desenhar
-
-            //DesenharCampo("NOME_CLIENTE", 57, 81);
-            DesenharCampoManual("Luana", 382, 166);
-
-            DesenharCampo("DATA_DECLINIO", 115, 176);
-
-            DesenharCampo("COD_PRODUTO", 296, 736);
-
-            DesenharCampo("COD_SUSEP", 373, 736);
-
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
     }
 
 
