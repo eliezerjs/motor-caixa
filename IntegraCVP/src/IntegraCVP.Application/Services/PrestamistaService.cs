@@ -6,208 +6,72 @@ using iText.Kernel.Geom;
 using iText.Kernel.Colors;
 using iText.Kernel.Pdf.Canvas;
 using iText.Layout.Element;
+using IntegraCVP.Application.Enums;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
+using IntegraCVP.Application.Helper;
 
 
 namespace IntegraCVP.Application.Services
 {
-    public class PrestamistaService : IPrestamistaService
+    public partial class PrestamistaService : IPrestamistaService
     {
-        public byte[] GerarBoasVindasPdf(Dictionary<string, string> dados)
+        private const string InadimplenciaFolder = "Prestamista";
+
+        private readonly IImportFileConverterService _importFileConverterService;
+        public PrestamistaService(IImportFileConverterService dataConverterService)
         {
+            _importFileConverterService = dataConverterService;
+        }
+        public async Task<byte[]> ConverterEGerarPrestamistaPdfAsync(IFormFile file, PrestamistaType tipo)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("O arquivo enviado está vazio ou é inválido.");
 
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Prestamista", "PREST01.jpg");
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
 
-            if (!File.Exists(imagePath))
+            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
+
+            var InadimplenciaData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+
+            if (InadimplenciaData == null || !InadimplenciaData.Any())
+                throw new ArgumentException("O arquivo não contém dados válidos.");
+
+            var InadimplenciasFiltrados = InadimplenciaData
+                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
+                .ToList();
+
+            if (!InadimplenciasFiltrados.Any())
+                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
+
+            return GerarDocumentoPrestamista(InadimplenciasFiltrados.FirstOrDefault(), tipo);
+        }
+
+        public byte[] GerarDocumentoPrestamista(Dictionary<string, string> dados, PrestamistaType tipo)
+        {
+            string imagePath = GetImagePath(tipo, InadimplenciaFolder);
+
+            var campos = tipo switch
             {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
+                PrestamistaType.PREST01 => GetCamposPrest01(),
+                _ => throw new ArgumentException("Tipo de Inadimplencia inválida.")
+            };
 
             using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
+            var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
 
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
+            foreach (var (key, x, y, fontSize) in campos)
             {
-                if (dados.ContainsKey(chave))
+                if (dados.ContainsKey(key))
                 {
-                    var text = new Paragraph(dados[chave])
-                        .SetFontSize(9)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
+                    document.AddTextField(dados[key], x, y, fontSize, pdfPage);
                 }
             }
 
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 59, 250);
-            DesenharCampo("NOME_PRODUTO", 59, 288);
-            DesenharCampo("NUM_CERTIF", 59, 320);
-            DesenharCampo("DT_VIG", 59, 356);
-
-            DesenharCampo("CUSTO", 60, 470);
-            DesenharCampo("OPCAO_PAG", 60, 510);
-
             document.Close();
             return pdfStream.ToArray();
         }
-
-        public byte[] GerarBoasVindasQuinzeP1Pdf(Dictionary<string, string> dados)
-        {
-
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Prestamista", "PREST15P1.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dados.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dados[chave])
-                        .SetFontSize(9)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 59, 250);
-            DesenharCampo("ENDERECO", 59, 288);
-            DesenharCampo("CIDADE", 59, 320);
-            DesenharCampo("UF", 59, 356);
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-
-        public byte[] GerarBoasVindasQuinzeP2Pdf(Dictionary<string, string> dados)
-        {
-
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Prestamista", "PREST15P2.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-                if (dados.ContainsKey(chave))
-                {
-                    var text = new Paragraph(dados[chave])
-                        .SetFontSize(9)
-                        .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                    document.Add(text);
-                }
-            }
-
-            // Campos a desenhar
-            DesenharCampo("SEGURADO", 59, 250);
-            DesenharCampo("NOME_PRODUTO", 59, 288);
-            DesenharCampo("NUM_CERTIF", 59, 320);
-            DesenharCampo("DT_VIG", 59, 356);
-
-            DesenharCampo("CUSTO", 60, 470);
-            DesenharCampo("OPCAO_PAG", 60, 510);
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-
-        public byte[] GerarBoasVindas15Pdf()
-        {
-
-            // Caminho da imagem de fundo
-            string imagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Resources", "Prestamista", "PREST15.jpg");
-
-            if (!File.Exists(imagePath))
-            {
-                throw new FileNotFoundException($"A imagem de fundo não foi encontrada no caminho: {imagePath}");
-            }
-
-            using var pdfStream = new MemoryStream();
-            var writer = new PdfWriter(pdfStream);
-            var pdfDocument = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdfDocument);
-            var pdfPage = pdfDocument.AddNewPage(PageSize.A4);
-
-            // Adiciona a imagem de fundo
-            byte[] imageBytes = File.ReadAllBytes(imagePath);
-            var imageData = iText.IO.Image.ImageDataFactory.Create(imageBytes);
-            var image = new iText.Layout.Element.Image(imageData);
-            image.ScaleToFit(pdfDocument.GetDefaultPageSize().GetWidth(), pdfDocument.GetDefaultPageSize().GetHeight());
-            image.SetFixedPosition(0, 0); // Define a posição
-            document.Add(image);
-
-            // Função auxiliar para adicionar texto
-            void DesenharCampo(string chave, float x, float y)
-            {
-
-                var text = new Paragraph(chave)
-                    .SetFontSize(9)
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
-                document.Add(text);
-
-            }
-
-            // Campos a desenhar
-            DesenharCampo("@NOME", 56, 250);
-            DesenharCampo("@PRODUTO", 56, 288);
-            DesenharCampo("@CERTIFICADO", 56, 320);
-            DesenharCampo("@VIGENCIA", 56, 356);
-
-            DesenharCampo("@PERIODICIDADE_PGTO", 56, 470);
-            DesenharCampo("@FORMA_PGTO", 56, 510);
-
-
-            document.Close();
-            return pdfStream.ToArray();
-        }
-
     }
 }

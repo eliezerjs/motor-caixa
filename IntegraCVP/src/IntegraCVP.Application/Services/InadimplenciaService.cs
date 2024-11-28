@@ -10,11 +10,11 @@ namespace IntegraCVP.Application.Services
     {
         private const string InadimplenciaFolder = "Inadimplencia";
 
-        private readonly IImportFileConverterService _dataConverterService;
+        private readonly IImportFileConverterService _importFileConverterService;
 
         public InadimplenciaService(IImportFileConverterService dataConverterService)
         {
-            _dataConverterService = dataConverterService;
+            _importFileConverterService = dataConverterService;
         }
         public async Task<byte[]> ConverterEGerarInadimplenciaPdfAsync(IFormFile file, InadimplenciaType tipo)
         {
@@ -25,7 +25,7 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _dataConverterService.ConvertToJson(memoryStream);
+            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
 
             var InadimplenciaData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
 

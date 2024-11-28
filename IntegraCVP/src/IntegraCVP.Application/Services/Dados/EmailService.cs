@@ -4,7 +4,7 @@ namespace IntegraCVP.Application.Services
 {
     public partial class EmailService
     {
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetEmailSeguros()
+        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVD09()
         {
             return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
             {
@@ -15,7 +15,18 @@ namespace IntegraCVP.Application.Services
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetEmailVidaExclusiva()
+        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVIDA18()
+        {
+            return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
+            {
+                ("SEGURADO", 80, 199, 10, "Black"),
+                ("COD_PRODUTO", 359, 748, 6, "Black"),
+                ("COD_SUSEP", 444, 748, 6, "Black"),
+                ("COD_SUSEPCAP", 350, 768, 6, "Black")
+            };
+        }
+        //Campo Exclusivo
+        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVIDA17()
         {
             return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
             {
@@ -27,16 +38,20 @@ namespace IntegraCVP.Application.Services
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetVIDA18()
+        //Campo Exclusivo
+        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVD08()
         {
             return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
             {
-                ("SEGURADO", 80, 199, 10, "Black"),
-                ("COD_PRODUTO", 359, 748, 6, "Black"),
-                ("COD_SUSEP", 444, 748, 6, "Black"),
-                ("COD_SUSEPCAP", 350, 768, 6, "Black")
+                ("SEGURADO", 100, 174, 11, "Black"),
+                ("NUM_CERTIF", 195, 324, 13, "Black"),
+                ("COD_PRODUTO", 377, 787, 5, "White"),
+                ("COD_SUSEP", 427, 787, 5, "White"),
+                ("COD_SUSEPCAP", 100, 799, 5, "White")
             };
         }
+
+
 
         public string GetImagePath(EmailType tipo, string folder)
         {
