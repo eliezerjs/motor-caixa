@@ -48,9 +48,10 @@ namespace IntegraCVP.Application.Services
 
             var campos = tipo switch
             {              
-                EmailType.VIDA18 => GetVIDA18(),
-                EmailType.SEGUROS => GetEmailSeguros(),
-                EmailType.VIDAEXCLUSIVA => GetEmailVidaExclusiva(),
+                EmailType.VIDA18 => GetCamposVIDA18(),
+                EmailType.VD08 => GetCamposVD08(),
+                EmailType.VD09 => GetCamposVD09(),
+                EmailType.VIDA17 => GetCamposVIDA17(),
                 _ => throw new ArgumentException("Tipo de email inválido.")
             };
 
