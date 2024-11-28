@@ -8,11 +8,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize)>
             {
-                ("NOME_CLIENTE", 77, 140, 8),
-                ("NUM_PROPOSTA", 382, 166, 7),
-                ("DATA_DECLINIO", 115, 177, 7),
-                ("COD_PRODUTO", 296, 736, 7),
-                ("COD_SUSEP", 373, 736, 7)
+                ("SEGURADO", 59, 250, 8),
+                ("NOME_PRODUTO", 59, 288, 8),
+                ("NUM_CERTIF", 59, 320, 8),
+                ("DT_VIG", 59, 356, 8),
+                ("CUSTO", 60, 470, 8),
+                ("OPCAO_PAG", 60, 510, 8)
             };
         }
 
