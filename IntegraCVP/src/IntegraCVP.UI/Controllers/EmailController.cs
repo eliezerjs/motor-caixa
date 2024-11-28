@@ -84,7 +84,7 @@ namespace IntegraCVP.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+                return StatusCode(500, $"Erro ao processar o email: {ex.Message}");
             }
         }
 
@@ -107,7 +107,7 @@ namespace IntegraCVP.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+                return StatusCode(500, $"Erro ao processar o email: {ex.Message}");
             }
         }
     }

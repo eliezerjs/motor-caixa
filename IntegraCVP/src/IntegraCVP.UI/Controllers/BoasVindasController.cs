@@ -5,20 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace IntegraCVP.UI.Controllers
 {
     [ApiController]
-    [Route("api/boleto-m1")]
-    public class BoletoM1Controller : ControllerBase
+    [Route("api/boasvindas")]
+    public class BoasVindasController : ControllerBase
     {
-        private readonly IBoletoM1Service _boletoM1Service;       
+        private readonly IBoasVindasService _BoasVindasService;       
         private readonly IImportFileConverterService _dataConverterService;
-        public BoletoM1Controller(IBoletoM1Service boletoM1Service,
+        public BoasVindasController(IBoasVindasService BoasVindasService,
                                     IImportFileConverterService dataConverterService)
         {
-            _boletoM1Service = boletoM1Service;          
+            _BoasVindasService = BoasVindasService;          
             _dataConverterService = dataConverterService;        
         }
 
-        [HttpPost("gerar-vd02")]
-        public async Task<IActionResult> GerarVD02([FromForm] FileUploadModel model)
+        [HttpPost("gerar-vida05")]
+        public async Task<IActionResult> GerarVIDA05([FromForm] FileUploadModel model)
         {
             if (model.File == null || model.File.Length == 0)
             {
@@ -27,8 +27,8 @@ namespace IntegraCVP.UI.Controllers
 
             try
             {
-                var pdfData = await _boletoM1Service.ConverterEGerarPdfAsync(model.File, BoletoM1Type.VD02);
-                return File(pdfData, "application/pdf", "Boleto-VD02.pdf");
+                var pdfData = await _BoasVindasService.ConverterEGerarBoasVindasPdfAsync(model.File, BoasVindasType.VIDA05);
+                return File(pdfData, "application/pdf", "BoasVindas-VIDA05.pdf");
             }
             catch (ArgumentException ex)
             {
@@ -36,12 +36,12 @@ namespace IntegraCVP.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+                return StatusCode(500, $"Erro ao processar o documento: {ex.Message}");
             }
         }
 
-        [HttpPost("gerar-vida25")]
-        public async Task<IActionResult> GerarVida25([FromForm] FileUploadModel model)
+        [HttpPost("gerar-vida07")]
+        public async Task<IActionResult> GerarVIDA07([FromForm] FileUploadModel model)
         {
             if (model.File == null || model.File.Length == 0)
             {
@@ -50,8 +50,8 @@ namespace IntegraCVP.UI.Controllers
 
             try
             {
-                var pdfData = await _boletoM1Service.ConverterEGerarPdfAsync(model.File, BoletoM1Type.VIDA25);
-                return File(pdfData, "application/pdf", "Boleto-VIDA25.pdf");
+                var pdfData = await _BoasVindasService.ConverterEGerarBoasVindasPdfAsync(model.File, BoasVindasType.VIDA07);
+                return File(pdfData, "application/pdf", "BoasVindas-VIDA25.pdf");
             }
             catch (ArgumentException ex)
             {
@@ -59,7 +59,7 @@ namespace IntegraCVP.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao processar o boleto: {ex.Message}");
+                return StatusCode(500, $"Erro ao processar o documento: {ex.Message}");
             }
         }        
     }
