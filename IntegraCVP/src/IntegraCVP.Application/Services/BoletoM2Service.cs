@@ -48,8 +48,8 @@ namespace IntegraCVP.Application.Services
 
             var campos = tipo switch
             {
-                BoletoM2Type.VD32 => GetCamposVD02(),
-                BoletoM2Type.VIDA26 => GetCamposVIDA25(),
+                BoletoM2Type.VD32 => GetCamposVD32(),
+                BoletoM2Type.VIDA26 => GetCamposVIDA26(),
                 _ => throw new ArgumentException("Tipo de boleto inválido.")
             };
 
@@ -74,7 +74,7 @@ namespace IntegraCVP.Application.Services
                     PdfHelper.ConverterValor(dadosBoleto["VALOR"])
                 );
 
-                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 130);
+                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 90);
             }
 
             document.Close();
