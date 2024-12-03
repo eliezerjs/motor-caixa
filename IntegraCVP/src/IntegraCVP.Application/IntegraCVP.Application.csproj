@@ -1,6 +1,7 @@
 ﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Resources\BoasVindas\VIDA05.jpg" />
     <None Remove="Resources\CartaRecusa\VIDA01.jpg" />
     <None Remove="Resources\CartaRecusa\VIDA02.jpg" />
     <None Remove="Resources\CartaRecusa\VIDA03.jpg" />
@@ -35,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\BoasVindas\VIDA05.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\CartaRecusa\VIDA01.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -118,10 +122,6 @@
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="SkiaSharp" Version="2.88.9" />
     <PackageReference Include="SkiaSharp.QrCode" Version="0.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\BoasVindas\" />
   </ItemGroup>
 
   <PropertyGroup>
