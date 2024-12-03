@@ -16,6 +16,8 @@ namespace IntegraCVP.Application.Helper
     using iText.Barcodes;
     using System.Text.RegularExpressions;
     using iText.Kernel.Colors;
+    using iText.Kernel.Font;
+    using System.Runtime.CompilerServices;
 
     public static class PdfHelper
     {
@@ -41,45 +43,64 @@ namespace IntegraCVP.Application.Helper
             return (document, pdfDocument, pdfPage);
         }
 
-        public static void AddTextField(this Document document, string text, float x, float y, float fontSize, PdfPage pdfPage)
+        public static void AddTextField(this Document document, string text, float x, float y, float fontSize, bool isBold, PdfPage pdfPage)
         {
+            float width = text.Length * fontSize * 0.9f;
+
+            PdfFont font = PdfFontFactory.CreateFont(isBold ? "Helvetica-Bold" : "Helvetica", PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+
+            if (width > pdfPage.GetPageSize().GetWidth() - x)
+            {
+                width = pdfPage.GetPageSize().GetWidth() - x;
+            }
+
             if (!string.IsNullOrEmpty(text))
             {
                 var paragraph = new Paragraph(text)
-                    .SetFontSize(fontSize)
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    .SetFont(font)
+                    .SetFontSize(fontSize)                   
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, width);
                 document.Add(paragraph);
             }
         }
 
-        public static void AddTextField(this Document document, string text, float x, float y, float fontSize, PdfPage pdfPage, string fontColor)
+        public static void AddTextField(this Document document, string text, float x, float y, float fontSize, PdfPage pdfPage, bool isBold)
         {
+            float width = text.Length * fontSize * 0.9f;
+
+            PdfFont font = PdfFontFactory.CreateFont(isBold ? "Helvetica-Bold" : "Helvetica", PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+
+            if (width > pdfPage.GetPageSize().GetWidth() - x)
+            {
+                width = pdfPage.GetPageSize().GetWidth() - x;
+            }
+
             if (!string.IsNullOrEmpty(text))
             {
-                Color color = fontColor.ToLower() switch
-                {
-                    "black" => ColorConstants.BLACK,
-                    "white" => ColorConstants.WHITE,
-                    "red" => ColorConstants.RED,
-                    "blue" => ColorConstants.BLUE,
-                    "green" => ColorConstants.GREEN,
-                    _ => ColorConstants.BLACK
-                };
+                //Color color = fontColor.ToLower() switch
+                //{
+                //    "Black" => ColorConstants.BLACK,
+                //    "white" => ColorConstants.WHITE,
+                //    "red" => ColorConstants.RED,
+                //    "blue" => ColorConstants.BLUE,
+                //    "green" => ColorConstants.GREEN,
+                //    _ => ColorConstants.BLACK
+                //};
 
                 var paragraph = new Paragraph(text)
                     .SetFontSize(fontSize)
-                    .SetFontColor(color)
-                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, 200);
+                    //.SetFontColor(color)
+                    .SetFixedPosition(x, pdfPage.GetPageSize().GetHeight() - y, width);
                 document.Add(paragraph);
             }
         }
 
 
-        public static void AddTextField(this Document document, Dictionary<string, string> fields, string key, float x, float y, float fontSize, PdfPage pdfPage)
+        public static void AddTextField(this Document document, Dictionary<string, string> fields, string key, float x, float y, float fontSize, bool isBold, PdfPage pdfPage)
         {
             if (fields.TryGetValue(key, out var value) && !string.IsNullOrEmpty(value))
             {
-                document.AddTextField(value, x, y, fontSize, pdfPage);
+                document.AddTextField(value, x, y, fontSize, isBold, pdfPage);
             }
         }
 
@@ -100,15 +121,15 @@ namespace IntegraCVP.Application.Helper
             document.Add(barcodeImage);
         }
 
-        public static byte[] GerarPdf(Dictionary<string, string> dados, string imagePath, List<(string Key, float X, float Y, float FontSize)> campos)
+        public static byte[] GerarPdf(Dictionary<string, string> dados, string imagePath, List<(string Key, float X, float Y, float FontSize, bool isBold)> campos)
         {
             using var pdfStream = new MemoryStream();
 
             var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
 
-            foreach (var (key, x, y, fontSize) in campos)
+            foreach (var (key, x, y, fontSize, isBold) in campos)
             {
-                document.AddTextField(dados, key, x, y, fontSize, pdfPage);
+                document.AddTextField(dados, key, x, y, fontSize, isBold, pdfPage);
             }
 
             document.Close();

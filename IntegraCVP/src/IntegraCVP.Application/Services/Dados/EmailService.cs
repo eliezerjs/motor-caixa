@@ -4,50 +4,50 @@ namespace IntegraCVP.Application.Services
 {
     public partial class EmailService
     {
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVD09()
+        public List<(string Key, float X, float Y, float FontSize, bool IsBold)> GetCamposVD09()
         {
-            return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
+            return new List<(string Key, float X, float Y, float FontSize, bool IsBold)>
             {
-                ("SEGURADO", 80, 199, 10, "Black"),
-                ("COD_PRODUTO", 357, 748, 6, "Black"),
-                ("COD_SUSEP", 442, 748, 6, "Black"),
-                ("COD_SUSEPCAP", 314, 766, 6, "Black")
+                ("SEGURADO", 80, 199, 10, false),
+                ("COD_PRODUTO", 357, 748, 6, false),
+                ("COD_SUSEP", 442, 748, 6, false),
+                ("COD_SUSEPCAP", 314, 766, 6, false)
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVIDA18()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposVIDA18()
         {
-            return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("SEGURADO", 80, 199, 10, "Black"),
-                ("COD_PRODUTO", 359, 748, 6, "Black"),
-                ("COD_SUSEP", 444, 748, 6, "Black"),
-                ("COD_SUSEPCAP", 350, 768, 6, "Black")
+                ("SEGURADO", 80, 199, 10, false),
+                ("COD_PRODUTO", 359, 748, 6, false),
+                ("COD_SUSEP", 444, 748, 6, false),
+                ("COD_SUSEPCAP", 350, 768, 6, false)
             };
         }
         //Campo Exclusivo
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVIDA17()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposVIDA17()
         {
-            return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("SEGURADO", 100, 174, 11, "Black"),
-                ("NUM_CERTIF", 195, 324, 13, "Black"),
-                ("COD_PRODUTO", 377, 787, 5, "White"),
-                ("COD_SUSEP", 427, 787, 5, "White"),
-                ("COD_SUSEPCAP", 100, 799, 5, "White")
+                ("SEGURADO", 100, 174, 11, false),
+                ("NUM_CERTIF", 195, 324, 13, false),
+                ("COD_PRODUTO", 377, 787, 5, false), //white
+                ("COD_SUSEP", 427, 787, 5, false),
+                //("COD_SUSEPCAP", 100, 799, 5, "White")
             };
         }
 
         //Campo Exclusivo
-        public List<(string Key, float X, float Y, float FontSize, string FontColor)> GetCamposVD08()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposVD08()
         {
-            return new List<(string Key, float X, float Y, float FontSize, string FontColor)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("SEGURADO", 100, 174, 11, "Black"),
-                ("NUM_CERTIF", 195, 324, 13, "Black"),
-                ("COD_PRODUTO", 377, 787, 5, "White"),
-                ("COD_SUSEP", 427, 787, 5, "White"),
-                ("COD_SUSEPCAP", 100, 799, 5, "White")
+                ("SEGURADO", 100, 174, 11, false),
+                ("NUM_CERTIF", 195, 324, 13, false),
+                ("COD_PRODUTO", 377, 787, 5, false), //white
+                ("COD_SUSEP", 427, 787, 5, false), //white
+                //("COD_SUSEPCAP", 100, 799, 5, "White")
             };
         }
 

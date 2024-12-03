@@ -58,11 +58,11 @@ namespace IntegraCVP.Application.Services
             using var pdfStream = new MemoryStream();
             var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
 
-            foreach (var (key, x, y, fontSize, fontColor) in campos)
+            foreach (var (key, x, y, fontSize, isBold) in campos)
             {
                 if (dados.ContainsKey(key))
                 {
-                    document.AddTextField(dados[key], x, y, fontSize, pdfPage, fontColor);
+                    document.AddTextField(dados[key], x, y, fontSize, isBold, pdfPage);
                 }
             }
 

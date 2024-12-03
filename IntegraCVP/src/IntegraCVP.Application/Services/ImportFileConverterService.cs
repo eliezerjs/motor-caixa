@@ -14,7 +14,7 @@ namespace IntegraCVP.Application.Services
             var sections = new List<Dictionary<string, string>>();
             Dictionary<string, string> currentSection = null;
             List<string> headers = null;
-            string tipoDadoAtual = null; // Tipo de dado atual
+            string tipoDadoAtual = null;
 
             using var reader = new StreamReader(fileStream);
             string line;
@@ -28,7 +28,11 @@ namespace IntegraCVP.Application.Services
                 }
 
                 // Detecta o TIPO_DADO
-                if ((line.Contains(" - ") && line.ToUpper().Contains("BOLETO")) || line.Contains("VIDA02") || line.Contains("VD33") || line.Contains("VIDA05") || line.Contains("VD08") || line.Contains("VD09") || line.Contains("VIDA17") || line.Contains("VIDA18"))
+                if ((line.Contains(" - ") && line.ToUpper().Contains("BOLETO"))
+                    || line.Contains("VIDA01") || line.Contains("VIDA03") || line.Contains("VIDA04")
+                    || line.Contains("VIDA02") || line.Contains("VD33")
+                    || line.Contains("VIDA05") || line.Contains("VD08")
+                    || line.Contains("VD09") || line.Contains("VIDA17") || line.Contains("VIDA18"))
                 {
                     tipoDadoAtual = line.Split(" - ", StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.Trim();
                 }
@@ -40,15 +44,17 @@ namespace IntegraCVP.Application.Services
                     }
 
                     currentSection = new Dictionary<string, string>
-                    {
-                        { "TIPO_DADO", tipoDadoAtual }
-                    };
+            {
+                { "TIPO_DADO", tipoDadoAtual }
+            };
 
                     headers = null; // Reinicia os cabeçalhos
                 }
                 else if (line.Contains("|") && headers == null) // Captura os cabeçalhos
                 {
-                    headers = new List<string>(line.Split('|', StringSplitOptions.RemoveEmptyEntries));
+                    headers = line.Split('|', StringSplitOptions.RemoveEmptyEntries)
+                                  .Select(header => header.Trim())
+                                  .ToList();
                 }
                 else if (currentSection != null && headers != null && line.Contains("|"))
                 {
@@ -62,8 +68,7 @@ namespace IntegraCVP.Application.Services
                             var key = headers[i].Trim();
                             var value = values[i].Trim();
 
-                            // Ignora valores inválidos (e.g., ") SETDBSEP")
-                            if (!string.IsNullOrEmpty(key) && !value.StartsWith(")") && value != "SETDBSEP")
+                            if (!string.IsNullOrEmpty(key) && !value.StartsWith("(") && !value.StartsWith(")") && value != "SETDBSEP")
                             {
                                 currentSection[key] = value;
                             }
@@ -72,15 +77,14 @@ namespace IntegraCVP.Application.Services
                 }
             }
 
-            // Adiciona a última seção processada
             if (currentSection != null)
             {
                 sections.Add(currentSection);
             }
 
-            // Retorna o JSON gerado
             return JsonConvert.SerializeObject(sections, Formatting.Indented);
         }
+
 
     }
 }

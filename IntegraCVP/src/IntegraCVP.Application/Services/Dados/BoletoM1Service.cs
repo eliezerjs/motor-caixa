@@ -4,105 +4,111 @@ namespace IntegraCVP.Application.Services
 {
     public partial class BoletoM1Service
     {
-        public List<(string Key, float X, float Y, float FontSize)> GetCamposVD02()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposVD02()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("AGENCIA", 45, 133, 8),
-                ("APOLICE", 125, 133, 8),
-                ("FATURA", 197, 133, 8),
-                ("PERIODO", 260, 133, 8),
-                ("EMISSAO", 407, 133, 8),
-                ("VENCIMENT", 481, 133, 8),
-                ("ESTIPULANTE", 45, 157, 8),
-                ("ENDERECO", 260, 157, 8),
-                ("CEP", 45, 182, 8),
-                ("CIDADE", 154, 182, 8),
-                ("UF", 407, 182, 8),
-                ("CNPJ", 453, 182, 8),
-                ("ESTIPULANTE", 45, 205, 8),
-                ("ENDERECO", 260, 205, 8),
-                ("CEP", 45, 230, 8),
-                ("CIDADE", 154, 230, 8),
-                ("UF", 407, 230, 8),
-                ("CNPJ", 453, 230, 8),
-                ("NVIDAS", 45, 252, 8),
-                ("CAPITAL", 154, 252, 8),
-                ("IOF", 310, 252, 8),
-                ("PREMIO", 407, 252, 8),
-                ("NUMDOCTO", 470, 378, 8),
-                ("AGENCIA", 470, 398, 8),
-                ("VENCIMENT", 470, 398, 8),
-                ("NSNUMERO", 370, 418, 8),
-                ("VALDOCTO", 470, 418, 8),
-                ("PARCELA", 443, 534, 8),
-                ("VENCIMENT", 494, 534, 8),
-                ("AGENCIA", 443, 552, 8),
-                ("DTDOCTO", 45, 568, 8),
-                ("CODDOC", 135, 568, 8),
-                ("AGENCIA", 219, 568, 8),
-                ("AGENCIA", 340, 568, 8),
-                ("AGENCIA", 370, 568, 8),
-                ("NSNUMERO", 443, 568, 8),
-                ("AGENCIA", 300, 585, 8),
-                ("AGENCIA", 370, 585, 8),
-                ("VALDOCTO", 443, 585, 8),
-                ("AGENCIA", 443, 602, 8),
-                ("AGENCIA", 443, 617, 8),
-                ("AGENCIA", 443, 633, 8),
-                ("AGENCIA", 443, 650, 8),
-                ("VALDOCTO", 443, 666, 8)
+                ("AGENCIA", 45, 133, 8, false),
+                ("APOLICE", 125, 133, 8, false),
+                ("FATURA", 197, 133, 8, false),
+                ("PERIODO", 260, 133, 8, false),
+                ("EMISSAO", 407, 133, 8, false),
+                ("VENCIMENT", 481, 133, 8, false),
+                ("ESTIPULANTE", 45, 157, 8, false),
+                ("ENDERECO", 260, 157, 8, false),
+                ("CEP", 45, 182, 8, false),
+                ("CIDADE", 154, 182, 8, false),
+                ("UF", 407, 182, 8, false),
+                ("CNPJ", 453, 182, 8, false),
+                ("ESTIPULANTE", 45, 205, 8, false),
+                ("ENDERECO", 260, 205, 8, false),
+                ("CEP", 45, 230, 8, false),
+                ("CIDADE", 154, 230, 8, false),
+                ("UF", 407, 230, 8, false),
+                ("CNPJ", 453, 230, 8, false),
+                ("NVIDAS", 45, 252, 8, false),
+                ("CAPITAL", 154, 252, 8, false),
+                ("IOF", 310, 252, 8, false),
+                ("PREMIO", 407, 252, 8, false),
+
+                ("NUMDOCTO", 493, 378, 8, false),
+
+                ("AGENCIA", 442, 398, 8, false),
+                ("VENCIMENT", 507, 398, 8, false),
+
+                ("NSNUMERO", 377, 418, 8, false),
+                ("VALDOCTO", 512, 418, 8, false),
+
+                ("PARCELA", 476, 534, 8, false),
+
+                ("NUMCDBARRA", 198, 355, 12, true),
+                ("NUMCDBARRA", 198, 515, 12, true),
+
+                ("VENCIMENT", 507, 534, 8, false),
+
+                ("AGENCIA", 530, 552, 8, false),
+
+                ("DTDOCTO", 85, 568, 8, false),
+                ("CODDOC", 157, 568, 8, false),
+                ("AGENCIA", 273, 568, 8, false),
+                ("AGENCIA", 415, 568, 8, false),
+                ("NSNUMERO", 464, 568, 8, false),
+
+                ("VALDOCTO", 512, 585, 8, false),
+            
+                ("VALDOCTO", 512, 666, 8, false)
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize)> GetCamposVIDA25()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposVIDA25()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("AGENCIA", 45, 133, 8),
-                ("APOLICE", 125, 133, 8),
-                ("FATURA", 197, 133, 8),
-                ("PERIODO", 260, 133, 8),
-                ("EMISSAO", 407, 133, 8),
-                ("VENCIMENT", 481, 133, 8),
-                ("ESTIPULANTE", 45, 157, 8),
-                ("ENDERECO", 260, 157, 8),
-                ("CEP", 45, 182, 8),
-                ("CIDADE", 154, 182, 8),
-                ("UF", 407, 182, 8),
-                ("CNPJ", 453, 182, 8),
-                ("ESTIPULANTE", 45, 205, 8),
-                ("ENDERECO", 260, 205, 8),
-                ("CEP", 45, 230, 8),
-                ("CIDADE", 154, 230, 8),
-                ("UF", 407, 230, 8),
-                ("CNPJ", 453, 230, 8),
-                ("NVIDAS", 45, 252, 8),
-                ("CAPITAL", 154, 252, 8),
-                ("IOF", 310, 252, 8),
-                ("PREMIO", 407, 252, 8),
-                ("NUMDOCTO", 470, 378, 8),
-                ("AGENCIA", 470, 398, 8),
-                ("VENCIMENT", 470, 398, 8),
-                ("NSNUMERO", 370, 418, 8),
-                ("VALDOCTO", 470, 418, 8),
-                ("PARCELA", 443, 534, 8),
-                ("VENCIMENT", 494, 534, 8),
-                ("AGENCIA", 443, 552, 8),
-                ("DTDOCTO", 45, 568, 8),
-                ("CODDOC", 135, 568, 8),
-                ("AGENCIA", 219, 568, 8),
-                ("AGENCIA", 340, 568, 8),
-                ("AGENCIA", 370, 568, 8),
-                ("NSNUMERO", 443, 568, 8),
-                ("AGENCIA", 300, 585, 8),
-                ("AGENCIA", 370, 585, 8),
-                ("VALDOCTO", 443, 585, 8),
-                ("AGENCIA", 443, 602, 8),
-                ("AGENCIA", 443, 617, 8),
-                ("AGENCIA", 443, 633, 8),
-                ("AGENCIA", 443, 650, 8),
-                ("VALDOCTO", 443, 666, 8)
+                ("AGENCIA", 45, 133, 8, false),
+                ("APOLICE", 125, 133, 8, false),
+                ("FATURA", 197, 133, 8, false),
+                ("PERIODO", 260, 133, 8, false),
+                ("EMISSAO", 407, 133, 8, false),
+                ("VENCIMENT", 481, 133, 8, false),
+                ("ESTIPULANTE", 45, 157, 8, false),
+                ("ENDERECO", 260, 157, 8, false),
+                ("CEP", 45, 182, 8, false),
+                ("CIDADE", 154, 182, 8, false),
+                ("UF", 407, 182, 8, false),
+                ("CNPJ", 453, 182, 8, false),
+                ("ESTIPULANTE", 45, 205, 8, false),
+                ("ENDERECO", 260, 205, 8, false),
+                ("CEP", 45, 230, 8, false),
+                ("CIDADE", 154, 230, 8, false),
+                ("UF", 407, 230, 8, false),
+                ("CNPJ", 453, 230, 8, false),
+                ("NVIDAS", 45, 252, 8, false),
+                ("CAPITAL", 154, 252, 8, false),
+                ("IOF", 310, 252, 8, false),
+                ("PREMIO", 407, 252, 8, false),
+
+                ("NUMDOCTO", 493, 378, 8, false),
+
+                ("AGENCIA", 442, 398, 8, false),
+                ("VENCIMENT", 507, 398, 8, false),
+
+                ("NSNUMERO", 377, 418, 8, false),
+                ("VALDOCTO", 524, 418, 8, false),
+
+                ("PARCELA", 476, 534, 8, false),
+                ("VENCIMENT", 527, 534, 8, false),
+
+                ("AGENCIA", 530, 552, 8, false),
+
+                ("DTDOCTO", 85, 568, 8, false),
+                ("CODDOC", 157, 568, 8, false),
+                ("AGENCIA", 273, 568, 8, false),
+                ("AGENCIA", 415, 568, 8, false),
+                ("NSNUMERO", 464, 568, 8, false),
+
+                ("VALDOCTO", 524, 585, 8, false),
+
+                ("VALDOCTO", 524, 666, 8, false)
             };
         }
 

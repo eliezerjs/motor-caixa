@@ -4,16 +4,16 @@ namespace IntegraCVP.Application.Services
 {
     public partial class PrestamistaService
     {
-        public List<(string Key, float X, float Y, float FontSize)> GetCamposPrest01()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetCamposPrest01()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("SEGURADO", 59, 250, 8),
-                ("NOME_PRODUTO", 59, 288, 8),
-                ("NUM_CERTIF", 59, 320, 8),
-                ("DT_VIG", 59, 356, 8),
-                ("CUSTO", 60, 470, 8),
-                ("OPCAO_PAG", 60, 510, 8)
+                ("SEGURADO", 59, 250, 8, false),
+                ("NOME_PRODUTO", 59, 288, 8, false),
+                ("NUM_CERTIF", 59, 320, 8, false),
+                ("DT_VIG", 59, 356, 8, false),
+                ("CUSTO", 60, 470, 8, false),
+                ("OPCAO_PAG", 60, 510, 8, false)
             };
         }
 

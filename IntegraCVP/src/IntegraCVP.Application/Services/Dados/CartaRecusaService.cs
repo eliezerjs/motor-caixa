@@ -4,51 +4,51 @@ namespace IntegraCVP.Application.Services
 {
     public partial class CartaRecusaService
     {
-        public List<(string Key, float X, float Y, float FontSize)> GetVIDA01()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetVIDA01()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8),
-                ("NUM_PROPOSTA", 382, 166, 7),
-                ("DATA_DECLINIO", 115, 177, 7),
-                ("COD_PRODUTO", 310, 728, 7),
-                ("COD_SUSEP", 55, 738, 7)
+                ("NOME_CLIENTE", 77, 140, 8, false),
+                ("NUM_PROPOSTA", 382, 166, 7, false),
+                ("DATA_DECLINIO", 115, 177, 7, false),
+                ("COD_PRODUTO", 310, 728, 7, false),
+                ("COD_SUSEP", 55, 738, 7, false)
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize)> GetVIDA02()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetVIDA02()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8),
-                ("NUM_PROPOSTA", 382, 166, 7),
-                ("DATA_DECLINIO", 115, 177, 7),
-                ("COD_PRODUTO", 344, 728, 7),
-                ("COD_SUSEP", 55, 738, 7)
+                ("NOME_CLIENTE", 77, 140, 8, false),
+                ("NUM_PROPOSTA", 382, 166, 7, false),
+                ("DATA_DECLINIO", 115, 177, 7, false),
+                ("COD_PRODUTO", 344, 728, 7, false),
+                ("COD_SUSEP", 55, 738, 7, false)
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize)> GetVIDA03()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetVIDA03()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8),
-                ("NUM_PROPOSTA", 382, 166, 7),
-                ("DATA_DECLINIO", 115, 177, 7),
-                ("COD_PRODUTO", 297, 740, 7),
-                ("COD_SUSEP", 373, 740, 7)
+                ("NOME_CLIENTE", 77, 140, 8, false),
+                ("NUM_PROPOSTA", 382, 166, 7, false),
+                ("DATA_DECLINIO", 115, 177, 7, false),
+                ("COD_PRODUTO", 297, 740, 7, false),
+                ("COD_SUSEP", 373, 740, 7, false)
             };
         }
 
-        public List<(string Key, float X, float Y, float FontSize)> GetVIDA04()
+        public List<(string Key, float X, float Y, float FontSize, bool isBold)> GetVIDA04()
         {
-            return new List<(string Key, float X, float Y, float FontSize)>
+            return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8),
-                ("NUM_PROPOSTA", 382, 166, 7),
-                ("DATA_DECLINIO", 115, 176, 7),
-                ("COD_PRODUTO", 296, 736, 7),
-                ("COD_SUSEP", 373, 736, 7)
+                ("NOME_CLIENTE", 77, 140, 8, false),
+                ("NUM_PROPOSTA", 382, 166, 7, false),
+                ("DATA_DECLINIO", 115, 176, 7, false),
+                ("COD_PRODUTO", 296, 736, 7, false),
+                ("COD_SUSEP", 373, 736, 7, false)
             };
         }
 

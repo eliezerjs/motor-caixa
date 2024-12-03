@@ -56,9 +56,9 @@ namespace IntegraCVP.Application.Services
             using var pdfStream = new MemoryStream();
             var (document, pdfDocument, pdfPage) = PdfHelper.InitializePdfDocument(imagePath, pdfStream);
 
-            foreach (var (key, x, y, fontSize) in campos)
+            foreach (var (key, x, y, fontSize, isBold) in campos)
             {
-                document.AddTextField(dadosBoleto, key, x, y, fontSize, pdfPage);
+                document.AddTextField(dadosBoleto, key, x, y, fontSize, isBold,  pdfPage);
             }
 
             if (dadosBoleto.TryGetValue("NUMCDBARRA", out var codigoDeBarras))
@@ -66,7 +66,7 @@ namespace IntegraCVP.Application.Services
                 string especieMoeda = PdfHelper.ObterEspecieMoeda(
                     PdfHelper.ObterEspecieMoedaDoCodigoBarra(codigoDeBarras)
                 );
-                document.AddTextField(especieMoeda, 262, 585, 8, pdfPage);
+                document.AddTextField(especieMoeda, 262, 585, 8, false, pdfPage);
 
                 string codigoPadronizado = PdfHelper.MontarCodigoBarra(
                     codigoDeBarras,
