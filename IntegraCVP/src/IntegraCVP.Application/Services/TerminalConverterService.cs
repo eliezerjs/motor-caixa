@@ -15,6 +15,8 @@ namespace IntegraCVP.Application.Services
     {
         private readonly IImportFileConverterService _dataConverterService;
         private readonly IBoletoM1Service _boletoM1Service;
+        private readonly IBoletoM2Service _boletoM2Service;
+        private readonly IBoletoM3Service _boletoM3Service;
         private readonly IBoletoM4Service _boletoM4Service;
         private readonly IPrestamistaService _prestamistaService;
 

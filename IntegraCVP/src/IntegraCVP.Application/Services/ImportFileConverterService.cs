@@ -84,7 +84,5 @@ namespace IntegraCVP.Application.Services
 
             return JsonConvert.SerializeObject(sections, Formatting.Indented);
         }
-
-
     }
 }

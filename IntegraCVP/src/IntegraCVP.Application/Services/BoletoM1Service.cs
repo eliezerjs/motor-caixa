@@ -74,7 +74,7 @@ namespace IntegraCVP.Application.Services
                     PdfHelper.ConverterValor(dadosBoleto["VALOR"])
                 );
 
-                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 130);
+                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 77);
             }
 
             document.Close();

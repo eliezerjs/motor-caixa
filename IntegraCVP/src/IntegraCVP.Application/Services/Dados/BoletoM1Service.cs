@@ -70,22 +70,27 @@ namespace IntegraCVP.Application.Services
                 ("PERIODO", 260, 133, 8, false),
                 ("EMISSAO", 407, 133, 8, false),
                 ("VENCIMENT", 481, 133, 8, false),
+
                 ("ESTIPULANTE", 45, 157, 8, false),
                 ("ENDERECO", 260, 157, 8, false),
-                ("CEP", 45, 182, 8, false),
-                ("CIDADE", 154, 182, 8, false),
-                ("UF", 407, 182, 8, false),
-                ("CNPJ", 453, 182, 8, false),
+
+                ("CEP", 45, 181, 8, false),
+                ("CIDADE", 154, 181, 8, false),
+                ("UF", 407, 181, 8, false),
+                ("CNPJ", 453, 181, 8, false),
+
                 ("ESTIPULANTE", 45, 205, 8, false),
                 ("ENDERECO", 260, 205, 8, false),
-                ("CEP", 45, 230, 8, false),
-                ("CIDADE", 154, 230, 8, false),
-                ("UF", 407, 230, 8, false),
-                ("CNPJ", 453, 230, 8, false),
+
+                ("CEP", 45, 228, 8, false),
+                ("CIDADE", 154, 228, 8, false),
+                ("UF", 407, 228, 8, false),
+                ("CNPJ", 453, 228, 8, false),
+
                 ("NVIDAS", 45, 252, 8, false),
                 ("CAPITAL", 154, 252, 8, false),
                 ("IOF", 310, 252, 8, false),
-                ("PREMIO", 407, 252, 8, false),
+                ("PREMIO", 522, 252, 8, false),
 
                 ("NUMDOCTO", 493, 378, 8, false),
 
@@ -93,10 +98,14 @@ namespace IntegraCVP.Application.Services
                 ("VENCIMENT", 507, 398, 8, false),
 
                 ("NSNUMERO", 377, 418, 8, false),
-                ("VALDOCTO", 524, 418, 8, false),
+                ("VALDOCTO", 522, 418, 8, false),
 
                 ("PARCELA", 476, 534, 8, false),
-                ("VENCIMENT", 527, 534, 8, false),
+
+                ("NUMCDBARRA", 198, 355, 12, true),
+                ("NUMCDBARRA", 198, 515, 12, true),
+
+                ("VENCIMENT", 507, 534, 8, false),
 
                 ("AGENCIA", 530, 552, 8, false),
 
@@ -106,9 +115,19 @@ namespace IntegraCVP.Application.Services
                 ("AGENCIA", 415, 568, 8, false),
                 ("NSNUMERO", 464, 568, 8, false),
 
-                ("VALDOCTO", 524, 585, 8, false),
+                ("VALDOCTO", 522, 585, 8, false),
 
-                ("VALDOCTO", 524, 666, 8, false)
+                ("VALDOCTO", 522, 666, 8, false),
+
+                ("SUBESTIPULANTE", 50, 687, 8, false),
+
+                ("ENDERE2", 50, 695, 8, false),
+
+                ("CIDADE2", 50, 703, 8, false),
+                ("EST2", 100, 703, 8, false),
+
+                ("CEP2" +
+                "", 50, 711, 8, false),
             };
         }
 

@@ -9,9 +9,9 @@ namespace IntegraCVP.Application.Services
             return new List<(string Key, float X, float Y, float FontSize, bool IsBold)>
             {
                 ("SEGURADO", 80, 199, 10, false),
-                ("COD_PRODUTO", 357, 748, 6, false),
-                ("COD_SUSEP", 442, 748, 6, false),
-                ("COD_SUSEPCAP", 314, 766, 6, false)
+                ("COD_PRODUTO", 356, 748, 7, false),
+                ("COD_SUSEP", 442, 748, 7, false),
+                ("COD_SUSEPCAP", 314, 767, 7, false)
             };
         }
 
@@ -32,8 +32,8 @@ namespace IntegraCVP.Application.Services
             {
                 ("SEGURADO", 100, 174, 11, false),
                 ("NUM_CERTIF", 195, 324, 13, false),
-                ("COD_PRODUTO", 377, 787, 5, false), //white
-                ("COD_SUSEP", 427, 787, 5, false),
+                ("COD_PRODUTO", 376, 787, 6, false), //white
+                ("COD_SUSEP", 428, 787, 6, false),
                 //("COD_SUSEPCAP", 100, 799, 5, "White")
             };
         }
@@ -45,8 +45,8 @@ namespace IntegraCVP.Application.Services
             {
                 ("SEGURADO", 100, 174, 11, false),
                 ("NUM_CERTIF", 195, 324, 13, false),
-                ("COD_PRODUTO", 377, 787, 5, false), //white
-                ("COD_SUSEP", 427, 787, 5, false), //white
+                ("COD_PRODUTO", 376, 787, 6, false), //white
+                ("COD_SUSEP", 428, 787, 6, false), //white
                 //("COD_SUSEPCAP", 100, 799, 5, "White")
             };
         }

@@ -8,12 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("PRODUTO", 57, 68, 8, false),
-                ("COD_PROD", 306, 69, 8, false),
-                ("PROC_SUSEP", 392, 69, 8, false),
-                ("NOME_CLIENTE", 55, 110, 8, false),
-                ("CPF", 327, 110, 8, false),
-                ("DT_NASC", 453, 110, 8, false),
+                ("PRODUTO", 57, 70, 8, false),
+                ("COD_PROD", 306, 70, 8, false),
+                ("PROC_SUSEP", 392, 70, 8, false),
+
+                ("NOME_CLIENTE", 55, 111, 8, false),
+                ("CPF", 327, 111, 8, false),
+                ("DT_NASC", 453, 111, 8, false),
 
                 ("NUMDOCTO", 495, 402, 8, false),
 
@@ -32,7 +33,7 @@ namespace IntegraCVP.Application.Services
 
                 ("DTDOCTO", 86, 562, 8, false),
                 ("NUMDOCTO", 158, 562, 8, false),
-                ("DTPROCESS", 398, 562, 8, false),
+                ("DTPROCESS", 396, 562, 8, false),
                 ("NSNUMERO", 466, 562, 8, false),
 
                 ("VALDOCTO", 524, 579, 8, false),
@@ -45,29 +46,37 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("PRODUTO", 57, 87, 8, false),
-                ("COD_PROD", 308, 87, 8, false),
-                ("PROC_SUSEP", 394, 87, 8, false),
+                ("PRODUTO", 57, 86, 8, false),
+                ("COD_PROD", 308, 86, 8, false),
+                ("PROC_SUSEP", 394, 86, 8, false),
+
                 ("NOME_CLIENTE", 56, 132, 8, false),
                 ("CPF", 327, 132, 8, false),
                 ("DT_NASC", 454, 132, 8, false),
-                ("NUMDOCTO", 470, 364, 8, false),
-                ("CEDENTE", 359, 384, 8, false),
-                ("DTVENCTO", 467, 384, 8, false),
-                ("NSNUMERO", 368, 404, 8, false),
-                ("VALDOCTO", 465, 404, 8, false),
-                ("NUMOBJETO", 371, 440, 8, false),
-                ("PARCELA", 440, 491, 8, false),
-                ("DTVENCTO", 492, 491, 8, false),
-                ("CEDENTE", 440, 509, 8, false),
-                ("DTDOCTO", 46, 526, 8, false),
-                ("NUMDOCTO", 133, 526, 8, false),
-                ("DTPROCESS", 370, 526, 8, false),
-                ("NSNUMERO", 440, 526, 8, false),
-                ("VALOR", 370, 543, 8, false),
-                ("VALDOCTO", 440, 543, 8, false),
-                ("ABATIMENTO", 440, 574, 8, false),
-                ("VALDOCTO", 440, 623, 8, false)
+
+                ("NUMDOCTO", 495, 364, 8, false),
+
+                ("CEDENTE", 380, 384, 8, false),
+                ("DTVENCTO", 505, 384, 8, false),
+
+                ("NSNUMERO", 373, 404, 8, false),
+                ("VALDOCTO", 525, 404, 8, false),
+
+                ("NUMOBJETO", 515, 525, 8, false),
+
+                ("PARCELA", 470, 491, 8, false),
+                ("DTVENCTO", 505, 491, 8, false),
+
+                ("CEDENTE", 492, 509, 8, false),
+
+                ("DTDOCTO", 83, 526, 8, false),
+                ("NUMDOCTO", 155, 526, 8, false),
+                ("DTPROCESS", 390, 526, 8, false),
+                ("NSNUMERO", 525, 526, 8, false),
+
+                ("VALDOCTO", 525, 543, 8, false),
+
+                ("VALDOCTO", 525, 623, 8, false),
             };
         }
 
@@ -75,29 +84,37 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("PRODUTO", 57, 68, 8, false),
-                ("COD_PROD", 307, 68, 8, false),
-                ("PROC_SUSEP", 393, 68, 8, false),
-                ("NOME_CLIENTE", 55, 110, 8, false),
-                ("CPF", 327, 110, 8, false),
-                ("DT_NASC", 453, 110, 8, false),
-                ("NUMDOCTO", 470, 390, 8, false),
-                ("CEDENTE", 359, 410, 8, false),
-                ("DTVENCTO", 467, 410, 8, false),
-                ("NSNUMERO", 368, 430, 8, false),
-                ("VALDOCTO", 465, 430, 8, false),
-                ("NUMOBJETO", 371, 463, 8, false),
-                ("PARCELA", 440, 514, 8, false),
-                ("DTVENCTO", 492, 514, 8, false),
-                ("CEDENTE", 440, 532, 8, false),
-                ("DTDOCTO", 46, 549, 8, false),
-                ("NUMDOCTO", 133, 549, 8, false),
-                ("DTPROCESS", 370, 549, 8, false),
-                ("NSNUMERO", 440, 549, 8, false),
-                ("VALOR", 370, 566, 8, false),
-                ("VALDOCTO", 440, 566, 8, false),
-                ("ABATIMENTO", 440, 597, 8, false),
-                ("VALDOCTO", 440, 646, 8, false)
+                ("PRODUTO", 57, 67, 8, false),
+                ("COD_PROD", 307, 67, 8, false),
+                ("PROC_SUSEP", 393, 67, 8, false),
+
+                ("NOME_CLIENTE", 55, 109, 8, false),
+                ("CPF", 327, 109, 8, false),
+                ("DT_NASC", 453, 109, 8, false),
+
+                ("NUMDOCTO", 495, 390, 8, false),
+
+                ("CEDENTE", 405, 410, 8, false),
+                ("DTVENCTO", 507, 410, 8, false),
+
+                ("NSNUMERO", 377, 430, 8, false),
+                ("VALDOCTO", 526, 430, 8, false),
+
+                ("NUMOBJETO", 517, 466, 8, false),
+
+                ("PARCELA", 470, 514, 8, false),
+                ("DTVENCTO", 512, 514, 8, false),
+
+                ("CEDENTE", 493, 531, 8, false),
+
+                ("DTDOCTO", 86, 549, 8, false),
+                ("NUMDOCTO", 155, 549, 8, false),
+                ("DTPROCESS", 390, 549, 8, false),
+                ("NSNUMERO", 475, 549, 7, false),
+
+                ("VALDOCTO", 526, 566, 8, false),
+
+                ("VALDOCTO", 526, 646, 8, false)
             };
         }
 
@@ -108,29 +125,34 @@ namespace IntegraCVP.Application.Services
                 ("PRODUTO", 57, 81, 8, false),
                 ("COD_PROD", 308, 81, 8, false),
                 ("PROC_SUSEP", 394, 81, 8, false),
-                ("NOME_CLIENTE", 56, 129, 8, false),
-                ("CPF", 327, 129, 8, false),
-                ("DT_NASC", 454, 129, 8, false),
-                ("NUMDOCTO", 470, 459, 8, false),
-                ("CEDENTE", 359, 479, 8, false),
-                ("DTVENCTO", 467, 479, 8, false),
-                ("NSNUMERO", 368, 499, 8, false),
-                ("VALDOCTO", 465, 499, 8, false),
-                ("NUMOBJETO", 371, 535, 8, false),
-                ("PARCELA", 440, 586, 8, false),
-                ("DTVENCTO", 492, 586, 8, false),
-                ("CEDENTE", 440, 604, 8, false),
-                ("DTDOCTO", 46, 621, 8, false),
-                ("NUMDOCTO", 133, 621, 8, false),
-                ("DTPROCESS", 370, 621, 8, false),
-                ("NSNUMERO", 440, 621, 8, false),
-                ("VALOR", 370, 638, 8, false),
-                ("VALDOCTO", 440, 638, 8, false),
-                ("PARCELA", 440, 653, 8, false),
-                ("PARCELA", 440, 669, 8, false),
-                ("PARCELA", 440, 685, 8, false),
-                ("PARCELA", 440, 701, 8, false),
-                ("VALDOCTO", 440, 718, 8, false)
+
+                ("NOME_CLIENTE", 56, 127, 8, false),
+                ("CPF", 327, 127, 8, false),
+                ("DT_NASC", 454, 128, 8, false),
+
+                ("NUMDOCTO", 495, 459, 8, false),
+
+                ("CEDENTE", 405, 479, 8, false),
+                ("DTVENCTO", 507, 479, 8, false),
+
+                ("NSNUMERO", 377, 499, 8, false),
+                ("VALDOCTO", 522, 499, 8, false),
+
+                ("NUMOBJETO", 517, 535, 8, false),
+
+                ("PARCELA", 470, 586, 8, false),
+                ("DTVENCTO", 507, 586, 8, false),
+
+                ("CEDENTE", 493, 604, 8, false),
+
+                ("DTDOCTO", 86, 621, 8, false),
+                ("NUMDOCTO", 157, 621, 8, false),
+                ("DTPROCESS", 390, 621, 8, false),
+                ("NSNUMERO", 464, 621, 8, false),
+
+                ("VALDOCTO", 522, 638, 8, false),
+
+                ("VALDOCTO", 521, 718, 8, false)
             };
         }
         public string GetImagePath(BoletoM4Type tipo, string folder)
