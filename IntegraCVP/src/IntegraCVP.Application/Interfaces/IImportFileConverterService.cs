@@ -10,5 +10,7 @@ namespace IntegraCVP.Application.Interfaces
     public interface IImportFileConverterService
     {        
         string ConvertToJson(Stream fileStream);
+
+        string ConvertFileToJson(Stream fileStream);
     }
 }

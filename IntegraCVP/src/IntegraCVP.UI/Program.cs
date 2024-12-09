@@ -23,8 +23,7 @@ builder.Services.AddScoped<IBoletoM3Service, BoletoM3Service>();
 builder.Services.AddScoped<IBoletoM4Service, BoletoM4Service>();
 
 builder.Services.AddScoped<ICartaRecusaService, CartaRecusaService>();
-
-builder.Services.AddScoped<IInadimplenciaService, InadimplenciaService>();
+builder.Services.AddScoped<IImportFilePrevConverterService, ImportFilePrevConverterService>();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IBoasVindasService, BoasVindasService>();

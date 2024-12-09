@@ -62,6 +62,17 @@ namespace IntegraCVP.Application.Services
             return GerarZipComPdfs(pdfFiles);
         }
 
+        public async Task<string> ConverterEGerarPrevidenciaAsync(IFormFile file)
+        {
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            var jsonResult = _dataConverterService.ConvertFileToJson(memoryStream);
+            
+            return jsonResult;
+        }
+
         private void ProcessarBoletosM1PorTipo(
             List<Dictionary<string, string>> boletos,
             BoletoM1Type tipo,

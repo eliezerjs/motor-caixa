@@ -9,6 +9,74 @@ namespace IntegraCVP.Application.Services
 {
     public class ImportFileConverterService : IImportFileConverterService
     {
+        public string ConvertFileToJson(Stream fileStream)
+        {
+            var registros = new List<Dictionary<string, string>>();
+
+            using (var reader = new StreamReader(fileStream))
+            {
+                string line;
+                int maxFieldLength = 20; // Comprimento máximo do campo, ajustável conforme necessário
+                int lineCounter = 1;
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        continue; // Ignora linhas em branco
+                    }
+
+                    var registro = ProcessLine(line, maxFieldLength, lineCounter);
+                    registros.Add(registro);
+                    lineCounter++;
+                }
+            }
+
+            // Converte a lista de registros para JSON
+            return JsonConvert.SerializeObject(registros, Formatting.Indented);
+        }
+
+        private Dictionary<string, string> ProcessLine(string line, int maxFieldLength, int lineNumber)
+        {
+            var registro = new Dictionary<string, string>();
+            int startIndex = 0;
+            int fieldCounter = 1;
+
+            // Percorre a linha, extraindo campos com base no comprimento máximo
+            while (startIndex < line.Length)
+            {
+                int fieldLength = DetermineFieldLength(line, startIndex, maxFieldLength);
+                string fieldValue = line.Substring(startIndex, fieldLength).Trim();
+
+                registro[$"Campo{fieldCounter}"] = fieldValue;
+
+                startIndex += fieldLength;
+                fieldCounter++;
+            }
+
+            // Adiciona o número da linha (opcional, para rastrear a origem)
+            registro["LineNumber"] = lineNumber.ToString();
+
+            return registro;
+        }
+
+        private int DetermineFieldLength(string line, int startIndex, int maxFieldLength)
+        {
+            // Analisa o segmento para determinar o comprimento do campo
+            int remainingLength = line.Length - startIndex;
+            int length = Math.Min(maxFieldLength, remainingLength);
+
+            // Caso haja um delimitador claro (como espaço), podemos ajustar aqui
+            for (int i = startIndex; i < startIndex + length; i++)
+            {
+                if (char.IsWhiteSpace(line[i]))
+                {
+                    return i - startIndex + 1;
+                }
+            }
+
+            return length;
+        }
         public string ConvertToJson(Stream fileStream)
         {
             var sections = new List<Dictionary<string, string>>();
