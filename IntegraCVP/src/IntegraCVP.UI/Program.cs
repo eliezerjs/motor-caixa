@@ -29,6 +29,14 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IBoasVindasService, BoasVindasService>();
 builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
 
+builder.Services.AddScoped<IPrevidenciaM1Service, PrevidenciaM1Service>();
+builder.Services.AddScoped<IPrevidenciaM2Service, PrevidenciaM2Service>();
+builder.Services.AddScoped<IPrevidenciaM3Service, PrevidenciaM3Service>();
+builder.Services.AddScoped<IPrevidenciaM4Service, PrevidenciaM4Service>();
+builder.Services.AddScoped<IPrevidenciaM5Service, PrevidenciaM5Service>();
+builder.Services.AddScoped<IPrevidenciaM6Service, PrevidenciaM6Service>();
+
+
 var app = builder.Build();
 app.MapControllers();
 

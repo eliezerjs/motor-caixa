@@ -33,6 +33,43 @@
     <None Remove="Resources\BoletoM4\VA24.jpg" />
     <None Remove="Resources\BoletoM4\VIDA23.jpg" />
     <None Remove="Resources\BoletoM4\VIDA24.jpg" />
+    <None Remove="Resources\Prestamista\PREST15P2.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK28.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK29.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK30.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK31.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK32.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK33.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK34.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK36.jpg" />
+    <None Remove="Resources\PrevidenciaM1\PK47.jpg" />
+    <None Remove="Resources\PrevidenciaM2\PK08.jpg" />
+    <None Remove="Resources\PrevidenciaM2\PK09.jpg" />
+    <None Remove="Resources\PrevidenciaM2\PK10.jpg" />
+    <None Remove="Resources\PrevidenciaM3\PK56.jpg" />
+    <None Remove="Resources\PrevidenciaM3\PK57.jpg" />
+    <None Remove="Resources\PrevidenciaM3\PK58.jpg" />
+    <None Remove="Resources\PrevidenciaM4\PK05.jpg" />
+    <None Remove="Resources\PrevidenciaM4\PK06.jpg" />
+    <None Remove="Resources\PrevidenciaM5\PK12.jpg" />
+    <None Remove="Resources\PrevidenciaM5\PK13.jpg" />
+    <None Remove="Resources\PrevidenciaM5\PK14.jpg" />
+    <None Remove="Resources\PrevidenciaM6\PK17.jpg" />
+    <None Remove="Resources\PrevidenciaM6\PK21.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK11.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK15.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK35.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK37.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK44.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK48.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK49.jpg" />
+    <None Remove="Resources\PrevidenciaOutros\PK53.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\PrevidenciaM3\PK56.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -106,6 +143,96 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\BoletoM4\VIDA24.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Prestamista\PREST15P2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK28.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK29.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK30.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK31.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK32.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK33.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK34.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK36.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM1\PK47.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM2\PK08.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM2\PK09.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM2\PK10.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM3\PK57.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM3\PK58.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM4\PK05.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM4\PK06.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM5\PK12.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM5\PK13.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM5\PK14.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM6\PK17.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaM6\PK21.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK11.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK15.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK35.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK37.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK44.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK48.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK49.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PrevidenciaOutros\PK53.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

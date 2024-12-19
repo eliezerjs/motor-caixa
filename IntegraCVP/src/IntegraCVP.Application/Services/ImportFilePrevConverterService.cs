@@ -13,7 +13,7 @@ namespace IntegraCVP.Application.Services
         {
             var result = new List<Dictionary<string, string>>();
 
-            using (var reader = new StreamReader(dataStream))
+            using (var reader = new StreamReader(dataStream, Encoding.GetEncoding("ISO-8859-1")))
             {
                 string line;
                 while ((line = await reader.ReadLineAsync()) != null)
