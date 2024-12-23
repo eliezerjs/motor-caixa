@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Services
     {
         private const string PrevidenciaM3Folder = "PrevidenciaM3";
 
-        private readonly IImportFileConverterService _importFileConverterService;
+        private readonly IImportFilePrevConverterService _importFileConverterService;
 
-        public PrevidenciaM3Service(IImportFileConverterService dataConverterService)
+        public PrevidenciaM3Service(IImportFilePrevConverterService dataConverterService)
         {
             _importFileConverterService = dataConverterService;
         }
@@ -25,21 +25,15 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
-
-            var PrevidenciaM3Data = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var PrevidenciaM3Data = await _importFileConverterService.ProcessDataAsync(memoryStream);
 
             if (PrevidenciaM3Data == null || !PrevidenciaM3Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var PrevidenciaM3sFiltrados = PrevidenciaM3Data
-                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
-                .ToList();
+            var primeiroParticipante = PrevidenciaM3Data
+                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
 
-            if (!PrevidenciaM3sFiltrados.Any())
-                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
-
-            return GerarDocumentoPrevidenciaM3(PrevidenciaM3sFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoPrevidenciaM3(primeiroParticipante, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM3(Dictionary<string, string> dados, PrevidenciaM3Type tipo)

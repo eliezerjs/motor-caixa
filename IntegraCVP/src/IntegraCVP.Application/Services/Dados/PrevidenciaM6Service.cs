@@ -8,11 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_NO_CERTIFICADO", 380, 218, 8, false),
+
+                ("BOLETO_DT_VENCTO", 160, 270, 8, false),
+                ("BOLETO_VL_DOCTO", 293, 270, 8, false),
+                ("BOLETO_VL_DOCTO", 385, 270, 8, false),
+
+                ("BOLETO_DT_VENCTO", 235, 329, 8, false)
             };
         }
 
@@ -20,11 +22,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+
+                ("BOLETO_DT_VENCTO", 185, 270, 8, false),
+                ("BOLETO_VL_DOCTO", 307, 270, 8, false),
+                ("BOLETO_VL_DOCTO", 397, 270, 8, false),
+
+                ("BOLETO_DT_VENCTO", 165, 333, 8, false)
             };
         }
 

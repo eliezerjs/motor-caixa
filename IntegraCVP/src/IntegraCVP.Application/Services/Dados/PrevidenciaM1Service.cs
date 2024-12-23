@@ -8,11 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 477, 8, false),
+
+                ("BOLETO_DS_TEXTO", 70, 490, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 490, 8, false),
+
+                ("BOLETO_VENCIMENTO", 155, 645, 8, false)
+
             };
         }
 
@@ -20,11 +22,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 513, 8, false),
+
+                ("BOLETO_DS_TEXTO", 70, 525, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 525, 8, false),
+
+                ("BOLETO_VENCIMENTO", 120, 657, 8, false)
             };
         }
 
@@ -32,11 +35,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 535, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 546, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 546, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 703, 8, false)
             };
         }
 
@@ -44,11 +48,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 529, 8, false),
+
+                ("BOLETO_DS_TEXTO", 75, 540, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 330, 540, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 693, 8, false)
             };
         }
 
@@ -56,11 +61,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 450, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 462, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 462, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 641, 8, false)
             };
         }
 
@@ -68,11 +74,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 487, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 497, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 498, 8, false),
+
+                ("BOLETO_VENCIMENTO", 170, 643, 8, false)
             };
         }
 
@@ -80,11 +87,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 527, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 5439, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 539, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 659, 8, false)
             };
         }
 
@@ -92,11 +100,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_DT_VENCTO",190, 496, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 507, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 507, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 652, 8, false)
             };
         }
 
@@ -104,11 +113,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                 ("BOLETO_DT_VENCTO",100, 532, 8, false),
+
+                ("BOLETO_DS_TEXTO", 80, 543, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 320, 543, 8, false),
+
+                ("BOLETO_VENCIMENTO", 160, 712, 8, false)
             };
         }
 

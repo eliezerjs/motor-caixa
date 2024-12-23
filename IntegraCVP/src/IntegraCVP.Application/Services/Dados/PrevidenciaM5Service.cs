@@ -8,11 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_NO_CERTIFICADO", 410, 243, 8, false),
+
+                ("BOLETO_NO_CERTIFICADO", 107, 257, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 427, 257, 8, false),
+
+                ("BOLETO_NO_CERTIFICADO", 113, 272, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 296, 272, 8, false)
             };
         }
 
@@ -20,11 +22,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_NO_CERTIFICADO", 423, 226, 8, false),
+
+                ("BOLETO_NO_CERTIFICADO", 200, 242, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 457, 242, 8, false),
+
+                ("BOLETO_NO_CERTIFICADO", 110, 256, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 450, 255, 8, false)
             };
         }
 
@@ -32,11 +36,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("BOLETO_NO_CERTIFICADO", 385, 217, 8, false),
+
+                ("BOLETO_NO_CERTIFICADO", 107, 231, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 282, 231, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 465, 230, 8, false),
+
             };
         }
 

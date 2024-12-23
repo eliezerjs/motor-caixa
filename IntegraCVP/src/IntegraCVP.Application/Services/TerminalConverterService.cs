@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using IntegraCVP.Application.Enums;
 using IntegraCVP.Application.Interfaces;
@@ -72,6 +74,8 @@ namespace IntegraCVP.Application.Services
             
             return jsonResult;
         }
+
+        
 
         private void ProcessarBoletosM1PorTipo(
             List<Dictionary<string, string>> boletos,

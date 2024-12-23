@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Services
     {
         private const string PrevidenciaM2Folder = "PrevidenciaM2";
 
-        private readonly IImportFileConverterService _importFileConverterService;
+        private readonly IImportFilePrevConverterService _importFileConverterService;
 
-        public PrevidenciaM2Service(IImportFileConverterService dataConverterService)
+        public PrevidenciaM2Service(IImportFilePrevConverterService dataConverterService)
         {
             _importFileConverterService = dataConverterService;
         }
@@ -25,21 +25,18 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
-
-            var PrevidenciaM2Data = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var PrevidenciaM2Data = await _importFileConverterService.ProcessDataAsync(memoryStream);
 
             if (PrevidenciaM2Data == null || !PrevidenciaM2Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var PrevidenciaM2sFiltrados = PrevidenciaM2Data
-                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
-                .ToList();
+            var primeiroParticipante = PrevidenciaM2Data
+                .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
 
-            if (!PrevidenciaM2sFiltrados.Any())
+            if (!PrevidenciaM2Data.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarDocumentoPrevidenciaM2(PrevidenciaM2sFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoPrevidenciaM2(primeiroParticipante, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM2(Dictionary<string, string> dados, PrevidenciaM2Type tipo)

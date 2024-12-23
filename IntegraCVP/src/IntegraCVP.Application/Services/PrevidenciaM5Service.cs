@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Services
     {
         private const string PrevidenciaM5Folder = "PrevidenciaM5";
 
-        private readonly IImportFileConverterService _importFileConverterService;
+        private readonly IImportFilePrevConverterService _importFileConverterService;
 
-        public PrevidenciaM5Service(IImportFileConverterService dataConverterService)
+        public PrevidenciaM5Service(IImportFilePrevConverterService dataConverterService)
         {
             _importFileConverterService = dataConverterService;
         }
@@ -25,21 +25,18 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
-
-            var PrevidenciaM5Data = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var PrevidenciaM5Data = await _importFileConverterService.ProcessDataAsync(memoryStream);
 
             if (PrevidenciaM5Data == null || !PrevidenciaM5Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var PrevidenciaM5sFiltrados = PrevidenciaM5Data
-                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
-                .ToList();
+            var primeiroParticipante = PrevidenciaM5Data
+               .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
 
-            if (!PrevidenciaM5sFiltrados.Any())
+            if (!primeiroParticipante.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarDocumentoPrevidenciaM5(PrevidenciaM5sFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoPrevidenciaM5(primeiroParticipante, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM5(Dictionary<string, string> dados, PrevidenciaM5Type tipo)

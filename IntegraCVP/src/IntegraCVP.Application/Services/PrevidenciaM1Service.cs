@@ -10,11 +10,11 @@ namespace IntegraCVP.Application.Services
     {
         private const string PrevidenciaM1Folder = "PrevidenciaM1";
 
-        private readonly IImportFileConverterService _importFileConverterService;
+        private readonly IImportFilePrevConverterService _importFilePrevConverterService;
 
-        public PrevidenciaM1Service(IImportFileConverterService dataConverterService)
+        public PrevidenciaM1Service(IImportFilePrevConverterService dataConverterService)
         {
-            _importFileConverterService = dataConverterService;
+            _importFilePrevConverterService = dataConverterService;
         }
         public async Task<byte[]> ConverterEGerarPrevidenciaM1PdfAsync(IFormFile file, PrevidenciaM1Type tipo)
         {
@@ -25,21 +25,18 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
-
-            var PrevidenciaM1Data = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var PrevidenciaM1Data = await _importFilePrevConverterService.ProcessDataAsync(memoryStream);
 
             if (PrevidenciaM1Data == null || !PrevidenciaM1Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var PrevidenciaM1sFiltrados = PrevidenciaM1Data
-                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
-                .ToList();
+            var primeiroParticipante = PrevidenciaM1Data
+                .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
 
-            if (!PrevidenciaM1sFiltrados.Any())
+            if (!primeiroParticipante.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarDocumentoPrevidenciaM1(PrevidenciaM1sFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoPrevidenciaM1(primeiroParticipante, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM1(Dictionary<string, string> dados, PrevidenciaM1Type tipo)
