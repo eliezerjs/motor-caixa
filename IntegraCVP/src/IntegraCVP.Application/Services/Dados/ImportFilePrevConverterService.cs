@@ -613,26 +613,6 @@ namespace IntegraCVP.Application.Services
                     new FieldDefinition("ADIMPLENTES_SQ_ARQUIVO", 591, 10)
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // Adicione outros layouts aqui
         };
     }
 }

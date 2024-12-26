@@ -10,9 +10,9 @@ namespace IntegraCVP.Application.Services
     {
         private const string PrevidenciaOutrosFolder = "PrevidenciaOutros";
 
-        private readonly IImportFileConverterService _importFileConverterService;
+        private readonly IImportFilePrevConverterService _importFileConverterService;
 
-        public PrevidenciaOutrosService(IImportFileConverterService dataConverterService)
+        public PrevidenciaOutrosService(IImportFilePrevConverterService dataConverterService)
         {
             _importFileConverterService = dataConverterService;
         }
@@ -25,21 +25,16 @@ namespace IntegraCVP.Application.Services
             await file.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
 
-            var jsonResult = _importFileConverterService.ConvertToJson(memoryStream);
-
-            var PrevidenciaOutrosData = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonResult);
+            var PrevidenciaOutrosData = await _importFileConverterService.ProcessDataAsync(memoryStream);
 
             if (PrevidenciaOutrosData == null || !PrevidenciaOutrosData.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var PrevidenciaOutrossFiltrados = PrevidenciaOutrosData
-                .Where(e => e.ContainsKey("TIPO_DADO") && e["TIPO_DADO"] == tipo.ToString())
-                .ToList();
 
-            if (!PrevidenciaOutrossFiltrados.Any())
-                throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
+            var primeiroParticipante = PrevidenciaOutrosData
+                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
 
-            return GerarDocumentoPrevidenciaOutros(PrevidenciaOutrossFiltrados.FirstOrDefault(), tipo);
+            return GerarDocumentoPrevidenciaOutros(primeiroParticipante, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaOutros(Dictionary<string, string> dados, PrevidenciaOutrosType tipo)

@@ -1,10 +1,12 @@
 using IntegraCVP.Application.Enums;
 using IntegraCVP.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.IO.Compression;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace IntegraCVP.UI.Controllers
 {
@@ -13,7 +15,7 @@ namespace IntegraCVP.UI.Controllers
     public class TerminalConverterController : ControllerBase
     {
         private readonly ITerminalConverterService _terminalConverterService;
-        
+
         public TerminalConverterController(ITerminalConverterService terminalConverterService)
         {
             _terminalConverterService = terminalConverterService;
@@ -59,7 +61,7 @@ namespace IntegraCVP.UI.Controllers
                 return new ContentResult
                 {
                     Content = jsonResult,
-                    ContentType = "application/json",
+                    ContentType = "application/json; charset=utf-8",
                     StatusCode = 200
                 };
             }
@@ -78,7 +80,7 @@ namespace IntegraCVP.UI.Controllers
             var consolidatedRecords = new List<object>();
             var buffer = new StringBuilder();
 
-            using (var reader = new StreamReader(dataStream, Encoding.GetEncoding("ISO-8859-1"), true, 8192))
+            using (var reader = new StreamReader(dataStream, Encoding.GetEncoding("ISO-8859-1")))
             {
                 string line;
                 while ((line = await reader.ReadLineAsync()) != null)
@@ -94,18 +96,16 @@ namespace IntegraCVP.UI.Controllers
                     }
                 }
 
-                // Processa o restante no buffer
                 if (buffer.Length > 0)
                 {
                     ProcessBuffer(buffer, consolidatedRecords);
                 }
             }
 
-            // Serializa os registros consolidados para JSON formatado
             var jsonOptions = new JsonSerializerOptions
             {
-                WriteIndented = true, // JSON legível
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull // Ignorar valores nulos
+                WriteIndented = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
 
             return JsonSerializer.Serialize(consolidatedRecords, jsonOptions);
@@ -121,9 +121,12 @@ namespace IntegraCVP.UI.Controllers
                 try
                 {
                     var record = JsonSerializer.Deserialize<object>(line);
-                    lock (consolidatedRecords) // Lock necessário para evitar race conditions
+                    if (record != null)
                     {
-                        consolidatedRecords.Add(record);
+                        lock (consolidatedRecords)
+                        {
+                            consolidatedRecords.Add(record);
+                        }
                     }
                 }
                 catch (JsonException)
@@ -132,8 +135,5 @@ namespace IntegraCVP.UI.Controllers
                 }
             });
         }
-
-
-
     }
 }

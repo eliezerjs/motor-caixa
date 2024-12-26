@@ -50,4 +50,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.Use(async (context, next) =>
+{
+    context.Response.ContentType = "application/json; charset=utf-8";
+    await next();
+
+});
 app.Run();
