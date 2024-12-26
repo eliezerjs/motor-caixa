@@ -80,8 +80,7 @@ namespace IntegraCVP.Application.Services
                 ("CIDADE2", 50, 687, 8, false),
                 ("EST2", 100, 687, 8, false),
 
-                ("CEP2" +
-                "", 50, 695, 8, false),
+                ("CEP2", 50, 695, 8, false),
             };
         }
 

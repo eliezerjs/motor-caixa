@@ -8,13 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("PRODUTO", 57, 70, 8, false),
-                ("COD_PROD", 306, 70, 8, false),
-                ("PROC_SUSEP", 392, 70, 8, false),
+                ("PRODUTO", 59, 65, 8, false),
+                ("COD_PROD", 308, 65, 8, false),
+                ("PROC_SUSEP", 394, 65, 8, false),
 
-                ("NOME_CLIENTE", 55, 111, 8, false),
-                ("CPF", 327, 111, 8, false),
-                ("DT_NASC", 453, 111, 8, false),
+                ("NOME_CLIENTE", 55, 109, 8, false),
+                ("CPF", 327, 109, 8, false),
+                ("DT_NASC", 456, 109, 8, false),
 
                 ("NUMDOCTO", 495, 402, 8, false),
 
@@ -46,15 +46,15 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("PRODUTO", 57, 86, 8, false),
-                ("COD_PROD", 308, 86, 8, false),
-                ("PROC_SUSEP", 394, 86, 8, false),
+                ("PRODUTO", 57, 84, 8, false),
+                ("COD_PROD", 308, 84, 8, false),
+                ("PROC_SUSEP", 394, 84, 8, false),
 
-                ("NOME_CLIENTE", 56, 132, 8, false),
-                ("CPF", 327, 132, 8, false),
-                ("DT_NASC", 454, 132, 8, false),
+                ("NOME_CLIENTE", 56, 130, 8, false),
+                ("CPF", 330, 130, 8, false),
+                ("DT_NASC", 457, 130, 8, false),
 
-                ("NUMDOCTO", 495, 364, 8, false),
+                //("NUMDOCTO", 495, 364, 8, false),
 
                 ("CEDENTE", 380, 384, 8, false),
                 ("DTVENCTO", 505, 384, 8, false),
@@ -62,7 +62,7 @@ namespace IntegraCVP.Application.Services
                 ("NSNUMERO", 373, 404, 8, false),
                 ("VALDOCTO", 525, 404, 8, false),
 
-                ("NUMOBJETO", 515, 525, 8, false),
+                //("NUMOBJETO", 515, 525, 8, false),
 
                 ("PARCELA", 470, 491, 8, false),
                 ("DTVENCTO", 505, 491, 8, false),
@@ -70,9 +70,9 @@ namespace IntegraCVP.Application.Services
                 ("CEDENTE", 492, 509, 8, false),
 
                 ("DTDOCTO", 83, 526, 8, false),
-                ("NUMDOCTO", 155, 526, 8, false),
+                //("NUMDOCTO", 155, 526, 8, false),
                 ("DTPROCESS", 390, 526, 8, false),
-                ("NSNUMERO", 525, 526, 8, false),
+                //("NSNUMERO", 525, 526, 8, false),
 
                 ("VALDOCTO", 525, 543, 8, false),
 

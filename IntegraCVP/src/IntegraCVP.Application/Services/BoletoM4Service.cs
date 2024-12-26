@@ -70,7 +70,21 @@ namespace IntegraCVP.Application.Services
                     PdfHelper.ConverterValor(dadosBoleto["VALOR"])
                 );
 
-                document.AddBarcode(pdfDocument, codigoPadronizado, 50, 130);
+                if (tipo == BoletoM4Type.VA18)
+                {
+                    document.AddBarcode(pdfDocument, codigoPadronizado, 50, 130);
+                }
+                else if (tipo == BoletoM4Type.VA24)
+                {
+                    document.AddBarcode(pdfDocument, codigoPadronizado, 50, 168);
+                } else if (tipo == BoletoM4Type.VIDA23)
+                {
+                    document.AddBarcode(pdfDocument, codigoPadronizado, 50, 145);
+                } else if (tipo == BoletoM4Type.VIDA24)
+                {
+                    document.AddBarcode(pdfDocument, codigoPadronizado, 50, 73);
+                }
+
             }
 
             document.Close();
