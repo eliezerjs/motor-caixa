@@ -35,6 +35,8 @@ builder.Services.AddScoped<IPrevidenciaM3Service, PrevidenciaM3Service>();
 builder.Services.AddScoped<IPrevidenciaM4Service, PrevidenciaM4Service>();
 builder.Services.AddScoped<IPrevidenciaM5Service, PrevidenciaM5Service>();
 builder.Services.AddScoped<IPrevidenciaM6Service, PrevidenciaM6Service>();
+builder.Services.AddScoped<IPrevidenciaOutrosService, PrevidenciaOutrosService>();
+
 
 
 var app = builder.Build();

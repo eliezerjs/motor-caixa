@@ -98,7 +98,7 @@ namespace IntegraCVP.Application.Services
                 // Detecta o TIPO_DADO
                 if ((line.Contains(" - ") && line.ToUpper().Contains("BOLETO"))
                     || line.Contains("VIDA01") || line.Contains("VIDA03") || line.Contains("VIDA04")
-                    || line.Contains("VIDA02") || line.Contains("VD33")
+                    || line.Contains("VIDA02") || line.Contains("VD33") || line.Contains("VIDA27")
                     || line.Contains("VIDA05") || line.Contains("VD08") || line.Contains("VIDA07")
                     || line.Contains("VD09") || line.Contains("VIDA17") || line.Contains("VIDA18"))
                 {

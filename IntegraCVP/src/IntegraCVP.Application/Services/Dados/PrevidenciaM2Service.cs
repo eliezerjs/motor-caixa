@@ -20,7 +20,7 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_DT_VENCTO",380, 449, 8, false),
+                ("BOLETO_DT_VENCTO",380, 450, 8, false),
 
                 ("BOLETO_DS_TEXTO", 70, 527, 8, false),
                 ("BOLETO_NO_CERTIFICADO", 235, 527, 8, false),
@@ -32,7 +32,7 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_DT_VENCTO",387, 429, 8, false),
+                ("BOLETO_DT_VENCTO",387, 448, 8, false),
 
                 ("BOLETO_DS_TEXTO", 70, 540, 8, false),
                 ("BOLETO_NO_CERTIFICADO", 215, 540, 8, false),
