@@ -34,9 +34,10 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("SEGURADO", 100, 174, 11, false),
-
-                ("NUM_CERTIF", 195, 324, 13, false),               
+                ("SEGURADO", 125, 208, 11, false),
+                ("NUM_CERTIF", 210, 370, 16, false),
+                ("COD_PRODUTO", 376, 787, 6, false), 
+                ("COD_SUSEP", 428, 787, 6, false),
             };
         }
 
