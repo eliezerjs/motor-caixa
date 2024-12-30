@@ -67,8 +67,6 @@ namespace IntegraCVP.Application.Services
                     PdfHelper.ObterEspecieMoedaDoCodigoBarra(codigoDeBarras)
                 );
                 
-                //document.AddTextField(especieMoeda, 262, 585, 8, false, pdfPage);
-
                 string codigoPadronizado = PdfHelper.MontarCodigoBarra(
                     codigoDeBarras,
                     PdfHelper.ObterFatorVencimento(dadosBoleto["VENCIMENT"]),

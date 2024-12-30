@@ -8,13 +8,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_NO_CERTIFICADO", 410, 243, 8, false),
+                ("PORTABILIDADE_DT_CEDENTE", 410, 243, 8, false),
 
-                ("BOLETO_NO_CERTIFICADO", 107, 257, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 427, 257, 8, false),
+                ("PORTABILIDADE_ENTIDADE_CEDENTE", 107, 257, 8, false),
+                ("PORTABILIDADE_NO_CERTIFICADO", 427, 257, 8, false),
 
-                ("BOLETO_NO_CERTIFICADO", 113, 272, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 296, 272, 8, false)
+                ("PORTABILIDADE_VALOR_LIQUIDO", 113, 272, 8, false),
+                ("PORTABILIDADE_ENTIDADE_CESSIONARIA", 296, 272, 8, false)
             };
         }
 

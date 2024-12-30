@@ -135,5 +135,67 @@ namespace IntegraCVP.UI.Controllers
                 }
             });
         }
+
+        [Produces("application/json")]
+        [HttpGet("buscar-arquivo-por-numero-linhas")]
+        public IActionResult BuscarArquivoPorNumeroNasLinhas([FromQuery] string directoryPath, [FromQuery] string numero)
+        {
+            if (string.IsNullOrWhiteSpace(directoryPath) || string.IsNullOrWhiteSpace(numero) || numero.Length != 2)
+            {
+                return BadRequest("Caminho do diretório ou número inválido.");
+            }
+
+            try
+            {
+                if (!Directory.Exists(directoryPath))
+                {
+                    return NotFound("O diretório especificado não existe.");
+                }
+
+                var matchingFiles = new List<string>();
+
+                foreach (var filePath in Directory.GetFiles(directoryPath))
+                {
+                    try
+                    {
+                        using var reader = new StreamReader(filePath);
+
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (line.StartsWith(numero))
+                            {
+                                matchingFiles.Add(Path.GetFileName(filePath));
+                                break; // Encontrou uma linha correspondente, pode parar de ler o arquivo
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Continuar mesmo se um arquivo falhar
+                        Console.WriteLine($"Erro ao ler o arquivo {filePath}: {ex.Message}");
+                    }
+                }
+
+                if (matchingFiles.Any())
+                {
+                    return Ok(new { Message = matchingFiles.FirstOrDefault()});
+                }
+                else
+                {
+                    return Ok(new { Message = "Não Encontrado" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao processar os arquivos: {ex.Message}");
+            }
+        }
+
     }
+
+
+
+
+
 }
