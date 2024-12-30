@@ -31,7 +31,7 @@ namespace IntegraCVP.Application.Services
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
             var primeiroParticipante = PrevidenciaM3Data
-                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
+                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "04");
 
             return GerarDocumentoPrevidenciaM3(primeiroParticipante, tipo);
         }

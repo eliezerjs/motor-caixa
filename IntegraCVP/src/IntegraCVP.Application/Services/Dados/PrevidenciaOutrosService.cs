@@ -8,11 +8,10 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 97, 456, 8, false),
+                ("PRODUTO_NO_PROPOSTA", 367, 456, 8, false),
+
+                ("PRODUTO_NO_CERTIFICADO", 367, 515, 8, false)
             };
         }
 
@@ -20,11 +19,11 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_DT_VENCTO",380, 450, 8, false),
+                ("BOLETO_DT_VENCTO",180, 201, 8, false),
 
-                ("BOLETO_DS_TEXTO", 70, 527, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 235, 527, 8, false),
-                ("BOLETO_VENCIMENTO", 420, 527, 8, false)
+                ("BOLETO_DS_TEXTO", 70, 300, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 280, 300, 8, false),
+                ("BOLETO_VENCIMENTO", 425, 300, 8, false)
             };
         }
 
@@ -32,10 +31,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_DT_VENCTO",380, 450, 8, false),
-                ("BOLETO_DS_TEXTO", 70, 527, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 235, 527, 8, false),
-                ("BOLETO_VENCIMENTO", 420, 527, 8, false)
+                ("BOLETO_DT_VENCTO",190, 174, 8, false),
+
+                ("BOLETO_NM_CEDENTE", 70, 227, 8, false),
+                ("BOLETO_NO_CPF_CNPJ", 445, 227, 8, false),
+
+                ("BOLETO_DS_TEXTO", 70, 270, 8, false),
+                ("BOLETO_NO_CERTIFICADO", 447, 270, 8, false)
             };
         }
 
@@ -43,11 +45,8 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 105, 571, 8, false),
+                ("PRODUTO_NO_CERTIFICADO", 327, 571, 8, false)
             };
         }
 
@@ -55,11 +54,8 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 133, 324, 8, false),
+                ("PRODUTO_NO_CERTIFICADO", 388, 324, 8, false)
             };
         }
 
@@ -67,11 +63,8 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 123, 281, 8, false),
+                ("PRODUTO_NO_CERTIFICADO", 350, 281, 8, false)
             };
         }
 
@@ -79,11 +72,8 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 373, 397, 8, false),
+                ("PRODUTO_NO_CERTIFICADO", 125, 410, 8, false)
             };
         }
 
@@ -91,11 +81,8 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                ("PRODUTO_NM_TITULO_FORMULARIO", 260, 469, 8, false),
+                ("PRODUTO_NO_PROPOSTA", 450, 469, 8, false)
             };
         }
         public string GetImagePath(PrevidenciaOutrosType tipo, string folder)
