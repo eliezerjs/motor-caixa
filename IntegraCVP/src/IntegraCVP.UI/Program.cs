@@ -1,5 +1,7 @@
 using IntegraCVP.Application.Interfaces;
+using IntegraCVP.Application.Interfaces.Capas;
 using IntegraCVP.Application.Services;
+using IntegraCVP.Application.Services.Capas;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,7 +40,9 @@ builder.Services.AddScoped<IPrevidenciaM5Service, PrevidenciaM5Service>();
 builder.Services.AddScoped<IPrevidenciaM6Service, PrevidenciaM6Service>();
 builder.Services.AddScoped<IPrevidenciaOutrosService, PrevidenciaOutrosService>();
 
-
+builder.Services.AddScoped<ICapaFacSimplesColoridoService, CapaFacSimplesColoridoService>();
+builder.Services.AddScoped<ICapaFacARService, CapaFacARService>();
+builder.Services.AddScoped<ICapaFacSimplesPBService, CapaFacSimplesPBService>();
 
 var app = builder.Build();
 app.MapControllers();
