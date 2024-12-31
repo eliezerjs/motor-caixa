@@ -30,6 +30,7 @@ builder.Services.AddScoped<IImportFilePrevConverterService, ImportFilePrevConver
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IBoasVindasService, BoasVindasService>();
 builder.Services.AddScoped<IPrestamistaService, PrestamistaService>();
+builder.Services.AddScoped<IGeradorCodigoCepNetService, GeradorCodigoCepNetService>();
 
 builder.Services.AddScoped<IPrevidenciaM1Service, PrevidenciaM1Service>();
 builder.Services.AddScoped<IPrevidenciaM2Service, PrevidenciaM2Service>();
