@@ -30,10 +30,23 @@ namespace IntegraCVP.Application.Services
             if (PrevidenciaM3Data == null || !PrevidenciaM3Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var primeiroParticipante = PrevidenciaM3Data
-                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "04");
+            var primeiro = PrevidenciaM3Data
+                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "04" );
 
-            return GerarDocumentoPrevidenciaM3(primeiroParticipante, tipo);
+            var segundo = PrevidenciaM3Data
+                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "03");
+
+            var dicionario = new Dictionary<string, string>(primeiro);
+
+            foreach (var item in segundo)
+            {
+                if (!dicionario.ContainsKey(item.Key))
+                {
+                    dicionario.Add(item.Key, item.Value);
+                }
+            }
+
+            return GerarDocumentoPrevidenciaM3(dicionario, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM3(Dictionary<string, string> dados, PrevidenciaM3Type tipo)

@@ -22,13 +22,13 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_NO_CERTIFICADO", 423, 226, 8, false),
+                ("PORTABILIDADE_DT_CEDENTE", 423, 226, 8, false),
 
-                ("BOLETO_NO_CERTIFICADO", 200, 242, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 457, 242, 8, false),
+                ("PORTABILIDADE_ENTIDADE_CEDENTE", 200, 241, 8, false),
+                ("PORTABILIDADE_VALOR_LIQUIDO", 457, 241, 8, false),
 
-                ("BOLETO_NO_CERTIFICADO", 110, 256, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 450, 255, 8, false)
+                ("PORTABILIDADE_VALOR_LIQUIDO", 110, 256, 8, false),
+                ("PORTABILIDADE_NO_CERTIFICADO", 450, 255, 8, false)
             };
         }
 
@@ -36,11 +36,11 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_NO_CERTIFICADO", 385, 217, 8, false),
+                ("PORTABILIDADE_DT_CEDENTE", 385, 217, 8, false),
 
-                ("BOLETO_NO_CERTIFICADO", 107, 231, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 282, 231, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 465, 230, 8, false),
+                ("PORTABILIDADE_ENTIDADE_CEDENTE", 107, 230, 7, false),
+                ("PORTABILIDADE_NO_CERTIFICADO", 282, 230, 8, false),
+                ("PORTABILIDADE_VALOR_LIQUIDO", 465, 230, 8, false),
 
             };
         }

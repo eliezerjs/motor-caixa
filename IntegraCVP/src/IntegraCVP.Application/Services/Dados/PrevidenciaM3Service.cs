@@ -8,39 +8,35 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 55, 97, 10, false),             
-                ("CPF_CLIENTE", 325, 97, 10, false),              
-                ("DATA_NASCIMENTO", 550, 97, 10, false),   
-                
-                ("NOME_PLANO", 55, 146, 10, false),               
-                ("RAMO_PRODUTO", 325, 146, 10, false),            
-                ("COD_RAMO_PRODUTO", 550, 146, 10, false),   
-                
-                ("MODALIDADE", 55, 177, 10, false),               
-                ("NUM_PROPOSTA", 190, 177, 10, false),            
-                ("NUM_CERTIFICADO", 324, 177, 10, false),         
-                ("INICIO_VIGENCIA", 460, 177, 10, false),         
-                ("PLANO_MENSAL", 625, 177, 10, false),    
-                
-                ("DEBITO_CONTA", 55, 208, 10, false),   
-                
-                ("BENEFICIO_SOBREVIVENCIA", 55, 251, 10, false),  
-                ("PROCESSO_SUSEP", 190, 251, 10, false),         
-                ("CONTRIBUICAO_PREMIO", 325, 251, 10, false),     
-                ("DATA_CONCESSAO_BENEF", 460, 251, 10, false),
-                
-                ("REGIME_TRIBUTARIO", 55, 282, 10, false),       
-                ("TABUA_ATUARIAL", 190, 282, 10, false),         
-                ("EXCEDENTE_FINANCEIRO", 325, 282, 10, false), 
-                
-                ("NOME_CLIENTE_PROTECAO", 55, 355, 10, false),    
-                ("CPF_CLIENTE_PROTECAO", 325, 355, 10, false),    
-                ("DATA_NASCIMENTO_PROTECAO", 550, 355, 10, false),
+                 // Dados do participante/segurado
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 123, 8, false),
+                ("COBERTURA_PROTECAO_CPF_PROTECAO", 380, 123, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 496, 123, 8, false),
 
-                ("PROCESSO_SUSEP_PROTECAO", 190, 386, 10, false), 
-                ("PRAZO_ANOS", 325, 386, 10, false),             
-                ("CONTRIBUICAO_RS", 460, 386, 10, false),         
-                ("BENEFICIO_RS", 625, 386, 10, false)
+                // Dados do plano
+                ("COBERTURA_PROTECAO_NM_TABUA_BIOMETRICA", 67, 177, 8, false),
+                ("", 300, 165, 8, false),
+                ("", 500, 170, 8, false),
+
+                ("COBERTURA_PROTECAO_NM_COBERTURA", 67, 214, 8, false),
+                ("", 320, 214, 8, false),
+                ("COBERTURA_PROTECAO_NO_CERTIFICADO", 500, 213, 8, false),
+
+                ("PRODUTO_DT_INIC_VIG", 67, 247, 8, false),
+                ("PRODUTO_Plano_uni_men", 300, 247, 8, false),
+                ("PRODUTO_Debito_boleto", 500, 247, 8, false),
+
+                // Cobertura de sobrevivência
+                ("PRODUTO_NM_BENEFICIO_BASICO", 67, 308, 8, false),
+                ("COBERTURA_PROTECAO_CD_PROC_SUSEP", 450, 308, 8, false),
+                
+                ("PRODUTO_DT_CONC_BENEF", 67, 343, 8, false),
+                ("PRODUTO_TP_REGIME_TRIB", 300, 343, 8, false),
+                ("PRODUTO_VL_CONTRIB_PARTIC", 500, 343, 8, false),
+
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 397, 8, false),
+                ("COBERTURA_PROTECAO_CPF_PROTECAO", 380, 397, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 496, 397, 8, false)
             };
         }
 
@@ -48,11 +44,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                  // Dados do participante/segurado
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 127, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 496, 127, 8, false),
+
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 397, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 260, 397, 8, false)
             };
         }
 
@@ -60,11 +57,12 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("NOME_CLIENTE", 77, 140, 8, false),
-                ("NUM_PROPOSTA", 382, 166, 7, false),
-                ("DATA_DECLINIO", 115, 177, 7, false),
-                ("COD_PRODUTO", 296, 736, 7, false),
-                ("COD_SUSEP", 373, 736, 7, false)
+                  // Dados do participante/segurado
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 130, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 496, 130, 8, false),
+
+                ("COBERTURA_PROTECAO_NM_PART_PROTECAO", 67, 387, 8, false),
+                ("COBERTURA_PROTECAO_DT_NASC_PROTECAO", 250, 390, 8, false)
             };
         }
 

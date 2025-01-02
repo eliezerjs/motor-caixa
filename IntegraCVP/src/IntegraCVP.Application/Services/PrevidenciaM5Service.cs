@@ -30,13 +30,12 @@ namespace IntegraCVP.Application.Services
             if (PrevidenciaM5Data == null || !PrevidenciaM5Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            if (tipo == PrevidenciaM5Type.PK12)
-            {
+           
                 var registro = PrevidenciaM5Data
                 .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "26"); 
 
                 return GerarDocumentoPrevidenciaM5(registro, tipo);
-            }
+           
 
             return null;
         }
