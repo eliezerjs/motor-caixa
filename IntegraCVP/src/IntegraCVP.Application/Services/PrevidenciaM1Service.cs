@@ -31,7 +31,7 @@ namespace IntegraCVP.Application.Services
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
             var primeiroParticipante = PrevidenciaM1Data
-                .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "04");
+                .FirstOrDefault(e => e.ContainsKey("RecordType") && (e["RecordType"] == "03" || e["RecordType"] == "04"));
 
             if (!primeiroParticipante.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");

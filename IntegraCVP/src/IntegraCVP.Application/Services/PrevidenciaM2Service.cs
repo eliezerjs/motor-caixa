@@ -30,13 +30,13 @@ namespace IntegraCVP.Application.Services
             if (PrevidenciaM2Data == null || !PrevidenciaM2Data.Any())
                 throw new ArgumentException("O arquivo não contém dados válidos.");
 
-            var primeiroParticipante = PrevidenciaM2Data
-                .FirstOrDefault(e => e.ContainsKey("RecordType") && e["RecordType"] == "13");
+            var dicionario = PrevidenciaM2Data
+                .FirstOrDefault(e => e.ContainsKey("RecordType"));
 
             if (!PrevidenciaM2Data.Any())
                 throw new ArgumentException($"Nenhum dado do tipo {tipo} foi encontrado no arquivo.");
 
-            return GerarDocumentoPrevidenciaM2(primeiroParticipante, tipo);
+            return GerarDocumentoPrevidenciaM2(dicionario, tipo);
         }
 
         public byte[] GerarDocumentoPrevidenciaM2(Dictionary<string, string> dados, PrevidenciaM2Type tipo)

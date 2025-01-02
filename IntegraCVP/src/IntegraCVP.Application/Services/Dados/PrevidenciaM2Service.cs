@@ -8,11 +8,10 @@ namespace IntegraCVP.Application.Services
         {
             return new List<(string Key, float X, float Y, float FontSize, bool isBold)>
             {
-                ("BOLETO_DT_VENCTO",382, 485, 8, false),
-
-                ("BOLETO_DS_TEXTO", 70, 560, 8, false),
-                ("BOLETO_NO_CERTIFICADO", 230, 560, 8, false),
-                ("BOLETO_VENCIMENTO", 405, 560, 8, false)
+                ("PRODUTO_NM_PRODUTO",382, 485, 8, false),
+                ("PRODUTO_NO_PROPOSTA", 70, 560, 8, false),
+                ("PARTICIPANTE_NM_CLIENTE", 230, 560, 8, false),
+                ("PRODUTO_VL_CONTRIB_PARTIC", 405, 560, 8, false)
             };
         }
 
