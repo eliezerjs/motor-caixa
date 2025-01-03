@@ -18,8 +18,8 @@ public class CapaFacSimplesPBController : ControllerBase
         _dataConverterService = dataConverterService;
     }
 
-    [HttpPost("gerar-ds54")]
-    public async Task<IActionResult> GerarDS54([FromForm] FileUploadModel model)
+    [HttpPost("gerar-vida01")]
+    public async Task<IActionResult> GerarVIDA01([FromForm] FileUploadModel model)
     {
         if (model.File == null || model.File.Length == 0)
         {
@@ -28,8 +28,8 @@ public class CapaFacSimplesPBController : ControllerBase
 
         try
         {
-            var pdfData = await _capaFacSimplesPBService.ConverterEGerarPdfAsync(model.File, CapaFacPBType.DS54);
-            return File(pdfData, "application/pdf", "Capa-fac-pb-ds54.pdf");
+            var pdfData = await _capaFacSimplesPBService.ConverterEGerarPdfAsync(model.File, CapaFacPBType.VIDA01);
+            return File(pdfData, "application/pdf", "Capa-fac-pb-vida01.pdf");
         }
         catch (ArgumentException ex)
         {
